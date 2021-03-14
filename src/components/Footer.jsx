@@ -1,5 +1,9 @@
 import React from "react";
 
 export const Footer = () => {
-  return <React.Fragment></React.Fragment>;
+  return (
+    <div className="footer">
+      <h3>This is the footer</h3>
+    </div>
+  );
 };

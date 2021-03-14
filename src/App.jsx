@@ -5,6 +5,11 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+
+//Style
+import "./styles/style.scss";
+
+//Pages
 import { Custom } from "./components/pages/Custom";
 import { Home } from "./components/pages/Home";
 import { NotFound } from "./components/pages/NotFound";
