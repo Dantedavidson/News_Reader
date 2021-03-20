@@ -3,22 +3,26 @@ import { Link } from "react-router-dom";
 
 export const Nav = ({ current }) => {
   return (
-    <div className="Nav">
-      <h1>
-        News <br />
-        Reader
-      </h1>
+    <div className="nav">
+      <h1>News Reader</h1>
       <div>
         <Link to="/">
-          <h3 className={current === "home" ? "current" : ""}>Home</h3>
+          <div>
+            <h3 className={current === "home" ? "current" : ""}>Home</h3>
+            <span className="verticle-line"></span>
+          </div>
         </Link>
         <Link to="custom">
-          <h3 className={current === "custom" ? "current" : ""}>
-            Custom Story
-          </h3>
+          <div>
+            {" "}
+            <h3 className={current === "custom" ? "current" : ""}>Create</h3>
+            <span className="verticle-line"></span>
+          </div>
         </Link>
         <Link to="stories">
-          <h3 className={current === "stories" ? "current" : ""}>My Stories</h3>
+          <div>
+            <h3 className={current === "stories" ? "current" : ""}>Read</h3>
+          </div>
         </Link>
       </div>
     </div>

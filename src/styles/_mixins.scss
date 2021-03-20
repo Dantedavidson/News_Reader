@@ -10,3 +10,20 @@
   align-items: $alignItems;
   align-content: $alignContent;
 }
+
+@mixin reset {
+  *,
+  *:visited {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Titillium Web", sans-serif;
+  }
+  a:link,
+  a:active,
+  a:visited,
+  a:hover {
+    color: inherit;
+  }
+}

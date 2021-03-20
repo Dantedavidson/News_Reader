@@ -1,15 +1,18 @@
+//Variables and Mixins
 @import "./variables";
 @import "./mixins";
 
-*,
-*:visited {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  color: #000;
-}
+@include reset;
 
-.current {
-  color: red;
-}
+//Fonts
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;1,400&display=swap");
+
+//Components
+@import "./components/nav.scss";
+@import "./components/slider.scss";
+@import "./components/footer.scss";
+
+//Animation
+@import "./animation/animation.scss";
+//Page Styles
