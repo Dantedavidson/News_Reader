@@ -1,0 +1,41 @@
+.carousel-item {
+  margin-top: 3rem;
+  width: 100%;
+  display: -ms-grid !important;
+  display: grid !important;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+.carousel-item div {
+  display: inline-block;
+  min-height: 300px;
+  font-family: "Roboto", sans-serif;
+}
+
+.carousel-item div h2 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.carousel-item div h3 {
+  font-size: 1.4rem;
+  width: 95%;
+}
+
+.carousel-item div p {
+  margin: 0;
+}
+
+.carousel-item div:nth-child(1) {
+  width: 100%;
+}
+
+.carousel-item div:nth-child(1) img {
+  width: 80%;
+}
+
+.carousel-item div:nth-child(2) {
+  width: 100%;
+}
+/*# sourceMappingURL=carousel.css.map */

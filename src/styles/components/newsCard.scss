@@ -1,0 +1,15 @@
+.card {
+  width: 90%;
+  margin: 1rem auto;
+  padding: 0.4rem;
+  border: 0.1rem black solid;
+  font-size: 1.2rem;
+  @include flex-container($justifyContent: space-between);
+  path {
+    transform: translateX(-25rem);
+  }
+  path:hover {
+    color: $crimson;
+    transform: translateX(-25rem) scale(1.1);
+  }
+}

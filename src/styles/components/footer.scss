@@ -3,14 +3,12 @@ footer {
   color: #fff;
   width: 100%;
   font-size: 1.3rem;
+  font-family: "Titillium Web", sans-serif;
   > div {
     width: 80%;
     margin: auto;
     padding: 1rem 0;
-    @include flex-container(
-      $justifyContent: space-around,
-      $alignItems: flex-start
-    );
+    @include flex-container($justifyContent: space-around);
     > div:nth-child(1) {
       width: 30%;
       padding-bottom: 5rem;
@@ -36,7 +34,10 @@ footer {
       order: 2;
 
       div {
-        @include flex-container($justifyContent: space-between);
+        @include flex-container(
+          $justifyContent: space-between,
+          $alignItems: center
+        );
         width: 130px;
         margin: auto;
         cursor: pointer;
@@ -49,7 +50,7 @@ footer {
           color: $blue-one;
         }
         path {
-          transform: translateX(13rem);
+          transform: translateX(14rem);
         }
       }
     }

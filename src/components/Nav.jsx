@@ -8,20 +8,22 @@ export const Nav = ({ current }) => {
       <div>
         <Link to="/">
           <div>
-            <h3 className={current === "home" ? "current" : ""}>Home</h3>
+            <h3 className={current === "home" ? "current" : "none"}>Home</h3>
             <span className="verticle-line"></span>
           </div>
         </Link>
         <Link to="custom">
           <div>
             {" "}
-            <h3 className={current === "custom" ? "current" : ""}>Create</h3>
+            <h3 className={current === "custom" ? "current" : "none"}>
+              Create
+            </h3>
             <span className="verticle-line"></span>
           </div>
         </Link>
         <Link to="stories">
           <div>
-            <h3 className={current === "stories" ? "current" : ""}>Read</h3>
+            <h3 className={current === "stories" ? "current" : "none"}>Read</h3>
           </div>
         </Link>
       </div>

@@ -7,12 +7,13 @@ import {
 } from "react-router-dom";
 
 //Style
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/style.scss";
 
 //font awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
 
-import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDoubleUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 //Pages
 import { Custom } from "./components/pages/Custom";
@@ -20,7 +21,7 @@ import { Home } from "./components/pages/Home";
 import { NotFound } from "./components/pages/NotFound";
 import { Stories } from "./components/pages/Stories";
 
-library.add(faAngleDoubleUp);
+library.add(faAngleDoubleUp, faHeart);
 
 class App extends Component {
   render() {

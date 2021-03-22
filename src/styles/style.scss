@@ -7,10 +7,15 @@
 //Fonts
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap");
 
 //Components
 @import "./components/nav.scss";
+@import "./components/containers.scss";
 @import "./components/slider.scss";
+@import "./components/form.scss";
+@import "./components/newsCard.scss";
+@import "./components/carousel.scss";
 @import "./components/footer.scss";
 
 //Animation

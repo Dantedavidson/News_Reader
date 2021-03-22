@@ -1,8 +1,8 @@
 @mixin flex-container(
   $flexDirection: row,
   $justifyContent: flex-start,
-  $alignItems: center,
-  $alignContent: center
+  $alignItems: flex-start,
+  $alignContent: flex-start
 ) {
   display: flex;
   flex-direction: $flexDirection;
@@ -12,18 +12,17 @@
 }
 
 @mixin reset {
-  *,
-  *:visited {
+  * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     text-decoration: none;
-    font-family: "Titillium Web", sans-serif;
   }
   a:link,
   a:active,
   a:visited,
   a:hover {
     color: inherit;
+    text-decoration: none;
   }
 }
