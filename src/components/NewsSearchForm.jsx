@@ -2,7 +2,7 @@ import React from "react";
 
 import FormControl from "react-bootstrap/FormControl";
 
-export const NewsSearchForm = () => {
+export const NewsSearchForm = ({ formDisplay }) => {
   const sections = [
     "All",
     "Adventure Sports",
@@ -117,7 +117,7 @@ export const NewsSearchForm = () => {
     "Your Money",
   ];
   return (
-    <form>
+    <form className={formDisplay ? "display" : ""}>
       <div>
         <div className="input">
           <label for="news-search">Search Term</label>

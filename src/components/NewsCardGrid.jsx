@@ -1,9 +1,9 @@
 import React from "react";
 import { NewsCard } from "./NewsCard";
 
-export const NewsCardGrid = () => {
+export const NewsCardGrid = ({ cardDisplay }) => {
   return (
-    <div className="news-card-grid">
+    <div className={cardDisplay ? "display news-card-grid" : "news-card-grid"}>
       <NewsCard
         title="'Our silence is complicity': Biden and Harris condemn anti-Asian violence during Atlanta visit"
         url="https://www.theguardian.com/us-news/2021/mar/19/atlanta-spa-shootings-biden-harris-visit"

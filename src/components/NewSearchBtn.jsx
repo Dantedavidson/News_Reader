@@ -1,8 +1,22 @@
 import React from "react";
 
-export const NewSearchBtn = () => {
+export const NewSearchBtn = ({
+  formDisplay,
+  setFormDisplay,
+  cardDisplay,
+  setCardDisplay,
+}) => {
+  const toggleDisplay = () => {
+    if (!formDisplay && !cardDisplay) {
+      setFormDisplay(true);
+    } else {
+      setFormDisplay(!formDisplay);
+      setCardDisplay(!cardDisplay);
+    }
+  };
+
   return (
-    <div className="new-search-btn">
+    <div className="new-search-btn" onClick={toggleDisplay}>
       <p>New Search</p>
     </div>
   );

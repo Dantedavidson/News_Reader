@@ -1,4 +1,6 @@
 .news-card-grid {
+  height: 0;
+  overflow: hidden;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(4, 300px);
@@ -22,4 +24,8 @@
   .news-card-grid {
     grid-template-columns: repeat(1, 300px);
   }
+}
+
+.news-card-grid.display {
+  height: auto;
 }
