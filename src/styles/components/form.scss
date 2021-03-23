@@ -1,0 +1,35 @@
+form {
+  width: 80%;
+  height: 250px;
+  margin: 0 auto 3rem auto;
+  font-size: 1.4rem;
+  @include flex-container(column, space-around);
+  input,
+  select {
+    border: 1px solid #000;
+    border-radius: 20px;
+    padding-left: 10px;
+  }
+  div {
+    width: 100%;
+  }
+  > div:nth-child(1) {
+    input {
+      width: 85%;
+    }
+  }
+  > div:nth-child(2) {
+    @include flex-container($justifyContent: space-between);
+    input {
+      width: 70%;
+    }
+  }
+  > div:nth-child(3) {
+    select {
+      width: 35%;
+    }
+  }
+  label {
+    width: 150px;
+  }
+}

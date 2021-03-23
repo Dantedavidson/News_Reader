@@ -1,15 +1,30 @@
 .card {
-  width: 90%;
-  margin: 1rem auto;
-  padding: 0.4rem;
   border: 0.1rem black solid;
-  font-size: 1.2rem;
-  @include flex-container($justifyContent: space-between);
+  height: 374px;
+  width: 300px;
+  padding: 0.5rem;
+  @include flex-container(column, space-between);
+
+  h3 {
+    max-height: 80px;
+    text-overflow: ellipsis;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    margin: 0;
+  }
+  img {
+    width: 200px;
+    height: 140px;
+    margin: 0 auto 1rem auto;
+  }
+  div {
+    transform: translateY(0.5rem);
+  }
   path {
-    transform: translateX(-25rem);
+    transform: scale(1.5) translateY(-20rem) translateX(180rem);
   }
   path:hover {
-    color: $crimson;
-    transform: translateX(-25rem) scale(1.1);
   }
 }

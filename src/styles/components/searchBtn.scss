@@ -1,0 +1,18 @@
+.new-search-btn {
+  display: block;
+  width: 300px;
+  height: 48px;
+  background: $blue-one;
+  border-radius: 20px;
+  color: #fff;
+  text-align: center;
+  line-height: 48px;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0 auto 3rem auto;
+  cursor: pointer;
+}
+
+.new-search-btn:hover {
+  color: $yellow-highlight;
+}

@@ -10,14 +10,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap");
 
 //Components
+@import "./components/formReset.scss";
 @import "./components/nav.scss";
 @import "./components/containers.scss";
 @import "./components/slider.scss";
 @import "./components/form.scss";
 @import "./components/newsCard.scss";
 @import "./components/carousel.scss";
+@import "./components/newsgrid.scss";
+@import "./components/searchButtonContainer.scss";
+@import "./components/searchBtn.scss";
 @import "./components/footer.scss";
-
 //Animation
 @import "./animation/animation.scss";
 //Page Styles

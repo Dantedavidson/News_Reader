@@ -1,0 +1,25 @@
+.news-card-grid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 300px);
+  row-gap: 3rem;
+  column-gap: 3rem;
+}
+
+@media only screen and (max-width: 1560px) {
+  .news-card-grid {
+    grid-template-columns: repeat(3, 300px);
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .news-card-grid {
+    grid-template-columns: repeat(2, 300px);
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .news-card-grid {
+    grid-template-columns: repeat(1, 300px);
+  }
+}
