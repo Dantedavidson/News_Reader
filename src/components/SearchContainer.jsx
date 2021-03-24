@@ -12,7 +12,7 @@ export const SearchContainer = () => {
   return (
     <div className="search-container">
       <NewsCardGrid cardDisplay={cardDisplay} />
-      <NewsSearchForm formDisplay={formDisplay} />
+      {/* <NewsSearchForm formDisplay={formDisplay} /> */}
       <SearchButtonContainer
         formDisplay={formDisplay}
         setFormDisplay={setFormDisplay}

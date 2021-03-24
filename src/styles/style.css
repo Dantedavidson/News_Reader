@@ -17,6 +17,107 @@ a:hover {
   text-decoration: none;
 }
 
+input,
+label,
+select,
+button,
+textarea {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  background: none;
+  line-height: 1;
+  /* Browsers have different default form fonts */
+}
+
+/* Remove the stupid outer glow in Webkit */
+input:focus {
+  outline: 0;
+}
+
+/* Box Sizing Reset
+-----------------------------------------------*/
+/* All of our custom controls should be what we expect them to be */
+input,
+textarea {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+/* These elements are usually rendered a certain way by the browser */
+button,
+input[type="reset"],
+input[type="button"],
+input[type="submit"],
+input[type="checkbox"],
+input[type="radio"],
+select {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Text Inputs
+-----------------------------------------------*/
+/* Button Controls
+-----------------------------------------------*/
+input[type="checkbox"],
+input[type="radio"] {
+  width: 13px;
+  height: 13px;
+}
+
+/* File Uploads
+-----------------------------------------------*/
+/* Search Input
+-----------------------------------------------*/
+/* Make webkit render the search input like a normal text field */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+}
+
+/* Turn off the recent search for webkit. It adds about 15px padding on the left */
+::-webkit-search-decoration {
+  display: none;
+}
+
+/* Buttons
+-----------------------------------------------*/
+button,
+input[type="reset"],
+input[type="button"],
+input[type="submit"] {
+  /* Fix IE7 display bug */
+  overflow: visible;
+  width: auto;
+}
+
+/* IE8 and FF freak out if this rule is within another selector */
+::-webkit-file-upload-button {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+/* Textarea
+-----------------------------------------------*/
+textarea {
+  /* Move the label to the top */
+  vertical-align: top;
+  /* Turn off scroll bars in IE unless needed */
+  overflow: auto;
+}
+
+/* Selects
+-----------------------------------------------*/
+select[multiple] {
+  /* Move the label to the top */
+  vertical-align: top;
+}
+
 .nav {
   width: 100%;
   height: 8rem;
@@ -196,6 +297,79 @@ a:hover {
           transform: translateY(28px) rotate(-31deg);
 }
 
+form {
+  width: 80%;
+  height: 0;
+  overflow: hidden;
+  margin: 0 auto 3rem auto;
+  font-size: 1.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+form input,
+form select {
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding-left: 10px;
+}
+
+form div {
+  width: 100%;
+}
+
+form > div:nth-child(1) input {
+  width: 85%;
+}
+
+form > div:nth-child(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+
+form > div:nth-child(2) input {
+  width: 70%;
+}
+
+form > div:nth-child(3) select {
+  width: 35%;
+}
+
+form label {
+  width: 150px;
+}
+
+form.display {
+  height: 250px;
+}
+
 .card {
   border: 0.1rem black solid;
   height: 374px;
@@ -216,6 +390,8 @@ a:hover {
           align-items: flex-start;
   -ms-flex-line-pack: start;
       align-content: flex-start;
+  -webkit-transition: all 2s;
+  transition: all 2s;
 }
 
 .card h3 {
@@ -338,6 +514,8 @@ span.horizontal-line {
 }
 
 .news-card-grid {
+  height: 0;
+  overflow: hidden;
   display: -ms-grid;
   display: grid;
   -webkit-box-pack: center;
@@ -348,6 +526,8 @@ span.horizontal-line {
   row-gap: 3rem;
   -webkit-column-gap: 3rem;
           column-gap: 3rem;
+  -webkit-transition: all 3s;
+  transition: all 3s;
 }
 
 @media only screen and (max-width: 1560px) {
@@ -371,12 +551,35 @@ span.horizontal-line {
   }
 }
 
+.news-card-grid.display {
+  height: auto;
+}
+
 .search-button-container {
   width: 100%;
 }
 
-.search-btn {
-  margin: auto;
+.search-button-container .horizontal-line {
+  width: 100%;
+}
+
+.new-search-btn {
+  display: block;
+  width: 300px;
+  height: 48px;
+  background: #052962;
+  border-radius: 20px;
+  color: #fff;
+  text-align: center;
+  line-height: 48px;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0 auto 3rem auto;
+  cursor: pointer;
+}
+
+.new-search-btn:hover {
+  color: #ffe500;
 }
 
 footer {

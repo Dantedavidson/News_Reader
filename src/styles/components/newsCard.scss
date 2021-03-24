@@ -4,6 +4,7 @@
   width: 300px;
   padding: 0.5rem;
   @include flex-container(column, space-between);
+  transition: all 2s;
 
   h3 {
     max-height: 80px;

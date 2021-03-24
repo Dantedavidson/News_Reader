@@ -1,4 +1,6 @@
 .news-card-grid {
+  height: 0;
+  overflow: hidden;
   display: -ms-grid;
   display: grid;
   -webkit-box-pack: center;
@@ -9,6 +11,8 @@
   row-gap: 3rem;
   -webkit-column-gap: 3rem;
           column-gap: 3rem;
+  -webkit-transition: all 3s;
+  transition: all 3s;
 }
 
 @media only screen and (max-width: 1560px) {
@@ -30,5 +34,9 @@
     -ms-grid-columns: (300px)[1];
         grid-template-columns: repeat(1, 300px);
   }
+}
+
+.news-card-grid.display {
+  height: auto;
 }
 /*# sourceMappingURL=newsgrid.css.map */

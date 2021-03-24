@@ -5,6 +5,7 @@ form {
   margin: 0 auto 3rem auto;
   font-size: 1.4rem;
   @include flex-container(column, space-around);
+  transition: all 1s;
   input,
   select {
     border: 1px solid #000;
