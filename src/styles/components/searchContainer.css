@@ -1,0 +1,13 @@
+.search-container {
+  height: 160px;
+  overflow-y: hidden;
+}
+
+.search-container .horizontal-line {
+  width: 100%;
+}
+
+.display.search-container {
+  height: 750px;
+}
+/*# sourceMappingURL=searchContainer.css.map */

@@ -5,13 +5,25 @@ export const NewSearchBtn = ({
   setFormDisplay,
   cardDisplay,
   setCardDisplay,
+  containerDisplay,
+  setContainerDisplay,
 }) => {
   const toggleDisplay = () => {
     if (!formDisplay && !cardDisplay) {
       setFormDisplay(true);
-    } else {
+      setContainerDisplay(true);
+      return;
+    }
+    if (formDisplay) {
       setFormDisplay(!formDisplay);
+      setTimeout(() => {
+        setCardDisplay(!cardDisplay);
+      }, 1000);
+    } else {
       setCardDisplay(!cardDisplay);
+      setTimeout(() => {
+        setFormDisplay(!formDisplay);
+      }, 1000);
     }
   };
 

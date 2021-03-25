@@ -1,0 +1,11 @@
+.card {
+  height: 0;
+  overflow: hidden;
+  border: none;
+}
+
+.display-card {
+  padding: 0.5rem;
+  height: 374px;
+}
+/*# sourceMappingURL=newsCard.css.map */

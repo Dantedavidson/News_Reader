@@ -2,9 +2,16 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-export const NewsCard = ({ title, byline, date, url, imageUrl }) => {
+export const NewsCard = ({
+  title,
+  byline,
+  date,
+  url,
+  imageUrl,
+  cardDisplay,
+}) => {
   return (
-    <div class="card">
+    <div className={cardDisplay ? "display-card card" : "card"}>
       <h3>{title}</h3>
       <div>
         <p>{byline}</p>

@@ -1,0 +1,11 @@
+.search-container {
+  height: 160px;
+  overflow-y: hidden;
+  .horizontal-line {
+    width: 100%;
+  }
+}
+
+.display.search-container {
+  height: 750px;
+}

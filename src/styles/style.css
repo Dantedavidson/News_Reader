@@ -371,10 +371,9 @@ form.display {
 }
 
 .card {
-  border: 0.1rem black solid;
+  padding: 0.5rem;
   height: 374px;
   width: 300px;
-  padding: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -390,8 +389,8 @@ form.display {
           align-items: flex-start;
   -ms-flex-line-pack: start;
       align-content: flex-start;
-  -webkit-transition: all 2s;
-  transition: all 2s;
+  -webkit-transition: all 1s;
+  transition: all 1s;
 }
 
 .card h3 {
@@ -509,15 +508,16 @@ span.horizontal-line {
   display: block;
   width: 80%;
   height: 2px;
-  margin: 0 auto 3rem auto;
+  margin: auto;
   background-color: #000;
 }
 
 .news-card-grid {
-  height: 0;
-  overflow: hidden;
   display: -ms-grid;
   display: grid;
+  height: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -526,8 +526,8 @@ span.horizontal-line {
   row-gap: 3rem;
   -webkit-column-gap: 3rem;
           column-gap: 3rem;
-  -webkit-transition: all 3s;
-  transition: all 3s;
+  -webkit-transition: all 1s;
+  transition: all 1s;
 }
 
 @media only screen and (max-width: 1560px) {
@@ -551,8 +551,9 @@ span.horizontal-line {
   }
 }
 
-.news-card-grid.display {
-  height: auto;
+.display-news-grid {
+  margin-top: 3rem;
+  height: 600px;
 }
 
 .search-button-container {
@@ -582,12 +583,18 @@ span.horizontal-line {
   color: #ffe500;
 }
 
+.search-container {
+  height: 80px;
+  overflow: hidden;
+}
+
 footer {
   background-color: #052962;
   color: #fff;
   width: 100%;
   font-size: 1.3rem;
   font-family: "Titillium Web", sans-serif;
+  margin-top: 3rem;
 }
 
 footer > div {

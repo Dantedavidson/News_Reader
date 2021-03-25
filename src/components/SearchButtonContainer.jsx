@@ -6,6 +6,7 @@ export const SearchButtonContainer = ({
   setFormDisplay,
   cardDisplay,
   setCardDisplay,
+  setContainerDisplay,
 }) => {
   return (
     <div className="search-button-container">
@@ -14,8 +15,8 @@ export const SearchButtonContainer = ({
         setFormDisplay={setFormDisplay}
         cardDisplay={cardDisplay}
         setCardDisplay={setCardDisplay}
+        setContainerDisplay={setContainerDisplay}
       />
-      <span className="horizontal-line"> </span>
     </div>
   );
 };

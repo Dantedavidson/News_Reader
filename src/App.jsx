@@ -5,6 +5,8 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+//Api
+import { getTopStories } from "./API";
 
 //Style
 import "bootstrap/dist/css/bootstrap.min.css";

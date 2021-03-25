@@ -1,12 +1,13 @@
 .news-card-grid {
-  height: 0;
-  overflow: hidden;
   display: grid;
+  height: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
   justify-content: center;
   grid-template-columns: repeat(4, 300px);
   row-gap: 3rem;
   column-gap: 3rem;
-  transition: all 3s;
+  transition: all 1s;
 }
 
 @media only screen and (max-width: 1560px) {
@@ -27,6 +28,7 @@
   }
 }
 
-.news-card-grid.display {
-  height: auto;
+.display-news-grid {
+  margin-top: 3rem;
+  height: 600px;
 }
