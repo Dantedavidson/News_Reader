@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-export const CarouselItem = ({ title, abstract, author, date }) => {
+export const CarouselItem = ({ story }) => {
+  const { title, abstract, byline, published_date, multimedia } = story;
+  useEffect(() => {
+    console.log(story);
+  }, []);
   return (
-    <div>
+    <div className="carousel-item-container">
       <div>
-        <h2>{title}</h2>
-        <h3>{abstract}</h3>
+        <img src={multimedia[0].url} alt="" />
       </div>
       <div>
         <div>
-          <p>From {author}</p>
-          <p>Published {date}</p>
+          <h2>{title}</h2>
+          <h3>{abstract}</h3>
         </div>
-        <FontAwesomeIcon icon={faHeart} className="fa-lg" />
+        <div>
+          <div>
+            <p>From {byline}</p>
+            <p>Published {published_date}</p>
+          </div>
+          <FontAwesomeIcon icon={faHeart} className="fa-lg" />
+        </div>
       </div>
     </div>
   );

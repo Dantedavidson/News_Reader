@@ -1,7 +1,7 @@
 .carousel-container {
   width: 80%;
   margin: 3rem auto;
-  .carousel-item {
+  .carousel-item-container {
     width: 100%;
     display: grid !important;
     grid-template-columns: repeat(2, 1fr);
@@ -41,6 +41,9 @@
         }
       }
     }
+  }
+  .carousel-item.active {
+    opacity: 1 !important;
   }
 }
 span.horizontal-line {
