@@ -2,12 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { LikeBtn } from "./common/LikeBtn";
 
-export const CarouselItem = ({ story, savedStories, setSavedStories }) => {
-  const { title, abstract, byline, published_date, multimedia } = story;
-  const card = {
-    story: story,
-  };
-
+export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
+  const { title, abstract, byline, published_date, multimedia } = card.story;
   useEffect(() => {
     console.log("i rendered");
   }, []);

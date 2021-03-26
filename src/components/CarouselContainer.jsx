@@ -15,7 +15,7 @@ export const CarouselContainer = ({
         <React.Fragment>
           <div className="carousel-container">
             <CarouselComponent
-              topStories={topStories}
+              cards={topStories}
               savedStories={savedStories}
               setSavedStories={setSavedStories}
             />
