@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState } from "react";
 
-export const CarouselItem = ({ story }) => {
+import { LikeBtn } from "./common/LikeBtn";
+
+export const CarouselItem = ({ story, savedStories, setSavedStories }) => {
   const { title, abstract, byline, published_date, multimedia } = story;
+  const card = {
+    story: story,
+  };
+
   useEffect(() => {
-    console.log(story);
+    console.log("i rendered");
   }, []);
   return (
     <div className="carousel-item-container">
@@ -22,7 +26,11 @@ export const CarouselItem = ({ story }) => {
             <p>From {byline}</p>
             <p>Published {published_date}</p>
           </div>
-          <FontAwesomeIcon icon={faHeart} className="fa-lg" />
+          <LikeBtn
+            card={card}
+            savedStories={savedStories}
+            setSavedStories={setSavedStories}
+          ></LikeBtn>
         </div>
       </div>
     </div>

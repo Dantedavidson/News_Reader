@@ -1,6 +1,7 @@
 import React from "react";
 
 import FormControl from "react-bootstrap/FormControl";
+import uuid from "react-uuid";
 
 export const NewsSearchForm = ({ formDisplay }) => {
   const sections = [
@@ -139,7 +140,11 @@ export const NewsSearchForm = ({ formDisplay }) => {
           <label for="news-search-sections">Section</label>
           <select id="news-search-sections">
             {sections.map((section) => {
-              return <option value={section}>{section}</option>;
+              return (
+                <option value={section} key={uuid()}>
+                  {section}
+                </option>
+              );
             })}
           </select>
         </div>

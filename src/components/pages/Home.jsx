@@ -12,12 +12,12 @@ import { CarouselContainer } from "../CarouselContainer";
 export const Home = () => {
   const [topStories, setTopStories] = useState([]);
   const [loadingTopStories, setLoadingTopStories] = useState(true);
+  const [savedStories, setSavedStories] = useState([]);
 
   useEffect(() => {
     async function getData() {
       const data = await getTopStories();
       setTopStories([...data]);
-      console.log(data);
       setLoadingTopStories(false);
     }
     getData();
@@ -25,7 +25,12 @@ export const Home = () => {
   return (
     <React.Fragment>
       <Nav current={"home"} />
-      <CarouselContainer topStories={topStories} loading={loadingTopStories} />
+      <CarouselContainer
+        topStories={topStories}
+        loading={loadingTopStories}
+        savedStories={savedStories}
+        setSavedStories={setSavedStories}
+      />
       <SearchContainer />
       <Footer />
     </React.Fragment>
