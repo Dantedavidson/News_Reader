@@ -1,22 +1,14 @@
 import React from "react";
 
-export const ShowResultsBtn = ({ currentDisplay, setCurrentDisplay }) => {
-  const showResults = () => {
-    setCurrentDisplay("results");
-  };
-
-  const handleSubmit = () => {
-    console.log("form submitted");
-    showResults();
-  };
+export const ShowResultsBtn = ({ currentDisplay }) => {
   return (
-    <div
+    <button
       className={
         currentDisplay === "form" ? "display new-search-btn" : "new-search-btn"
       }
-      onClick={handleSubmit}
+      type="submit"
     >
       <p>Submit Search</p>
-    </div>
+    </button>
   );
 };

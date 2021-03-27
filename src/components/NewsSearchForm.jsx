@@ -1,9 +1,11 @@
 import React from "react";
 import { ShowResultsBtn } from "./ShowResultsBtn";
-import FormControl from "react-bootstrap/FormControl";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 import uuid from "react-uuid";
 
 export const NewsSearchForm = ({ currentDisplay, setCurrentDisplay }) => {
+  const { register, handleSubmit } = useForm();
   const sections = [
     "All",
     "Adventure Sports",
@@ -117,8 +119,29 @@ export const NewsSearchForm = ({ currentDisplay, setCurrentDisplay }) => {
     "World",
     "Your Money",
   ];
+
+  const getSearchStories = async (d) => {
+    const res = await axios.get(
+      `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${d.term}&begin_date=${d.startDate}&end_date=${d.endDate}&api-key=k0L0bB63edeW9FGzx7K4pSaVRQDheNx7`
+    );
+    const data = res.data.response.docs;
+    console.log(data);
+    const cards = data.map((item) => {
+      let card = {
+        story: item,
+        id: uuid(),
+        like: false,
+      };
+      return card;
+    });
+  };
+  const onSubmit = (data) => {
+    console.log(data.term, data.startDate, data.endDate);
+    getSearchStories(data);
+    setCurrentDisplay("results");
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="search-button-container">
         <ShowResultsBtn
           currentDisplay={currentDisplay}
@@ -135,23 +158,33 @@ export const NewsSearchForm = ({ currentDisplay, setCurrentDisplay }) => {
         <div>
           <div className="input">
             <label for="news-search">Search Term</label>
-            <input id="news-search"></input>
+            <input id="news-search" name="term" ref={register}></input>
           </div>
         </div>
         <div>
           <div className="input">
             <label for="news-search-start-date">Start Date</label>
-            <input type="text" id="news-search-start-date" />
+            <input
+              type="text"
+              id="news-search-start-date"
+              name="startDate"
+              ref={register}
+            />
           </div>
           <div className="input">
             <label for="news-search-end-date">End Date</label>
-            <input type="text" id="news-search-end-date" />
+            <input
+              type="text"
+              id="news-search-end-date"
+              name="endDate"
+              ref={register}
+            />
           </div>
         </div>
         <div>
           <div className="input">
             <label for="news-search-sections">Section</label>
-            <select id="news-search-sections">
+            <select id="news-search-sections" name="section" ref={register}>
               {sections.map((section) => {
                 return (
                   <option value={section} key={uuid()}>
