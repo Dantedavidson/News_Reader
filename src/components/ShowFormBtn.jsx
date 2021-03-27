@@ -35,7 +35,14 @@ export const ShowFormBtn = ({
   // };
 
   return (
-    <div className="new-search-btn" onClick={displayForm}>
+    <div
+      className={
+        currentDisplay === "start" || currentDisplay === "results"
+          ? "display new-search-btn"
+          : "new-search-btn"
+      }
+      onClick={displayForm}
+    >
       <p>New Search</p>
     </div>
   );

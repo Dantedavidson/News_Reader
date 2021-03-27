@@ -1,5 +1,5 @@
 .new-search-btn {
-  display: block;
+  display: none;
   width: 300px;
   height: 48px;
   background: $blue-one;
@@ -11,6 +11,10 @@
   font-size: 2rem;
   margin: 0 auto 3rem auto;
   cursor: pointer;
+
+  &.display {
+    display: block;
+  }
 }
 
 .new-search-btn:hover {

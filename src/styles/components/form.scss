@@ -1,8 +1,11 @@
 form {
   width: 80%;
-  height: 0;
+  margin: auto;
+}
+
+.form-input-container {
+  height: 0px;
   overflow: hidden;
-  margin: 0 auto 0 auto;
   font-size: 1.4rem;
   @include flex-container(column, space-around);
   transition: all 1s;
@@ -34,9 +37,8 @@ form {
   label {
     width: 150px;
   }
-}
-
-form.display {
-  height: 250px;
-  margin-bottom: 3rem;
+  &.display {
+    height: 250px;
+    margin-bottom: 3rem;
+  }
 }

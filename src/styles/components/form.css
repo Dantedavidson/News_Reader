@@ -1,1 +1,9 @@
-/* No CSS *//*# sourceMappingURL=form.css.map */
+form {
+  width: 80%;
+}
+
+form.display {
+  height: 250px;
+  margin-bottom: 3rem;
+}
+/*# sourceMappingURL=form.css.map */

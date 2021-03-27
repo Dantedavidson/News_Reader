@@ -1,9 +1,9 @@
 import React from "react";
-
+import { ShowResultsBtn } from "./ShowResultsBtn";
 import FormControl from "react-bootstrap/FormControl";
 import uuid from "react-uuid";
 
-export const NewsSearchForm = ({ currentDisplay }) => {
+export const NewsSearchForm = ({ currentDisplay, setCurrentDisplay }) => {
   const sections = [
     "All",
     "Adventure Sports",
@@ -118,35 +118,49 @@ export const NewsSearchForm = ({ currentDisplay }) => {
     "Your Money",
   ];
   return (
-    <form className={currentDisplay === "form" ? "display" : ""}>
-      <div>
-        <div className="input">
-          <label for="news-search">Search Term</label>
-          <input id="news-search"></input>
-        </div>
+    <form>
+      <div className="search-button-container">
+        <ShowResultsBtn
+          currentDisplay={currentDisplay}
+          setCurrentDisplay={setCurrentDisplay}
+        ></ShowResultsBtn>
       </div>
-      <div>
-        <div className="input">
-          <label for="news-search-start-date">Start Date</label>
-          <input type="text" id="news-search-start-date" />
+      <div
+        className={
+          currentDisplay === "form"
+            ? "display form-input-container"
+            : "form-input-container"
+        }
+      >
+        <div>
+          <div className="input">
+            <label for="news-search">Search Term</label>
+            <input id="news-search"></input>
+          </div>
         </div>
-        <div className="input">
-          <label for="news-search-end-date">End Date</label>
-          <input type="text" id="news-search-end-date" />
+        <div>
+          <div className="input">
+            <label for="news-search-start-date">Start Date</label>
+            <input type="text" id="news-search-start-date" />
+          </div>
+          <div className="input">
+            <label for="news-search-end-date">End Date</label>
+            <input type="text" id="news-search-end-date" />
+          </div>
         </div>
-      </div>
-      <div>
-        <div className="input">
-          <label for="news-search-sections">Section</label>
-          <select id="news-search-sections">
-            {sections.map((section) => {
-              return (
-                <option value={section} key={uuid()}>
-                  {section}
-                </option>
-              );
-            })}
-          </select>
+        <div>
+          <div className="input">
+            <label for="news-search-sections">Section</label>
+            <select id="news-search-sections">
+              {sections.map((section) => {
+                return (
+                  <option value={section} key={uuid()}>
+                    {section}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
         </div>
       </div>
     </form>

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ShowResultsBtn = ({ setCurrentDisplay }) => {
+export const ShowResultsBtn = ({ currentDisplay, setCurrentDisplay }) => {
   const showResults = () => {
     setCurrentDisplay("results");
   };
@@ -10,7 +10,12 @@ export const ShowResultsBtn = ({ setCurrentDisplay }) => {
     showResults();
   };
   return (
-    <div className="new-search-btn" onClick={handleSubmit}>
+    <div
+      className={
+        currentDisplay === "form" ? "display new-search-btn" : "new-search-btn"
+      }
+      onClick={handleSubmit}
+    >
       <p>Submit Search</p>
     </div>
   );

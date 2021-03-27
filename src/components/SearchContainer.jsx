@@ -3,7 +3,7 @@ import { CarouselComponent } from "./CarouselComponent";
 
 import { NewsSearchForm } from "./NewsSearchForm";
 import { NewsCardGrid } from "./NewsCardGrid";
-import { SearchButtonContainer } from "./SearchButtonContainer";
+import { ShowFormBtn } from "./ShowFormBtn";
 import { HorizontalLine } from "./common/HorizontalLine";
 export const SearchContainer = () => {
   const [currentDisplay, setCurrentDisplay] = useState("start");
@@ -15,13 +15,18 @@ export const SearchContainer = () => {
         containerDisplay ? "display search-container" : "search-container"
       }
     >
-      <SearchButtonContainer
+      <div className="search-button-container">
+        <ShowFormBtn
+          currentDisplay={currentDisplay}
+          setCurrentDisplay={setCurrentDisplay}
+          setContainerDisplay={setContainerDisplay}
+        />
+      </div>
+      <NewsCardGrid currentDisplay={currentDisplay} />
+      <NewsSearchForm
         currentDisplay={currentDisplay}
         setCurrentDisplay={setCurrentDisplay}
-        setContainerDisplay={setContainerDisplay}
       />
-      <NewsCardGrid currentDisplay={currentDisplay} />
-      <NewsSearchForm currentDisplay={currentDisplay} />
       <HorizontalLine />
     </div>
   );
