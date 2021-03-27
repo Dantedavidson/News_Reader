@@ -23,6 +23,10 @@ export const LikeBtn = ({ card, savedStories, setSavedStories }) => {
   };
 
   return (
-    <FontAwesomeIcon icon={faHeart} className="fa-lg" onClick={manageLike} />
+    <FontAwesomeIcon
+      icon={faHeart}
+      className={card.like ? "fa-lg heart-active" : "fa-lg"}
+      onClick={manageLike}
+    />
   );
 };

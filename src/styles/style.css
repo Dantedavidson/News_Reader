@@ -301,7 +301,7 @@ form {
   width: 80%;
   height: 0;
   overflow: hidden;
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 0 auto;
   font-size: 1.4rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -368,6 +368,7 @@ form label {
 
 form.display {
   height: 250px;
+  margin-bottom: 3rem;
 }
 
 .card {
@@ -425,7 +426,7 @@ form.display {
   margin: 3rem auto;
 }
 
-.carousel-container .carousel-item {
+.carousel-container .carousel-item-container {
   width: 100%;
   display: -ms-grid !important;
   display: grid !important;
@@ -433,19 +434,19 @@ form.display {
       grid-template-columns: repeat(2, 1fr);
 }
 
-.carousel-container .carousel-item > div {
+.carousel-container .carousel-item-container > div {
   min-height: 300px;
 }
 
-.carousel-container .carousel-item div:nth-child(1) {
+.carousel-container .carousel-item-container div:nth-child(1) {
   width: 100%;
 }
 
-.carousel-container .carousel-item div:nth-child(1) img {
+.carousel-container .carousel-item-container div:nth-child(1) img {
   width: 80%;
 }
 
-.carousel-container .carousel-item div:nth-child(2) {
+.carousel-container .carousel-item-container div:nth-child(2) {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -465,22 +466,22 @@ form.display {
   font-family: "Roboto", sans-serif;
 }
 
-.carousel-container .carousel-item div:nth-child(2) h2 {
+.carousel-container .carousel-item-container div:nth-child(2) h2 {
   font-weight: bold;
   margin-bottom: 1rem;
 }
 
-.carousel-container .carousel-item div:nth-child(2) h3 {
+.carousel-container .carousel-item-container div:nth-child(2) h3 {
   font-size: 1.4rem;
   width: 95%;
 }
 
-.carousel-container .carousel-item div:nth-child(2) p {
+.carousel-container .carousel-item-container div:nth-child(2) p {
   margin: 0;
   justify-self: flex-end;
 }
 
-.carousel-container .carousel-item div:nth-child(2) div:nth-child(2) {
+.carousel-container .carousel-item-container div:nth-child(2) div:nth-child(2) {
   margin-bottom: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -499,16 +500,20 @@ form.display {
       align-content: flex-start;
 }
 
-.carousel-container .carousel-item div:nth-child(2) div:nth-child(2) path {
+.carousel-container .carousel-item-container div:nth-child(2) div:nth-child(2) path {
   -webkit-transform: scale(1.4) translateX(-10rem) translateY(6rem);
           transform: scale(1.4) translateX(-10rem) translateY(6rem);
+}
+
+.carousel-container .carousel-item.active {
+  opacity: 1 !important;
 }
 
 span.horizontal-line {
   display: block;
   width: 80%;
   height: 2px;
-  margin: auto;
+  margin: 3rem auto;
   background-color: #000;
 }
 
@@ -560,10 +565,6 @@ span.horizontal-line {
   width: 100%;
 }
 
-.search-button-container .horizontal-line {
-  width: 100%;
-}
-
 .new-search-btn {
   display: block;
   width: 300px;
@@ -584,8 +585,99 @@ span.horizontal-line {
 }
 
 .search-container {
+  height: 160px;
+  overflow-y: hidden;
+}
+
+.search-container .horizontal-line {
+  width: 100%;
+}
+
+.display.search-container {
+  height: 750px;
+}
+
+.loading-news-container {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.loading-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  height: 200px;
+}
+
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
   height: 80px;
-  overflow: hidden;
+}
+
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #000;
+  -webkit-animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+          animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  -webkit-animation-delay: -0.24s;
+          animation-delay: -0.24s;
+}
+
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  -webkit-animation-delay: -0.12s;
+          animation-delay: -0.12s;
+}
+
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+}
+
+@-webkit-keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
+  }
+}
+
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
+  }
 }
 
 footer {
@@ -699,6 +791,17 @@ footer > div > div:nth-child(3) div div {
 footer > div > div:nth-child(3) div path {
   -webkit-transform: translateX(14rem);
           transform: translateX(14rem);
+}
+
+.fa-heart {
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.heart-active {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  color: #dc143c;
 }
 
 footer div div:nth-child(3) div:hover div {

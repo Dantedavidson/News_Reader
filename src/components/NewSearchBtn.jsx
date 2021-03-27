@@ -5,7 +5,6 @@ export const NewSearchBtn = ({
   setFormDisplay,
   cardDisplay,
   setCardDisplay,
-  containerDisplay,
   setContainerDisplay,
 }) => {
   const toggleDisplay = () => {

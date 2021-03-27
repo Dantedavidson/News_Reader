@@ -1,6 +1,7 @@
 import React from "react";
 import { CarouselComponent } from "./CarouselComponent";
 import { HorizontalLine } from "./common/HorizontalLine";
+import { Loading } from "./common/Loading";
 export const CarouselContainer = ({
   topStories,
   loading,
@@ -10,7 +11,11 @@ export const CarouselContainer = ({
   return (
     <React.Fragment>
       {loading ? (
-        <h1>Hello World</h1>
+        <div className="loading-news-container">
+          <h2>Loading News</h2>
+          <Loading></Loading>
+          <HorizontalLine></HorizontalLine>
+        </div>
       ) : (
         <React.Fragment>
           <div className="carousel-container">
