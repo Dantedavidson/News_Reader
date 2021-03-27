@@ -1,11 +1,13 @@
 import React from "react";
 import { NewsCard } from "./NewsCard";
 
-export const NewsCardGrid = ({ cardDisplay }) => {
+export const NewsCardGrid = ({ currentDisplay }) => {
   return (
     <div
       className={
-        cardDisplay ? "display-news-grid news-card-grid" : "news-card-grid"
+        currentDisplay === "results"
+          ? "display-news-grid news-card-grid"
+          : "news-card-grid"
       }
     >
       <NewsCard
@@ -16,7 +18,7 @@ export const NewsCardGrid = ({ cardDisplay }) => {
         imageUrl={
           "https://www.nytimes.com/images/2010/10/02/business/subMoney/subMoney-jumbo.jpg"
         }
-        cardDisplay={cardDisplay}
+        currentDisplay={currentDisplay}
       />
       <NewsCard
         title="'Our silence is complicity': Biden and Harris condemn anti-Asian violence during Atlanta visit"
@@ -26,7 +28,7 @@ export const NewsCardGrid = ({ cardDisplay }) => {
         imageUrl={
           "https://www.nytimes.com/images/2010/10/02/business/subMoney/subMoney-jumbo.jpg"
         }
-        cardDisplay={cardDisplay}
+        currentDisplay={currentDisplay}
       />
       <NewsCard
         title="'Our silence is complicity': Biden and Harris condemn anti-Asian violence during Atlanta visit"
@@ -36,7 +38,7 @@ export const NewsCardGrid = ({ cardDisplay }) => {
         imageUrl={
           "https://www.nytimes.com/images/2010/10/02/business/subMoney/subMoney-jumbo.jpg"
         }
-        cardDisplay={cardDisplay}
+        currentDisplay={currentDisplay}
       />
       <NewsCard
         title="'Our silence is complicity': Biden and Harris condemn anti-Asian violence during Atlanta visit"
@@ -46,7 +48,7 @@ export const NewsCardGrid = ({ cardDisplay }) => {
         imageUrl={
           "https://www.nytimes.com/images/2010/10/02/business/subMoney/subMoney-jumbo.jpg"
         }
-        cardDisplay={cardDisplay}
+        currentDisplay={currentDisplay}
       />
       <NewsCard
         title="'Our silence is complicity': Biden and Harris condemn anti-Asian violence during Atlanta visit"
@@ -56,7 +58,7 @@ export const NewsCardGrid = ({ cardDisplay }) => {
         imageUrl={
           "https://www.nytimes.com/images/2010/10/02/business/subMoney/subMoney-jumbo.jpg"
         }
-        cardDisplay={cardDisplay}
+        currentDisplay={currentDisplay}
       />
       <NewsCard
         title="'Our silence is complicity': Biden and Harris condemn anti-Asian violence during Atlanta visit"
@@ -66,7 +68,7 @@ export const NewsCardGrid = ({ cardDisplay }) => {
         imageUrl={
           "https://www.nytimes.com/images/2010/10/02/business/subMoney/subMoney-jumbo.jpg"
         }
-        cardDisplay={cardDisplay}
+        currentDisplay={currentDisplay}
       />
     </div>
   );

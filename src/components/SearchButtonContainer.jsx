@@ -1,22 +1,30 @@
 import React from "react";
-import { NewSearchBtn } from "./NewSearchBtn";
+import { ShowFormBtn } from "./ShowFormBtn";
+import { ShowResultsBtn } from "./ShowResultsBtn";
 
 export const SearchButtonContainer = ({
-  formDisplay,
-  setFormDisplay,
-  cardDisplay,
-  setCardDisplay,
   setContainerDisplay,
+  currentDisplay,
+  setCurrentDisplay,
 }) => {
-  return (
-    <div className="search-button-container">
-      <NewSearchBtn
-        formDisplay={formDisplay}
-        setFormDisplay={setFormDisplay}
-        cardDisplay={cardDisplay}
-        setCardDisplay={setCardDisplay}
-        setContainerDisplay={setContainerDisplay}
-      />
-    </div>
-  );
+  if (currentDisplay === "start" || currentDisplay === "results") {
+    return (
+      <div className="search-button-container">
+        <ShowFormBtn
+          currentDisplay={currentDisplay}
+          setCurrentDisplay={setCurrentDisplay}
+          setContainerDisplay={setContainerDisplay}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <div className="search-button-container">
+        <ShowResultsBtn
+          currentDisplay={currentDisplay}
+          setCurrentDisplay={setCurrentDisplay}
+        ></ShowResultsBtn>
+      </div>
+    );
+  }
 };

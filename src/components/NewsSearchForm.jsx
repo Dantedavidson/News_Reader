@@ -3,7 +3,7 @@ import React from "react";
 import FormControl from "react-bootstrap/FormControl";
 import uuid from "react-uuid";
 
-export const NewsSearchForm = ({ formDisplay }) => {
+export const NewsSearchForm = ({ currentDisplay }) => {
   const sections = [
     "All",
     "Adventure Sports",
@@ -118,7 +118,7 @@ export const NewsSearchForm = ({ formDisplay }) => {
     "Your Money",
   ];
   return (
-    <form className={formDisplay ? "display" : ""}>
+    <form className={currentDisplay === "form" ? "display" : ""}>
       <div>
         <div className="input">
           <label for="news-search">Search Term</label>

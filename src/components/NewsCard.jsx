@@ -11,7 +11,7 @@ export const NewsCard = ({
   cardDisplay,
 }) => {
   return (
-    <div className={cardDisplay ? "display-card card" : "card"}>
+    <div className={cardDisplay === "results" ? "display-card card" : "card"}>
       <h3>{title}</h3>
       <div>
         <p>{byline}</p>
