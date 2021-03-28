@@ -10,10 +10,9 @@ import { SearchContainer } from "../SearchContainer";
 import { Footer } from "../Footer";
 import { CarouselContainer } from "../CarouselContainer";
 
-export const Home = () => {
+export const Home = ({ savedStories, setSavedStories }) => {
   const [topStories, setTopStories] = useState([]);
   const [loadingTopStories, setLoadingTopStories] = useState(true);
-  const [savedStories, setSavedStories] = useState([]);
 
   useEffect(() => {
     async function getData() {
@@ -33,7 +32,10 @@ export const Home = () => {
         savedStories={savedStories}
         setSavedStories={setSavedStories}
       />
-      <SearchContainer />
+      <SearchContainer
+        savedStories={savedStories}
+        setSavedStories={setSavedStories}
+      />
       <Footer />
     </React.Fragment>
   );

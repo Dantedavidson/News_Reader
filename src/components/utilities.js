@@ -10,6 +10,7 @@ export const createCard = (data) => {
     };
     return card;
   });
+  console.log(cards);
   return cards;
 };
 
@@ -31,5 +32,5 @@ export const createQuery = (data) => {
       return `${start}&${term}`;
     }
   }, query);
-  console.log(query);
+  return query;
 };

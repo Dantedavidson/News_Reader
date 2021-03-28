@@ -6,13 +6,11 @@ export const getTopStories = async () => {
     ` https://api.nytimes.com/svc/topstories/v2/world.json?api-key=${API_KEY}`
   );
   const data = res.data.results;
-  console.log(data);
   return data;
 };
 
 export const getSearchStories = async (q) => {
   const res = await axios.get(q);
   const data = res.data.response.docs;
-  console.log(data);
   return data;
 };

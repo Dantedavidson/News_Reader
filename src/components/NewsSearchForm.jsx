@@ -1,11 +1,21 @@
 import React from "react";
-import { ShowResultsBtn } from "./ShowResultsBtn";
 import { useForm } from "react-hook-form";
-import { createQuery } from "./utilities";
-import axios from "axios";
 import uuid from "react-uuid";
 
-export const NewsSearchForm = ({ currentDisplay, setCurrentDisplay }) => {
+//API
+import { getSearchStories } from "../API";
+
+//Utilities
+import { createQuery } from "./utilities";
+import { createCard } from "./utilities";
+//components
+import { ShowResultsBtn } from "./ShowResultsBtn";
+
+export const NewsSearchForm = ({
+  currentDisplay,
+  setCurrentDisplay,
+  setSearchResults,
+}) => {
   const { register, handleSubmit } = useForm();
   const sections = [
     "All",
@@ -121,8 +131,12 @@ export const NewsSearchForm = ({ currentDisplay, setCurrentDisplay }) => {
     "Your Money",
   ];
 
-  const onSubmit = (data) => {
-    createQuery(data);
+  const onSubmit = async (data) => {
+    let query = createQuery(data);
+    let stories = await getSearchStories(query);
+    let results = createCard(stories);
+    setSearchResults(results);
+
     setCurrentDisplay("results");
   };
   return (

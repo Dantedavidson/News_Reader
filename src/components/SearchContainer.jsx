@@ -5,9 +5,10 @@ import { NewsSearchForm } from "./NewsSearchForm";
 import { NewsCardGrid } from "./NewsCardGrid";
 import { ShowFormBtn } from "./ShowFormBtn";
 import { HorizontalLine } from "./common/HorizontalLine";
-export const SearchContainer = () => {
+export const SearchContainer = ({ savedStories, setSavedStories }) => {
   const [currentDisplay, setCurrentDisplay] = useState("start");
   const [containerDisplay, setContainerDisplay] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
 
   return (
     <div
@@ -22,10 +23,16 @@ export const SearchContainer = () => {
           setContainerDisplay={setContainerDisplay}
         />
       </div>
-      <NewsCardGrid currentDisplay={currentDisplay} />
+      <NewsCardGrid
+        currentDisplay={currentDisplay}
+        searchResults={searchResults}
+        savedStories={savedStories}
+        setSavedStories={setSavedStories}
+      />
       <NewsSearchForm
         currentDisplay={currentDisplay}
         setCurrentDisplay={setCurrentDisplay}
+        setSearchResults={setSearchResults}
       />
       <HorizontalLine />
     </div>

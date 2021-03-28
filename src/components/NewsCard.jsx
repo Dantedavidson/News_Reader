@@ -1,15 +1,17 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { LikeBtn } from "./common/LikeBtn";
 
 export const NewsCard = ({
-  title,
-  byline,
-  date,
-  url,
-  imageUrl,
   cardDisplay,
+  card,
+  savedStories,
+  setSavedStories,
 }) => {
+  const byline = card.story.byline.original;
+  const title = card.story.headline.main;
+  const date = card.story.pub_date;
+  const imageUrl = card.story.multimedia;
+
   return (
     <div className={cardDisplay === "results" ? "display-card card" : "card"}>
       <h3>{title}</h3>
@@ -19,7 +21,11 @@ export const NewsCard = ({
       </div>
 
       <img src={imageUrl} alt="" />
-      <FontAwesomeIcon icon={faHeart} />
+      <LikeBtn
+        card={card}
+        savedStories={savedStories}
+        setSavedStories={setSavedStories}
+      />
     </div>
   );
 };
