@@ -1,31 +1,51 @@
 import React from "react";
 import { LikeBtn } from "./common/LikeBtn";
 
+//Utilities
+import { cleanCard } from "./utilities";
+
 export const NewsCard = ({
   cardDisplay,
   card,
   savedStories,
   setSavedStories,
 }) => {
-  const byline = card.story.byline.original;
-  const title = card.story.headline.main;
-  const date = card.story.pub_date;
-  const imageUrl = card.story.multimedia;
+  const display = cleanCard(card);
+  const { imgUrl, title, byline, date, paragraph } = display;
 
-  return (
-    <div className={cardDisplay === "results" ? "display-card card" : "card"}>
-      <h3>{title}</h3>
-      <div>
-        <p>{byline}</p>
-        <p>{date}</p>
+  if (imgUrl) {
+    return (
+      <div className={cardDisplay === "results" ? "display-card card" : "card"}>
+        <h3>{title}</h3>
+        <img src={imgUrl} alt="" />
+        <div>
+          <h6>{byline}</h6>
+          <h6>{date}</h6>
+        </div>
+        <LikeBtn
+          card={card}
+          savedStories={savedStories}
+          setSavedStories={setSavedStories}
+        />
       </div>
+    );
+  } else {
+    return (
+      <div className={cardDisplay === "results" ? "display-card card" : "card"}>
+        <h3>{title}</h3>
 
-      <img src={imageUrl} alt="" />
-      <LikeBtn
-        card={card}
-        savedStories={savedStories}
-        setSavedStories={setSavedStories}
-      />
-    </div>
-  );
+        <p>{paragraph}</p>
+
+        <div>
+          <h6>{byline}</h6>
+          <h6>{date}</h6>
+        </div>
+        <LikeBtn
+          card={card}
+          savedStories={savedStories}
+          setSavedStories={setSavedStories}
+        />
+      </div>
+    );
+  }
 };

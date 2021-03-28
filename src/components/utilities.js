@@ -14,6 +14,51 @@ export const createCard = (data) => {
   return cards;
 };
 
+export const cleanCard = (card) => {
+  let { story } = card;
+
+  // set author
+  let byline = "";
+  if (story.byline.original === null) {
+    byline = "The New York Times";
+  } else if (story.byline.original) {
+    byline = story.byline.original;
+  } else {
+    byline = story.byline;
+  }
+
+  // set image
+  let img = null;
+  if (story.multimedia[0]) {
+    if (story.multimedia[0].url.includes("https://")) {
+      img = story.multimedia[0].url;
+    } else if (story.multimedia[0].url.includes("images/")) {
+      img = `https://www.nytimes.com/${story.multimedia[0].url}`;
+    }
+  }
+
+  const display = {
+    title: story.title ? story.title : story.headline.main,
+    byline: byline,
+    date: story.published_date ? story.published_date : story.pub_date,
+    imgUrl: img,
+    paragraph: story.abstract ? story.abstract : story.lead_paragraph,
+  };
+  console.log(display);
+  return display;
+};
+
+export const saveCard = (object, saveTo, setter) => {
+  saveTo.length === 0 ? setter([object]) : setter([...saveTo, object]);
+};
+
+export const deleteCard = (object, saveTo, setter) => {
+  const filtered = saveTo.filter((item) => {
+    return item.id !== object.id;
+  });
+  filtered.length > 0 ? setter([...filtered]) : setter([]);
+};
+
 export const createQuery = (data) => {
   let { term, startDate, endDate, section } = data;
   let queryTerms = [

@@ -6,24 +6,33 @@
   transition: all 1s;
 
   h3 {
-    max-height: 80px;
+    height: 80px;
     text-overflow: ellipsis;
     font-size: 1.2rem;
     margin-bottom: 1rem;
   }
   p {
-    margin: 0;
+    height: 140px;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   img {
     width: 200px;
     height: 140px;
     margin: 0 auto 1rem auto;
   }
+  h6 {
+    font-weight: 100;
+    size: 0.6rem;
+  }
   div {
     transform: translateY(0.5rem);
   }
   path {
-    transform: scale(1.5) translateY(-20rem) translateX(180rem);
+    transform: scale(1.5) translateY(-20rem) translateX(130rem);
   }
   path:hover {
   }
