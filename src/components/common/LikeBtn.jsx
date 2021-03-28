@@ -9,6 +9,7 @@ import { saveCard, deleteCard } from "../utilities";
 
 export const LikeBtn = ({ card, savedStories, setSavedStories }) => {
   const manageLike = () => {
+    console.log("went off");
     card.like = !card.like;
     card.like
       ? saveCard(card, savedStories, setSavedStories)

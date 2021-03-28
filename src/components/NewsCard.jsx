@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { LikeBtn } from "./common/LikeBtn";
 
 //Utilities
@@ -12,6 +12,9 @@ export const NewsCard = ({
 }) => {
   const display = cleanCard(card);
   const { imgUrl, title, byline, date, paragraph } = display;
+  useEffect(() => {
+    console.log("i rendered");
+  });
 
   if (imgUrl) {
     return (

@@ -136,7 +136,6 @@ export const NewsSearchForm = ({
     let stories = await getSearchStories(query);
     let results = createCard(stories);
     setSearchResults(results);
-
     setCurrentDisplay("results");
   };
   return (

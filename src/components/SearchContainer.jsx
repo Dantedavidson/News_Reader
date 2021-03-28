@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { CarouselComponent } from "./CarouselComponent";
 
 import { NewsSearchForm } from "./NewsSearchForm";
@@ -9,7 +9,9 @@ export const SearchContainer = ({ savedStories, setSavedStories }) => {
   const [currentDisplay, setCurrentDisplay] = useState("start");
   const [containerDisplay, setContainerDisplay] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-
+  useEffect(() => {
+    console.log("search container rendered");
+  }, []);
   return (
     <div
       className={

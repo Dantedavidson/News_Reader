@@ -10,7 +10,6 @@ export const createCard = (data) => {
     };
     return card;
   });
-  console.log(cards);
   return cards;
 };
 
@@ -44,7 +43,7 @@ export const cleanCard = (card) => {
     imgUrl: img,
     paragraph: story.abstract ? story.abstract : story.lead_paragraph,
   };
-  console.log(display);
+
   return display;
 };
 
