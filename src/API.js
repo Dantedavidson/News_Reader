@@ -1,20 +1,18 @@
 import axios from "axios";
-import uuid from "react-uuid";
+export const API_KEY = process.env.REACT_APP_NYT_KEY;
 
 export const getTopStories = async () => {
   const res = await axios.get(
-    "https://api.nytimes.com/svc/topstories/v2/world.json?api-key=k0L0bB63edeW9FGzx7K4pSaVRQDheNx7"
+    ` https://api.nytimes.com/svc/topstories/v2/world.json?api-key=${API_KEY}`
   );
   const data = res.data.results;
   console.log(data);
-  const cards = data.map((item) => {
-    let card = {
-      story: item,
-      id: uuid(),
-      like: false,
-    };
-    return card;
-  });
+  return data;
+};
 
-  return cards;
+export const getSearchStories = async (q) => {
+  const res = await axios.get(q);
+  const data = res.data.response.docs;
+  console.log(data);
+  return data;
 };

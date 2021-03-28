@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { getTopStories } from "../../API";
+import { createCard } from "../utilities";
 
 //Components
 import { Nav } from "../Nav";
@@ -17,7 +18,8 @@ export const Home = () => {
   useEffect(() => {
     async function getData() {
       const data = await getTopStories();
-      setTopStories([...data]);
+      const cards = createCard(data);
+      setTopStories([...cards]);
       setLoadingTopStories(false);
     }
     getData();

@@ -1,6 +1,7 @@
 import React from "react";
 import { ShowResultsBtn } from "./ShowResultsBtn";
 import { useForm } from "react-hook-form";
+import { createQuery } from "./utilities";
 import axios from "axios";
 import uuid from "react-uuid";
 
@@ -120,24 +121,8 @@ export const NewsSearchForm = ({ currentDisplay, setCurrentDisplay }) => {
     "Your Money",
   ];
 
-  const getSearchStories = async (d) => {
-    const res = await axios.get(
-      `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${d.term}&begin_date=${d.startDate}&end_date=${d.endDate}&api-key=k0L0bB63edeW9FGzx7K4pSaVRQDheNx7`
-    );
-    const data = res.data.response.docs;
-    console.log(data);
-    const cards = data.map((item) => {
-      let card = {
-        story: item,
-        id: uuid(),
-        like: false,
-      };
-      return card;
-    });
-  };
   const onSubmit = (data) => {
-    console.log(data.term, data.startDate, data.endDate);
-    getSearchStories(data);
+    createQuery(data);
     setCurrentDisplay("results");
   };
   return (

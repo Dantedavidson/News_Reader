@@ -4,9 +4,7 @@ import { LikeBtn } from "./common/LikeBtn";
 
 export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
   const { title, abstract, byline, published_date, multimedia } = card.story;
-  useEffect(() => {
-    console.log("i rendered");
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className="carousel-item-container">
       <div>
