@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;1,400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -299,9 +299,12 @@ select[multiple] {
 
 form {
   width: 80%;
-  height: 0;
+  margin: auto;
+}
+
+.form-input-container {
+  height: 0px;
   overflow: hidden;
-  margin: 0 auto 0 auto;
   font-size: 1.4rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -321,22 +324,22 @@ form {
   transition: all 1s;
 }
 
-form input,
-form select {
+.form-input-container input,
+.form-input-container select {
   border: 1px solid #000;
   border-radius: 20px;
   padding-left: 10px;
 }
 
-form div {
+.form-input-container div {
   width: 100%;
 }
 
-form > div:nth-child(1) input {
+.form-input-container > div:nth-child(1) input {
   width: 85%;
 }
 
-form > div:nth-child(2) {
+.form-input-container > div:nth-child(2) {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -354,26 +357,26 @@ form > div:nth-child(2) {
       align-content: flex-start;
 }
 
-form > div:nth-child(2) input {
+.form-input-container > div:nth-child(2) input {
   width: 70%;
 }
 
-form > div:nth-child(3) select {
+.form-input-container > div:nth-child(3) select {
   width: 35%;
 }
 
-form label {
+.form-input-container label {
   width: 150px;
 }
 
-form.display {
+.form-input-container.display {
   height: 250px;
   margin-bottom: 3rem;
 }
 
 .card {
   padding: 0.5rem;
-  height: 374px;
+  height: 360px;
   width: 300px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -392,33 +395,60 @@ form.display {
       align-content: flex-start;
   -webkit-transition: all 1s;
   transition: all 1s;
+  font-family: "roboto";
 }
 
 .card h3 {
-  max-height: 80px;
+  height: 80px;
   text-overflow: ellipsis;
   font-size: 1.2rem;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
 .card p {
-  margin: 0;
+  height: 140px;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card img {
-  width: 200px;
+  max-width: 280px;
   height: 140px;
   margin: 0 auto 1rem auto;
 }
 
-.card div {
-  -webkit-transform: translateY(0.5rem);
-          transform: translateY(0.5rem);
+.card h6 {
+  margin: 0;
+  font-weight: 100;
+  font-size: 0.9rem;
+}
+
+.card > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  width: 100%;
 }
 
 .card path {
-  -webkit-transform: scale(1.5) translateY(-20rem) translateX(180rem);
-          transform: scale(1.5) translateY(-20rem) translateX(180rem);
+  -webkit-transform: scale(1.2) translateY(2rem) translateX(-15rem);
+          transform: scale(1.2) translateY(2rem) translateX(-15rem);
 }
 
 .carousel-container {
@@ -566,7 +596,7 @@ span.horizontal-line {
 }
 
 .new-search-btn {
-  display: block;
+  display: none;
   width: 300px;
   height: 48px;
   background: #052962;
@@ -578,6 +608,10 @@ span.horizontal-line {
   font-size: 2rem;
   margin: 0 auto 3rem auto;
   cursor: pointer;
+}
+
+.new-search-btn.display {
+  display: block;
 }
 
 .new-search-btn:hover {
@@ -793,15 +827,22 @@ footer > div > div:nth-child(3) div path {
           transform: translateX(14rem);
 }
 
-.fa-heart {
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+.heart-active {
+  color: #dc143c;
 }
 
-.heart-active {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-  color: #dc143c;
+.filter-container {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.filter-container input {
+  margin: auto;
+  display: block;
+  width: 30%;
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding-left: 10px;
 }
 
 footer div div:nth-child(3) div:hover div {

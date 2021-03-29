@@ -1,0 +1,14 @@
+.filter-container {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.filter-container input {
+  margin: auto;
+  display: block;
+  width: 30%;
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding-left: 10px;
+}
+/*# sourceMappingURL=filter.css.map */

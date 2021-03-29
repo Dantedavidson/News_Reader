@@ -40,7 +40,15 @@ export const App = () => {
         <Switch>
           <Route path="/custom" render={(props) => <Custom />}></Route>
           <Route path="/404" render={(props) => <NotFound />}></Route>
-          <Route path="/stories" render={(props) => <Stories />}></Route>
+          <Route
+            path="/stories"
+            render={(props) => (
+              <Stories
+                savedStories={savedStories}
+                setSavedStories={setSavedStories}
+              />
+            )}
+          ></Route>
           <Route
             path="/more-info"
             component={() => {

@@ -10,6 +10,13 @@
   transition: all 1s;
 }
 
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  row-gap: 3rem;
+  column-gap: 3rem;
+}
+
 @media only screen and (max-width: 1560px) {
   .news-card-grid {
     grid-template-columns: repeat(3, 300px);
