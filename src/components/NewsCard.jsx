@@ -22,14 +22,16 @@ export const NewsCard = ({
         <h3>{title}</h3>
         <img src={imgUrl} alt="" />
         <div>
-          <h6>{byline}</h6>
-          <h6>{date}</h6>
+          <div>
+            <h6>{byline}</h6>
+            <h6>{date}</h6>
+          </div>
+          <LikeBtn
+            card={card}
+            savedStories={savedStories}
+            setSavedStories={setSavedStories}
+          />
         </div>
-        <LikeBtn
-          card={card}
-          savedStories={savedStories}
-          setSavedStories={setSavedStories}
-        />
       </div>
     );
   } else {
@@ -38,16 +40,17 @@ export const NewsCard = ({
         <h3>{title}</h3>
 
         <p>{paragraph}</p>
-
         <div>
-          <h6>{byline}</h6>
-          <h6>{date}</h6>
+          <div>
+            <h6>{byline}</h6>
+            <h6>{date}</h6>
+          </div>
+          <LikeBtn
+            card={card}
+            savedStories={savedStories}
+            setSavedStories={setSavedStories}
+          />
         </div>
-        <LikeBtn
-          card={card}
-          savedStories={savedStories}
-          setSavedStories={setSavedStories}
-        />
       </div>
     );
   }

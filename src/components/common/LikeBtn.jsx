@@ -5,7 +5,7 @@ import uuid from "react-uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 //Utilities
-import { saveCard, deleteCard } from "../utilities";
+import { saveCard, deleteCard, setLocalStorage } from "../utilities";
 
 export const LikeBtn = ({ card, savedStories, setSavedStories }) => {
   const manageLike = () => {
@@ -14,6 +14,7 @@ export const LikeBtn = ({ card, savedStories, setSavedStories }) => {
     card.like
       ? saveCard(card, savedStories, setSavedStories)
       : deleteCard(card, savedStories, setSavedStories);
+    setLocalStorage(savedStories);
   };
 
   return (

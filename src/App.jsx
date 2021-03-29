@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Route,
   BrowserRouter as Router,
@@ -14,8 +14,8 @@ import "./styles/style.scss";
 
 //font awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
-
 import { faAngleDoubleUp, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faRProject } from "@fortawesome/free-brands-svg-icons";
 
 //Pages
 import { Custom } from "./components/pages/Custom";
@@ -23,10 +23,17 @@ import { Home } from "./components/pages/Home";
 import { NotFound } from "./components/pages/NotFound";
 import { Stories } from "./components/pages/Stories";
 
+//Utilities
+import { getLocalStorage } from "./components/utilities";
+
 library.add(faAngleDoubleUp, faHeart);
 
 export const App = () => {
   const [savedStories, setSavedStories] = useState([]);
+
+  useEffect(() => {
+    getLocalStorage(setSavedStories);
+  }, []);
   return (
     <div className="App">
       <Router>

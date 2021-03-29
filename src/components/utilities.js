@@ -58,6 +58,20 @@ export const deleteCard = (object, saveTo, setter) => {
   filtered.length > 0 ? setter([...filtered]) : setter([]);
 };
 
+export const setLocalStorage = (array) => {
+  localStorage.setItem("Stories", JSON.stringify(array));
+};
+
+export const getLocalStorage = (setter) => {
+  if (localStorage.getItem("Stories") === null) {
+    localStorage.getItem("Stories", JSON.stringify([]));
+  } else {
+    let localStories = JSON.parse(localStorage.getItem("Stories"));
+    setter(localStories);
+    console.log(localStories);
+  }
+};
+
 export const createQuery = (data) => {
   let { term, startDate, endDate, section } = data;
   let queryTerms = [
