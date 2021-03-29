@@ -11,10 +11,12 @@
 }
 
 .user-grid {
+  margin: 3rem auto;
   display: grid;
   grid-template-columns: repeat(4, 300px);
   row-gap: 3rem;
   column-gap: 3rem;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 1560px) {
