@@ -1,3 +1,54 @@
 .custom-card {
   padding: 1rem;
+
+  h3 {
+    height: 100px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  > p {
+    height: 140px;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tag {
+    @include flex-container($justifyContent: space-between);
+    max-width: 140px;
+    height: 30px;
+    border: 1px black solid;
+    border-radius: 15px;
+
+    h5 {
+      line-height: 25px;
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+      padding-left: 10px;
+      font-size: 1rem;
+    }
+    div {
+      width: 30px;
+      border-bottom-right-radius: 15px;
+      border-top-right-radius: 15px;
+      height: 30px;
+      background-color: black;
+      transform: translateX(1px) translateY(-1px);
+      cursor: pointer;
+      p {
+        transform: translateX(6px) translateY(1px);
+        color: #fff;
+        font-weight: 700;
+      }
+      &:hover {
+        background-color: rgb(24, 23, 23);
+      }
+    }
+  }
 }

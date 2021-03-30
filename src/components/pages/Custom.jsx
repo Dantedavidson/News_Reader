@@ -8,10 +8,10 @@ import { Footer } from "../Footer";
 
 export const Custom = () => {
   const [userInput, setUserInput] = useState({
-    title: "title",
-    description: "description",
-    author: "author",
-    tag: "tag",
+    title: "Title",
+    description: "Description",
+    author: "Author",
+    tag: "Tag",
   });
 
   return (

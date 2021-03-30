@@ -9,9 +9,11 @@ export const DisplayCustomCard = ({ userInput }) => {
         <h6>{userInput.author}</h6>
         <h6>30/03/2021</h6>
       </div>
-      <div>
+      <div className="tag">
         <h5>{userInput.tag}</h5>
-        <div></div>
+        <div>
+          <p>X</p>
+        </div>
       </div>
     </div>
   );

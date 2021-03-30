@@ -976,6 +976,68 @@ footer > div > div:nth-child(3) div path {
   padding: 1rem;
 }
 
+.custom-card h3 {
+  height: 100px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-card p {
+  height: 140px;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-card .tag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  width: 60px;
+  height: 30px;
+  border: 1px black solid;
+  border-radius: 15px;
+}
+
+.custom-card .tag h5 {
+  padding-left: 4px;
+  font-size: 1rem;
+}
+
+.custom-card .tag div {
+  width: 30px;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 30px;
+  background-color: black;
+  -webkit-transform: translateX(1px) translateY(-1px);
+          transform: translateX(1px) translateY(-1px);
+}
+
+.custom-card .tag div p {
+  -webkit-transform: translateX(6px) translateY(1px);
+          transform: translateX(6px) translateY(1px);
+  color: #fff;
+  font-weight: 700;
+}
+
 footer div div:nth-child(3) div:hover div {
   -webkit-transform: scale(1.2, 1.2);
           transform: scale(1.2, 1.2);

@@ -86,6 +86,10 @@ export const deleteCard = (object, saveTo, setter) => {
   filtered.length > 0 ? setter([...filtered]) : setter([]);
 };
 
+export function isEmptyOrSpaces(str) {
+  return str === null || str.match(/^ *$/) !== null;
+}
+
 export const setLocalStorage = (array) => {
   localStorage.setItem("Stories", JSON.stringify(array));
 };

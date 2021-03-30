@@ -1,6 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+//Utilities
+import { isEmptyOrSpaces } from "./utilities";
+
 export const CreateCardForm = ({ setUserInput }) => {
   const { register, handleSubmit } = useForm();
   // onChange={e => {
@@ -12,7 +15,12 @@ export const CreateCardForm = ({ setUserInput }) => {
 
   const handleChange = (data) => {
     setUserInput((prevState) => {
-      return { ...prevState, [data.target.id]: data.target.value };
+      return {
+        ...prevState,
+        [data.target.id]: isEmptyOrSpaces(data.target.value)
+          ? data.target.id
+          : data.target.value,
+      };
     });
   };
 
