@@ -1,10 +1,72 @@
 import uuid from "react-uuid";
 import { API_KEY } from "../API";
 
+export const cleanData = (data) => {
+  console.log(data);
+  const story = {
+    title: "",
+    lead: "",
+    date: "",
+    byline: "",
+    url: "",
+    imgUrl: "",
+  };
+
+  if (typeof data.title === "string") {
+    story.title = data.title;
+  } else if (typeof data.headline.main === "string") {
+    story.title = data.headline.main;
+  } else {
+    story.title = null;
+  }
+
+  if (typeof data.abstract === "string") {
+    story.lead = data.abstract;
+  } else {
+    story.lead = null;
+  }
+
+  if (typeof data.published_date === "string") {
+    story.date = data.published_date; //add date format
+  } else if (typeof data.pub_date === "string") {
+    story.date = data.pub_date; //add date format
+  } else {
+    story.date = null; //make current date
+  }
+
+  if (typeof data.byline === "string") {
+    story.byline = data.byline;
+  } else if (typeof data.byline.original === "string") {
+    story.byline = data.byline.original;
+  } else {
+    story.byline = "The New York Times";
+  }
+
+  if (typeof data.url === "string") {
+    story.url = data.url;
+  } else {
+    story.url = "https://www.nytimes.com/";
+  }
+
+  if (data.multimedia && typeof data.multimedia[0].url === "string") {
+    if (data.multimedia[0].url.startsWith("https")) {
+      story.imgUrl = data.multimedia[0].url;
+    } else if (data.multimedia[0].url.startsWith("image")) {
+      story.imgUrl = `https://www.nytimes.com/${data.multimedia[0].url}`;
+    } else {
+      story.imgUrl = null;
+    }
+  } else {
+    story.imgUrl = null;
+  }
+
+  return story;
+};
+
 export const createCard = (data) => {
   const cards = data.map((item) => {
     let card = {
-      story: item,
+      story: cleanData(item),
       id: uuid(),
       like: false,
     };

@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { LikeBtn } from "./common/LikeBtn";
 
 export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
-  const { title, abstract, byline, published_date, multimedia } = card.story;
+  const { title, abstract, byline, date, imgUrl } = card.story;
   useEffect(() => {}, []);
   return (
     <div className="carousel-item-container">
       <div>
-        <img src={multimedia[0].url} alt="" />
+        <img src={imgUrl} alt="" />
       </div>
       <div>
         <div>
@@ -18,7 +18,7 @@ export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
         <div>
           <div>
             <p>From {byline}</p>
-            <p>Published {published_date}</p>
+            <p>Published {date}</p>
           </div>
           <LikeBtn
             card={card}

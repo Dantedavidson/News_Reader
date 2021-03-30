@@ -6,6 +6,7 @@ export const getTopStories = async () => {
     ` https://api.nytimes.com/svc/topstories/v2/world.json?api-key=${API_KEY}`
   );
   const data = res.data.results;
+
   return data;
 };
 

@@ -1,6 +1,5 @@
 import React from "react";
 
-import { FilterContainer } from "../FilterContainer";
 import { TempGrid } from "../TempGrid";
 
 //Components
@@ -11,7 +10,6 @@ export const Stories = ({ savedStories, setSavedStories }) => {
   return (
     <React.Fragment>
       <Nav current={"stories"} />
-      <FilterContainer></FilterContainer>
       <TempGrid
         savedStories={savedStories}
         setSavedStories={setSavedStories}
