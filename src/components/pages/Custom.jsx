@@ -1,4 +1,6 @@
 import React from "react";
+import { CreateCardForm } from "../CreateCardForm";
+import { DisplayCustomCard } from "../DisplayCustomCard";
 
 //Components
 import { Nav } from "../Nav";
@@ -8,7 +10,8 @@ export const Custom = () => {
   return (
     <React.Fragment>
       <Nav current={"custom"} />
-      <h3>Custom</h3>
+      <CreateCardForm></CreateCardForm>
+      <DisplayCustomCard></DisplayCustomCard>
       <Footer />
     </React.Fragment>
   );

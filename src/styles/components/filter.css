@@ -1,9 +1,9 @@
-.filter-container {
+.latest-container {
   margin-top: 3rem;
   width: 100%;
 }
 
-.filter-container input {
+.latest-container input {
   margin: auto;
   display: block;
   width: 30%;
