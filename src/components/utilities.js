@@ -12,43 +12,43 @@ export const cleanData = (data) => {
     imgUrl: "",
   };
 
-  if (typeof data.title === "string") {
+  if (data.title) {
     story.title = data.title;
-  } else if (typeof data.headline.main === "string") {
+  } else if (data.headline.main) {
     story.title = data.headline.main;
   } else {
     story.title = null;
   }
 
-  if (typeof data.abstract === "string") {
+  if (data.abstract) {
     story.lead = data.abstract;
   } else {
     story.lead = null;
   }
 
-  if (typeof data.published_date === "string") {
+  if (data.published_date) {
     story.date = data.published_date; //add date format
-  } else if (typeof data.pub_date === "string") {
+  } else if (data.pub_date) {
     story.date = data.pub_date; //add date format
   } else {
     story.date = null; //make current date
   }
 
-  if (typeof data.byline === "string") {
+  if (data.byline && typeof data.byline === "string") {
     story.byline = data.byline;
-  } else if (typeof data.byline.original === "string") {
+  } else if (data.byline.original && typeof data.byline.original === "string") {
     story.byline = data.byline.original;
   } else {
     story.byline = "The New York Times";
   }
 
-  if (typeof data.url === "string") {
+  if (data.url) {
     story.url = data.url;
   } else {
     story.url = "https://www.nytimes.com/";
   }
 
-  if (data.multimedia && typeof data.multimedia[0].url === "string") {
+  if (data.multimedia && data.multimedia.length > 0) {
     if (data.multimedia[0].url.startsWith("https")) {
       story.imgUrl = data.multimedia[0].url;
     } else if (data.multimedia[0].url.startsWith("image")) {
@@ -73,40 +73,6 @@ export const createCard = (data) => {
     return card;
   });
   return cards;
-};
-
-export const cleanCard = (card) => {
-  let { story } = card;
-
-  // set author
-  let byline = "";
-  if (story.byline.original === null) {
-    byline = "The New York Times";
-  } else if (story.byline.original) {
-    byline = story.byline.original;
-  } else {
-    byline = story.byline;
-  }
-
-  // set image
-  let img = null;
-  if (story.multimedia[0]) {
-    if (story.multimedia[0].url.includes("https://")) {
-      img = story.multimedia[0].url;
-    } else if (story.multimedia[0].url.includes("images/")) {
-      img = `https://www.nytimes.com/${story.multimedia[0].url}`;
-    }
-  }
-
-  const display = {
-    title: story.title ? story.title : story.headline.main,
-    byline: byline,
-    date: story.published_date ? story.published_date : story.pub_date,
-    imgUrl: img,
-    paragraph: story.abstract ? story.abstract : story.lead_paragraph,
-  };
-
-  return display;
 };
 
 export const saveCard = (object, saveTo, setter) => {
