@@ -1,5 +1,18 @@
 import React from "react";
 
-export const DisplayCustomCard = () => {
-  return <div></div>;
+export const DisplayCustomCard = ({ userInput }) => {
+  return (
+    <div className="custom-card">
+      <h3>{userInput.title}</h3>
+      <p>{userInput.description}</p>
+      <div>
+        <h6>{userInput.author}</h6>
+        <h6>30/03/2021</h6>
+      </div>
+      <div>
+        <h5>{userInput.tag}</h5>
+        <div></div>
+      </div>
+    </div>
+  );
 };

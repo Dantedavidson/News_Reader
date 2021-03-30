@@ -299,8 +299,8 @@ select[multiple] {
 
 form {
   width: 80%;
-  margin: auto;
   font-size: 1.4rem;
+  margin: auto;
 }
 
 form input,
@@ -400,7 +400,7 @@ form label {
   width: 600px;
   height: 400px;
   border: 1px solid black;
-  margin-top: 3rem;
+  margin: 3rem 0 6rem 0;
   padding-left: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -418,12 +418,46 @@ form label {
       align-content: flex-start;
 }
 
-.form-create label {
-  width: 100px;
+.form-create .input {
+  width: 100%;
 }
 
-.form-create button:nth-of-type(1) {
+.form-create .input input {
+  width: 70%;
+}
+
+.form-create .input button {
+  background-color: black;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  -webkit-transform: translateX(24px) translateY(5px);
+          transform: translateX(24px) translateY(5px);
+}
+
+.form-create .input button p {
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+}
+
+.form-create .input:nth-child(4) input,
+.form-create .input:nth-child(5) input {
+  width: 60%;
+}
+
+.form-create > button {
+  width: 400px;
+  height: 40px;
+  border-radius: 5px;
   background-color: #052962;
+  color: #fff;
+  -webkit-transform: translateX(50rem) translateY(6rem);
+          transform: translateX(50rem) translateY(6rem);
+}
+
+.form-create > button:hover {
+  color: #ffe500;
 }
 
 .card {
@@ -909,6 +943,37 @@ footer > div > div:nth-child(3) div path {
   border: 1px solid #000;
   border-radius: 20px;
   padding-left: 10px;
+}
+
+.custom-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  width: 80%;
+  margin: auto;
+}
+
+.custom-body > div {
+  margin-top: 3rem;
+  height: 400px;
+  width: 400px;
+  border: 1px solid black;
+}
+
+.custom-card {
+  padding: 1rem;
 }
 
 footer div div:nth-child(3) div:hover div {
