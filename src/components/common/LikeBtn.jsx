@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import uuid from "react-uuid";
 
 //Fa
@@ -9,13 +9,14 @@ import { saveCard, deleteCard, setLocalStorage } from "../utilities";
 
 export const LikeBtn = ({ card, savedStories, setSavedStories }) => {
   const manageLike = () => {
-    console.log("went off");
     card.like = !card.like;
     card.like
       ? saveCard(card, savedStories, setSavedStories)
       : deleteCard(card, savedStories, setSavedStories);
-    setLocalStorage(savedStories);
   };
+  useEffect(() => {
+    setLocalStorage(savedStories);
+  }, [savedStories]);
 
   return (
     <FontAwesomeIcon

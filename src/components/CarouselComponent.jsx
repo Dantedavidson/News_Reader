@@ -8,7 +8,7 @@ export const CarouselComponent = ({ cards, savedStories, setSavedStories }) => {
     <Carousel fade controls={false}>
       {cards.map((card) => {
         return (
-          <Carousel.Item interval={100000} key={uuid()}>
+          <Carousel.Item interval={10000} key={uuid()}>
             <CarouselItem
               card={card}
               savedStories={savedStories}
