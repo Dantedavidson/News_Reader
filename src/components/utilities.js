@@ -69,10 +69,28 @@ export const createCard = (data) => {
       story: cleanData(item),
       id: uuid(),
       like: false,
+      tags: ["NYT"],
     };
     return card;
   });
   return cards;
+};
+
+export const userCard = (data) => {
+  let card = {
+    story: {
+      title: data.title,
+      lead: data.description,
+      date: "01/04/2021", //set to current date and format
+      byline: formatAuthors(data.author),
+      url: data.url,
+      imgUrl: null,
+    },
+    id: uuid(),
+    like: true,
+    tags: data.tag,
+  };
+  return card;
 };
 
 export const saveCard = (object, saveTo, setter) => {

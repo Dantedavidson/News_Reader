@@ -1,10 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 //Utilities
-import { isEmptyOrSpaces, setLocalStorage } from "./utilities";
+import { isEmptyOrSpaces, setLocalStorage, userCard } from "./utilities";
 
-export const CreateCardForm = ({ setUserInput, userInput, tags, setTags }) => {
+export const CreateCardForm = ({
+  setUserInput,
+  userInput,
+  tags,
+  setTags,
+  savedStories,
+  setSavedStories,
+}) => {
   const { register, handleSubmit } = useForm();
 
   const handleChange = (data) => {
@@ -22,6 +29,10 @@ export const CreateCardForm = ({ setUserInput, userInput, tags, setTags }) => {
     e.preventDefault();
     const key = e.currentTarget.parentNode.childNodes[1].id;
     const value = e.currentTarget.parentNode.childNodes[1].value;
+    if (userInput[key].includes(value)) {
+      console.log(`${key} must be unique`);
+      return;
+    }
 
     setUserInput((prevState) => {
       return {
@@ -29,14 +40,25 @@ export const CreateCardForm = ({ setUserInput, userInput, tags, setTags }) => {
         [key]: [...prevState[key], value],
       };
     });
+    e.currentTarget.parentNode.childNodes[1].value = "";
     if (key === "tag" && !tags.includes(value)) {
       setTags([...tags, value]);
     }
   };
-
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = () => {
+    const card = userCard(userInput);
+    setSavedStories([...savedStories, card]);
+    setUserInput({
+      title: "Title",
+      description: "Description",
+      author: [],
+      tag: [],
+    });
   };
+  useEffect(() => {
+    setLocalStorage(savedStories, "Stories");
+    console.log("i went off");
+  }, [savedStories]);
   useEffect(() => {
     setLocalStorage(tags, "Tags");
     console.log("i went off");

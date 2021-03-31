@@ -47,7 +47,14 @@ export const App = () => {
         <Switch>
           <Route
             path="/custom"
-            render={(props) => <Custom tags={tags} setTags={setTags} />}
+            render={(props) => (
+              <Custom
+                tags={tags}
+                setTags={setTags}
+                savedStories={savedStories}
+                setSavedStories={setSavedStories}
+              />
+            )}
           ></Route>
           <Route path="/404" render={(props) => <NotFound />}></Route>
           <Route
