@@ -12,11 +12,7 @@ import { getTopStories } from "./API";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/style.scss";
 
-//font awesome
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAngleDoubleUp, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faRProject } from "@fortawesome/free-brands-svg-icons";
-
+//<i class="fas fa-angle-left"></i>
 //Pages
 import { Custom } from "./components/pages/Custom";
 import { Home } from "./components/pages/Home";
@@ -26,7 +22,16 @@ import { Stories } from "./components/pages/Stories";
 //Utilities
 import { getLocalStorage } from "./components/utilities";
 
-library.add(faAngleDoubleUp, faHeart);
+//font awesome
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faAngleDoubleUp,
+  faHeart,
+  faAngleLeft,
+  faAngleRight,
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(faAngleDoubleUp, faHeart, faAngleLeft, faAngleRight);
 
 export const App = () => {
   const [savedStories, setSavedStories] = useState([]);

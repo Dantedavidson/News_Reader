@@ -19,7 +19,10 @@ export const Custom = () => {
       <Nav current={"custom"} />
       <div className="custom-body">
         <CreateCardForm setUserInput={setUserInput}></CreateCardForm>
-        <DisplayCustomCard userInput={userInput}></DisplayCustomCard>
+        <DisplayCustomCard
+          userInput={userInput}
+          setUserInput={setUserInput}
+        ></DisplayCustomCard>
       </div>
 
       <Footer />
