@@ -4,7 +4,7 @@ export const Tag = ({
   title,
   tags,
   setTags,
-
+  totalPages,
   currentPage,
   setCurrentPage,
 }) => {

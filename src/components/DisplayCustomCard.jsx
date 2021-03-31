@@ -14,11 +14,23 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
       setCurrentPage(currentPage + 1);
     }
   };
+  const getCurrentPosts = () => {
+    return userInput.tag.slice(indexOfFirstPost, indexOfLastPost);
+  };
   const totalPages = Math.ceil(userInput.tag.length / 2);
   const indexOfLastPost = currentPage * 2;
   const indexOfFirstPost = indexOfLastPost - 2;
-  const currentPosts = userInput.tag.slice(indexOfFirstPost, indexOfLastPost);
-
+  let currentPosts = getCurrentPosts();
+  useEffect(() => {
+    if (currentPage === 1) {
+      return;
+    }
+    console.log(currentPage, totalPages);
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+      currentPosts = getCurrentPosts();
+    }
+  }, [userInput]);
   return (
     <div className="custom-card">
       <h3>{userInput.title}</h3>
@@ -44,6 +56,7 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
                 key={uuid()}
                 tags={userInput.tag}
                 setTags={setUserInput}
+                totalPages={totalPages}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
               ></Tag>
