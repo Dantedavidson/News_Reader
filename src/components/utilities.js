@@ -90,6 +90,23 @@ export function isEmptyOrSpaces(str) {
   return str === null || str.match(/^ *$/) !== null;
 }
 
+export const formatAuthors = (array) => {
+  let string = array.reduce((accumulator, value, index) => {
+    if (array.length === 1) {
+      return `${accumulator} ${value}.`;
+    }
+    if (index === array.length - 1) {
+      return `${accumulator} and ${value}.`;
+    }
+    if (index === array.length - 2) {
+      return `${accumulator} ${value}`;
+    } else {
+      return `${accumulator} ${value},`;
+    }
+  }, "By");
+  return string;
+};
+
 export const setLocalStorage = (array) => {
   localStorage.setItem("Stories", JSON.stringify(array));
 };

@@ -6,12 +6,6 @@ import { isEmptyOrSpaces } from "./utilities";
 
 export const CreateCardForm = ({ setUserInput }) => {
   const { register, handleSubmit } = useForm();
-  // onChange={e => {
-  //   const val = e.target.value;
-  //   setMessage(prevState => {
-  //     return { ...prevState, message: val }
-  //   });
-  // }}
 
   const handleChange = (data) => {
     setUserInput((prevState) => {
@@ -20,6 +14,19 @@ export const CreateCardForm = ({ setUserInput }) => {
         [data.target.id]: isEmptyOrSpaces(data.target.value)
           ? data.target.id
           : data.target.value,
+      };
+    });
+  };
+  const handleAdd = (e) => {
+    e.preventDefault();
+    const key = e.currentTarget.parentNode.childNodes[1].id;
+    const value = e.currentTarget.parentNode.childNodes[1].value;
+
+    setUserInput((prevState) => {
+      console.log(prevState);
+      return {
+        ...prevState,
+        [key]: [...prevState[key], value],
       };
     });
   };
@@ -61,27 +68,15 @@ export const CreateCardForm = ({ setUserInput }) => {
       </div>
       <div className="input">
         <label for="author">Author</label>
-        <input
-          id="author"
-          name="author"
-          type="text"
-          ref={register}
-          onChange={handleChange}
-        />
-        <button className="add-btn">
+        <input id="author" name="author" type="text" ref={register} />
+        <button className="add-btn" onClick={handleAdd}>
           <p>+</p>
         </button>
       </div>
       <div className="input">
         <label for="tag">Tag</label>
-        <input
-          id="tag"
-          name="tag"
-          type="text"
-          ref={register}
-          onChange={handleChange}
-        />
-        <button className="add-btn">
+        <input id="tag" name="tag" type="text" ref={register} />
+        <button className="add-btn" onClick={handleAdd}>
           <p>+</p>
         </button>
       </div>

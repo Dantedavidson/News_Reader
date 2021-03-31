@@ -10,8 +10,8 @@ export const Custom = () => {
   const [userInput, setUserInput] = useState({
     title: "Title",
     description: "Description",
-    author: "Author",
-    tag: "Tag",
+    author: [],
+    tag: [],
   });
 
   return (
