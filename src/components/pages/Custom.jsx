@@ -18,7 +18,10 @@ export const Custom = () => {
     <React.Fragment>
       <Nav current={"custom"} />
       <div className="custom-body">
-        <CreateCardForm setUserInput={setUserInput}></CreateCardForm>
+        <CreateCardForm
+          setUserInput={setUserInput}
+          userInput={userInput}
+        ></CreateCardForm>
         <DisplayCustomCard
           userInput={userInput}
           setUserInput={setUserInput}

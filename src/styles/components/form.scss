@@ -80,16 +80,16 @@ form {
   .input:nth-child(5) input {
     width: 60%;
   }
-  > button {
-    width: 400px;
-    height: 40px;
-    border-radius: 5px;
-    background-color: $blue-one;
-    color: #fff;
-    transform: translateX(50rem) translateY(6rem);
-
-    &:hover {
-      color: $yellow-highlight;
-    }
+}
+button.create {
+  width: 400px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: $blue-one;
+  color: #fff;
+  align-self: flex-end;
+  transform: translateX(29rem);
+  &:hover {
+    color: $yellow-highlight;
   }
 }

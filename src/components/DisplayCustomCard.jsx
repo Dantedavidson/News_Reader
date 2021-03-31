@@ -4,6 +4,8 @@ import { Tag } from "./common/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
+import { formatAuthors } from "./utilities";
+
 export const DisplayCustomCard = ({ userInput, setUserInput }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -36,7 +38,7 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
       <h3>{userInput.title}</h3>
       <p>{userInput.description}</p>
       <div>
-        <h6>{userInput.author}</h6>
+        <h6 className="author">{formatAuthors(userInput.author)}</h6>
         <h6>30/03/2021</h6>
       </div>
       <div className="arrow display" id="left" onClick={shift}>
