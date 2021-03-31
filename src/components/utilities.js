@@ -107,17 +107,16 @@ export const formatAuthors = (array) => {
   return string;
 };
 
-export const setLocalStorage = (array) => {
-  localStorage.setItem("Stories", JSON.stringify(array));
+export const setLocalStorage = (array, location) => {
+  localStorage.setItem(location, JSON.stringify(array));
 };
 
-export const getLocalStorage = (setter) => {
-  if (localStorage.getItem("Stories") === null) {
-    localStorage.getItem("Stories", JSON.stringify([]));
+export const getLocalStorage = (setter, location) => {
+  if (localStorage.getItem(location) === null) {
+    localStorage.getItem(location, JSON.stringify([]));
   } else {
-    let localStories = JSON.parse(localStorage.getItem("Stories"));
-    setter(localStories);
-    console.log(localStories);
+    let data = JSON.parse(localStorage.getItem(location));
+    setter(data);
   }
 };
 

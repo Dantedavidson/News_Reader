@@ -15,7 +15,7 @@ export const LikeBtn = ({ card, savedStories, setSavedStories }) => {
       : deleteCard(card, savedStories, setSavedStories);
   };
   useEffect(() => {
-    setLocalStorage(savedStories);
+    setLocalStorage(savedStories, "Stories");
   }, [savedStories]);
 
   return (

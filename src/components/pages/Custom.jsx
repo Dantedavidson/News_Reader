@@ -6,7 +6,7 @@ import { DisplayCustomCard } from "../DisplayCustomCard";
 import { Nav } from "../Nav";
 import { Footer } from "../Footer";
 
-export const Custom = () => {
+export const Custom = ({ tags, setTags }) => {
   const [userInput, setUserInput] = useState({
     title: "Title",
     description: "Description",
@@ -21,6 +21,8 @@ export const Custom = () => {
         <CreateCardForm
           setUserInput={setUserInput}
           userInput={userInput}
+          tags={tags}
+          setTags={setTags}
         ></CreateCardForm>
         <DisplayCustomCard
           userInput={userInput}

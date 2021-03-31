@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 //Utilities
-import { isEmptyOrSpaces } from "./utilities";
+import { isEmptyOrSpaces, setLocalStorage } from "./utilities";
 
-export const CreateCardForm = ({ setUserInput, userInput }) => {
+export const CreateCardForm = ({ setUserInput, userInput, tags, setTags }) => {
   const { register, handleSubmit } = useForm();
 
   const handleChange = (data) => {
@@ -24,17 +24,23 @@ export const CreateCardForm = ({ setUserInput, userInput }) => {
     const value = e.currentTarget.parentNode.childNodes[1].value;
 
     setUserInput((prevState) => {
-      console.log(prevState);
       return {
         ...prevState,
         [key]: [...prevState[key], value],
       };
     });
+    if (key === "tag" && !tags.includes(value)) {
+      setTags([...tags, value]);
+    }
   };
 
   const onSubmit = (data) => {
     console.log(data);
   };
+  useEffect(() => {
+    setLocalStorage(tags, "Tags");
+    console.log("i went off");
+  }, [tags]);
   return (
     <React.Fragment>
       <form className="form-create">
@@ -77,7 +83,13 @@ export const CreateCardForm = ({ setUserInput, userInput }) => {
         </div>
         <div className="input">
           <label for="tag">Tag</label>
-          <input id="tag" name="tag" type="text" ref={register} />
+          <input id="tag" name="tag" list="tags" type="text" ref={register} />
+          <datalist id="tags">
+            <option value="world">World</option>
+            {tags.map((tag) => (
+              <option value={tag}>{tag}</option>
+            ))}
+          </datalist>
           <button className="add-btn" onClick={handleAdd}>
             <p>+</p>
           </button>

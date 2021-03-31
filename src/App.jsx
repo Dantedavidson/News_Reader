@@ -35,15 +35,20 @@ library.add(faAngleDoubleUp, faHeart, faAngleLeft, faAngleRight);
 
 export const App = () => {
   const [savedStories, setSavedStories] = useState([]);
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    getLocalStorage(setSavedStories);
+    getLocalStorage(setSavedStories, "Stories");
+    getLocalStorage(setTags, "Tags");
   }, []);
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/custom" render={(props) => <Custom />}></Route>
+          <Route
+            path="/custom"
+            render={(props) => <Custom tags={tags} setTags={setTags} />}
+          ></Route>
           <Route path="/404" render={(props) => <NotFound />}></Route>
           <Route
             path="/stories"
