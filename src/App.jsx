@@ -35,20 +35,20 @@ import {
 library.add(faAngleDoubleUp, faHeart, faAngleLeft, faAngleRight, faTimes);
 
 export const App = () => {
-  const [topStories, setTopStories] = useState([]);
-  const [loadingTopStories, setLoadingTopStories] = useState(true);
+  const [data, setData] = useState([]);
   const [savedStories, setSavedStories] = useState([]);
   const [tags, setTags] = useState([]);
-  console.log("app loaded");
+
   useEffect(() => {
     getLocalStorage(setSavedStories, "Stories");
     getLocalStorage(setTags, "Tags");
+
     async function getData() {
       const data = await getTopStories();
       const cards = createCard(data, savedStories);
-      setTopStories([...cards]);
-      setLoadingTopStories(false);
+      setData([...cards]);
     }
+
     getData();
   }, []);
   return (
@@ -110,10 +110,8 @@ export const App = () => {
               <Home
                 savedStories={savedStories}
                 setSavedStories={setSavedStories}
-                loadingTopStories={loadingTopStories}
-                setLoadingTopStories={setLoadingTopStories}
-                topStories={topStories}
-                setTopStories={setTopStories}
+                data={data}
+                setData={setData}
               />
             )}
           ></Route>

@@ -1,30 +1,35 @@
 import React, { useEffect, useState } from "react";
 
 import { getTopStories } from "../../API";
-import { createCard } from "../utilities";
+import { createCard, likeStatus } from "../utilities";
 
 //Components
 import { Nav } from "../Nav";
 import { NewsSearchForm } from "../NewsSearchForm";
 import { NewsCardGrid } from "../NewsCardGrid";
-
 import { HorizontalLine } from "../common/HorizontalLine";
 import { Button } from "../common/Button";
-
 import { Footer } from "../Footer";
 import { CarouselComponent } from "../CarouselComponent";
 
-export const Home = ({
-  savedStories,
-  setSavedStories,
-  topStories,
-  setTopStories,
-  loadingTopStories,
-  setLoadingTopStories,
-}) => {
+export const Home = ({ savedStories, setSavedStories, data }) => {
+  const [topStories, setTopStories] = useState([]);
+  const [loadingTopStories, setLoadingTopStories] = useState(true);
   const [currentDisplay, setCurrentDisplay] = useState("start");
   const [searchResults, setSearchResults] = useState([]);
 
+  useEffect(() => {
+    if (data.length === 0) {
+      console.log("i returned");
+      return;
+    }
+    let stories = data.map((item) => {
+      item.like = likeStatus(savedStories, item);
+      return item;
+    });
+    setTopStories(stories);
+    setLoadingTopStories(false);
+  }, [data]);
   return (
     <React.Fragment>
       <Nav current={"home"} />

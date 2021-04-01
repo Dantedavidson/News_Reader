@@ -61,9 +61,8 @@ export const cleanData = (data) => {
 
   return story;
 };
-const likeStatus = (saved, current) => {
+export const likeStatus = (saved, current) => {
   let like = saved.some((item) => {
-    console.log(item.story.title, current.story.title, item.like);
     return item.story.title === current.story.title && item.like === true;
   });
   return like;
@@ -107,7 +106,6 @@ export const deleteCard = (object, saveTo, setter) => {
   const filtered = saveTo.filter((item) => {
     return item.story.title !== object.story.title;
   });
-  console.log(filtered);
   filtered.length > 0 ? setter([...filtered]) : setter([]);
 };
 
