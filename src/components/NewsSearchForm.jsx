@@ -1,15 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import uuid from "react-uuid";
-
 //API
 import { getSearchStories } from "../API";
-
 //Utilities
 import { createQuery } from "./utilities";
 import { createCard } from "./utilities";
 //components
-import { ShowResultsBtn } from "./ShowResultsBtn";
+import { Button } from "./common/Button";
 
 export const NewsSearchForm = ({
   currentDisplay,
@@ -132,6 +130,7 @@ export const NewsSearchForm = ({
   ];
 
   const onSubmit = async (data) => {
+    console.log(data);
     let query = createQuery(data);
     let stories = await getSearchStories(query);
     let results = createCard(stories);
@@ -139,63 +138,58 @@ export const NewsSearchForm = ({
     setCurrentDisplay("results");
   };
   return (
-    <div className="modal-bg ">
-      <div className="modal">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="search-button-container">
-            <ShowResultsBtn
-              currentDisplay={currentDisplay}
-              setCurrentDisplay={setCurrentDisplay}
-            ></ShowResultsBtn>
-          </div>
-          <div
-            className={
-              currentDisplay === "form"
-                ? "display form-input-container"
-                : "form-input-container"
-            }
-          >
-            <div>
-              <div className="input">
-                <label for="news-search">Search Term</label>
-                <input id="news-search" name="term" ref={register}></input>
-              </div>
-            </div>
-            <div>
-              <div className="input">
-                <label for="news-search-start-date">Start Date</label>
-                <input
-                  type="text"
-                  id="news-search-start-date"
-                  name="startDate"
-                  ref={register}
-                />
-              </div>
-              <div className="input">
-                <label for="news-search-end-date">End Date</label>
-                <input
-                  type="text"
-                  id="news-search-end-date"
-                  name="endDate"
-                  ref={register}
-                />
-              </div>
-            </div>
-            <div>
-              <div className="input">
-                <label for="news-search-sections">Section</label>
-                <select id="news-search-sections" name="section" ref={register}>
-                  {sections.map((section) => {
-                    return (
-                      <option value={section} key={uuid()}>
-                        {section}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
+    <div
+      className={currentDisplay === "modal" ? "modal-bg bg-active" : "modal-bg"}
+    >
+      <div
+        className={
+          currentDisplay === "modal"
+            ? "modal-custom"
+            : "modal-custom modal-active"
+        }
+      >
+        <form>
+          <div>
+            <div className="input">
+              <label for="news-search">Search Term</label>
+              <input id="news-search" name="term" ref={register}></input>
             </div>
           </div>
+          <div>
+            <div className="input">
+              <label for="news-search-start-date">Start Date</label>
+              <input
+                type="text"
+                id="news-search-start-date"
+                name="startDate"
+                ref={register}
+              />
+            </div>
+            <div className="input">
+              <label for="news-search-end-date">End Date</label>
+              <input
+                type="text"
+                id="news-search-end-date"
+                name="endDate"
+                ref={register}
+              />
+            </div>
+          </div>
+          <div>
+            <div className="input">
+              <label for="news-search-sections">Section</label>
+              <select id="news-search-sections" name="section" ref={register}>
+                {sections.map((section) => {
+                  return (
+                    <option value={section} key={uuid()}>
+                      {section}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          </div>
+          <Button handler={handleSubmit(onSubmit)} text="Submit"></Button>
         </form>
       </div>
     </div>

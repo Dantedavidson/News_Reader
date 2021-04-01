@@ -1,19 +1,15 @@
 .news-card-grid {
   display: -ms-grid;
   display: grid;
-  height: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -ms-grid-columns: (300px)[4];
       grid-template-columns: repeat(4, 300px);
+  grid-auto-rows: auto;
   row-gap: 3rem;
   -webkit-column-gap: 3rem;
           column-gap: 3rem;
-  -webkit-transition: all 1s;
-  transition: all 1s;
 }
 
 .user-grid {
@@ -49,10 +45,5 @@
     -ms-grid-columns: (300px)[1];
         grid-template-columns: repeat(1, 300px);
   }
-}
-
-.display-news-grid {
-  margin-top: 3rem;
-  height: 600px;
 }
 /*# sourceMappingURL=newsgrid.css.map */

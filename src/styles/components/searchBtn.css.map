@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,eAAe,CAAC;EACd,OAAO,EAAE,YAAY;EACrB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,IAAI;EACZ,MAAM,EAAE,IAAI;CACb",
-    "sources": [
-        "searchBtn.scss"
-    ],
-    "names": [],
-    "file": "searchBtn.css"
-}

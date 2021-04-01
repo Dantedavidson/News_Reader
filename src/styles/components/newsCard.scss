@@ -41,5 +41,11 @@
   }
 }
 
-.display-card {
+.button-container {
+  margin: 3rem auto;
+  max-width: 660px;
+  @include flex-container;
+  .button {
+    margin-bottom: 0;
+  }
 }

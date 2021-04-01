@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,wBAAwB,CAAC;EACvB,KAAK,EAAE,IAAI;CACZ",
-    "sources": [
-        "searchButtonContainer.scss"
-    ],
-    "names": [],
-    "file": "searchButtonContainer.css"
-}

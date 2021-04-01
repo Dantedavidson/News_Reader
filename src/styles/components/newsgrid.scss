@@ -1,13 +1,10 @@
 .news-card-grid {
   display: grid;
-  height: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
   justify-content: center;
   grid-template-columns: repeat(4, 300px);
+  grid-auto-rows: auto;
   row-gap: 3rem;
   column-gap: 3rem;
-  transition: all 1s;
 }
 
 .user-grid {
@@ -35,9 +32,4 @@
   .news-card-grid {
     grid-template-columns: repeat(1, 300px);
   }
-}
-
-.display-news-grid {
-  margin-top: 3rem;
-  height: 600px;
 }

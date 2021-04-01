@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,iBAAiB,CAAC;EAChB,MAAM,EAAE,KAAK;EACb,UAAU,EAAE,MAAM;CAInB;;AAND,AAGE,iBAHe,CAGf,gBAAgB,CAAC;EACf,KAAK,EAAE,IAAI;CACZ;;AAGH,AAAA,QAAQ,AAAA,iBAAiB,CAAC;EACxB,MAAM,EAAE,KAAK;CACd",
-    "sources": [
-        "searchContainer.scss"
-    ],
-    "names": [],
-    "file": "searchContainer.css"
-}
