@@ -210,9 +210,7 @@ form {
 
 form input,
 form select {
-  border: 1px solid #000;
-  border-radius: 20px;
-  padding-left: 10px;
+  border-bottom: 1px solid #000;
 }
 
 form .input {
@@ -235,25 +233,28 @@ form .input {
 
 form label {
   width: 150px;
+  height: 100%;
+  line-height: 31px;
 }
 
 .modal-bg {
+  padding-top: 6rem;
   z-index: 100;
   position: fixed;
   width: 100%;
   height: 100vh;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   visibility: hidden;
   opacity: 0;
   -webkit-transition: visibility 0s, opacity 0.5s;
@@ -268,9 +269,9 @@ form label {
 .modal-custom {
   position: relative;
   background-color: #fff;
-  width: 30%;
+  width: 40%;
   min-width: 340px;
-  height: 30%;
+  height: 60%;
   min-height: 240px;
   border-radius: 5px;
   display: -webkit-box;
@@ -287,11 +288,26 @@ form label {
           flex-direction: column;
 }
 
-.modal-active {
-  display: initial;
+.modal-custom span.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
 }
 
-.form-input-container {
+.modal-custom span.modal-close svg {
+  height: 1.3rem;
+  width: 1.3rem;
+}
+
+.modal-custom h3 {
+  margin-top: 1.5rem;
+}
+
+.modal-custom form {
+  margin-top: 3rem;
+  height: 100%;
+  width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -299,31 +315,6 @@ form label {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-}
-
-.form-input-container div {
-  width: 100%;
-}
-
-.form-input-container > div:nth-child(1) input {
-  width: 85%;
-}
-
-.form-input-container > div:nth-child(2) {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -334,16 +325,20 @@ form label {
       align-content: flex-start;
 }
 
-.form-input-container > div:nth-child(2) div:nth-child(2) label {
-  padding-left: 1rem;
+.modal-custom form div {
+  width: 100%;
 }
 
-.form-input-container > div:nth-child(2) input {
-  width: 70%;
+.modal-custom form > div:nth-child(1) input {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-preferred-size: 1;
+      flex-basis: 1;
 }
 
-.form-input-container > div:nth-child(3) select {
-  width: 35%;
+.modal-active {
+  display: initial;
 }
 
 .form-create {
@@ -487,6 +482,30 @@ button.create:hover {
 .card path {
   -webkit-transform: scale(1.2) translateY(2rem) translateX(-15rem);
           transform: scale(1.2) translateY(2rem) translateX(-15rem);
+}
+
+.button-container {
+  margin: 3rem auto;
+  max-width: 660px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+
+.button-container .button {
+  margin-bottom: 0;
 }
 
 .carousel-container {
@@ -851,6 +870,15 @@ footer > div > div:nth-child(3) div path {
 
 .button:hover {
   color: #ffe500;
+}
+
+.block {
+  display: block;
+  height: 48px;
+}
+
+.news-container {
+  height: 405px;
 }
 
 .latest-container {
