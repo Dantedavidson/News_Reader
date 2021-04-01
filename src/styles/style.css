@@ -333,8 +333,6 @@ form label {
 }
 
 .form-input-container {
-  height: 0px;
-  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -349,8 +347,6 @@ form label {
           align-items: flex-start;
   -ms-flex-line-pack: start;
       align-content: flex-start;
-  -webkit-transition: all 1s;
-  transition: all 1s;
 }
 
 .form-input-container div {
@@ -389,11 +385,6 @@ form label {
 
 .form-input-container > div:nth-child(3) select {
   width: 35%;
-}
-
-.form-input-container.display {
-  height: 250px;
-  margin-bottom: 3rem;
 }
 
 .form-create {
@@ -446,17 +437,19 @@ form label {
   width: 60%;
 }
 
-.form-create > button {
+button.create {
   width: 400px;
   height: 40px;
   border-radius: 5px;
   background-color: #052962;
   color: #fff;
-  -webkit-transform: translateX(50rem) translateY(6rem);
-          transform: translateX(50rem) translateY(6rem);
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  -webkit-transform: translateX(29rem);
+          transform: translateX(29rem);
 }
 
-.form-create > button:hover {
+button.create:hover {
   color: #ffe500;
 }
 
@@ -976,6 +969,47 @@ footer > div > div:nth-child(3) div path {
   padding: 1rem;
 }
 
+.custom-card .arrow {
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.custom-card .arrow svg {
+  visibility: hidden;
+  width: 35px;
+  height: 35px;
+}
+
+.custom-card .arrow svg.display {
+  visibility: visible;
+}
+
+.custom-card .arrow#left {
+  -webkit-transform: translateX(-1rem) translateY(0.8rem);
+          transform: translateX(-1rem) translateY(0.8rem);
+}
+
+.custom-card .arrow#right {
+  -webkit-transform: translateX(19rem) translateY(-2rem);
+          transform: translateX(19rem) translateY(-2rem);
+}
+
+.custom-card .tag-grid {
+  width: 80%;
+  margin: 1rem 0 0 1rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.custom-card > div:nth-of-type(1) {
+  height: 65px;
+}
+
 .custom-card h3 {
   height: 100px;
   display: -webkit-box;
@@ -985,10 +1019,19 @@ footer > div > div:nth-child(3) div path {
   text-overflow: ellipsis;
 }
 
-.custom-card p {
-  height: 140px;
+.custom-card h6.author {
+  max-height: 38px;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-card > p {
+  height: 120px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1010,14 +1053,19 @@ footer > div > div:nth-child(3) div path {
           align-items: flex-start;
   -ms-flex-line-pack: start;
       align-content: flex-start;
-  width: 60px;
+  max-width: 140px;
   height: 30px;
   border: 1px black solid;
   border-radius: 15px;
 }
 
 .custom-card .tag h5 {
-  padding-left: 4px;
+  line-height: 25px;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding-left: 10px;
   font-size: 1rem;
 }
 
@@ -1029,6 +1077,7 @@ footer > div > div:nth-child(3) div path {
   background-color: black;
   -webkit-transform: translateX(1px) translateY(-1px);
           transform: translateX(1px) translateY(-1px);
+  cursor: pointer;
 }
 
 .custom-card .tag div p {
@@ -1036,6 +1085,10 @@ footer > div > div:nth-child(3) div path {
           transform: translateX(6px) translateY(1px);
   color: #fff;
   font-weight: 700;
+}
+
+.custom-card .tag div:hover {
+  background-color: #181717;
 }
 
 footer div div:nth-child(3) div:hover div {

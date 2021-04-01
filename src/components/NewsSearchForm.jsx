@@ -139,61 +139,65 @@ export const NewsSearchForm = ({
     setCurrentDisplay("results");
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="search-button-container">
-        <ShowResultsBtn
-          currentDisplay={currentDisplay}
-          setCurrentDisplay={setCurrentDisplay}
-        ></ShowResultsBtn>
+    <div className="modal-bg ">
+      <div className="modal">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="search-button-container">
+            <ShowResultsBtn
+              currentDisplay={currentDisplay}
+              setCurrentDisplay={setCurrentDisplay}
+            ></ShowResultsBtn>
+          </div>
+          <div
+            className={
+              currentDisplay === "form"
+                ? "display form-input-container"
+                : "form-input-container"
+            }
+          >
+            <div>
+              <div className="input">
+                <label for="news-search">Search Term</label>
+                <input id="news-search" name="term" ref={register}></input>
+              </div>
+            </div>
+            <div>
+              <div className="input">
+                <label for="news-search-start-date">Start Date</label>
+                <input
+                  type="text"
+                  id="news-search-start-date"
+                  name="startDate"
+                  ref={register}
+                />
+              </div>
+              <div className="input">
+                <label for="news-search-end-date">End Date</label>
+                <input
+                  type="text"
+                  id="news-search-end-date"
+                  name="endDate"
+                  ref={register}
+                />
+              </div>
+            </div>
+            <div>
+              <div className="input">
+                <label for="news-search-sections">Section</label>
+                <select id="news-search-sections" name="section" ref={register}>
+                  {sections.map((section) => {
+                    return (
+                      <option value={section} key={uuid()}>
+                        {section}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-      <div
-        className={
-          currentDisplay === "form"
-            ? "display form-input-container"
-            : "form-input-container"
-        }
-      >
-        <div>
-          <div className="input">
-            <label for="news-search">Search Term</label>
-            <input id="news-search" name="term" ref={register}></input>
-          </div>
-        </div>
-        <div>
-          <div className="input">
-            <label for="news-search-start-date">Start Date</label>
-            <input
-              type="text"
-              id="news-search-start-date"
-              name="startDate"
-              ref={register}
-            />
-          </div>
-          <div className="input">
-            <label for="news-search-end-date">End Date</label>
-            <input
-              type="text"
-              id="news-search-end-date"
-              name="endDate"
-              ref={register}
-            />
-          </div>
-        </div>
-        <div>
-          <div className="input">
-            <label for="news-search-sections">Section</label>
-            <select id="news-search-sections" name="section" ref={register}>
-              {sections.map((section) => {
-                return (
-                  <option value={section} key={uuid()}>
-                    {section}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-        </div>
-      </div>
-    </form>
+    </div>
   );
 };
