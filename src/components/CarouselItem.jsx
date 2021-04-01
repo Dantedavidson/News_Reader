@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { LikeBtn } from "./common/LikeBtn";
 
 export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
-  const { title, abstract, byline, date, imgUrl } = card.story;
+  const { title, lead, byline, date, imgUrl } = card.story;
   useEffect(() => {}, []);
   return (
     <div className="carousel-item-container">
@@ -13,7 +13,7 @@ export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
       <div>
         <div>
           <h2>{title}</h2>
-          <h3>{abstract}</h3>
+          <h3>{lead}</h3>
         </div>
         <div>
           <div>

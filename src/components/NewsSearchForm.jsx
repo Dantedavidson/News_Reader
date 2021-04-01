@@ -9,12 +9,17 @@ import { createCard } from "./utilities";
 //components
 import { Button } from "./common/Button";
 
+//font awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
 export const NewsSearchForm = ({
   currentDisplay,
   setCurrentDisplay,
   setSearchResults,
+  savedStories,
 }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const sections = [
     "All",
     "Adventure Sports",
@@ -128,12 +133,10 @@ export const NewsSearchForm = ({
     "World",
     "Your Money",
   ];
-
   const onSubmit = async (data) => {
-    console.log(data);
     let query = createQuery(data);
     let stories = await getSearchStories(query);
-    let results = createCard(stories);
+    let results = createCard(stories, savedStories);
     setSearchResults(results);
     setCurrentDisplay("results");
   };
@@ -148,6 +151,16 @@ export const NewsSearchForm = ({
             : "modal-custom modal-active"
         }
       >
+        <span
+          className="modal-close"
+          onClick={handleSubmit(() => {
+            reset();
+            setCurrentDisplay("start");
+          })}
+        >
+          <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
+        </span>
+        <h3>Search The New York Times</h3>
         <form>
           <div>
             <div className="input">
@@ -155,26 +168,26 @@ export const NewsSearchForm = ({
               <input id="news-search" name="term" ref={register}></input>
             </div>
           </div>
-          <div>
-            <div className="input">
-              <label for="news-search-start-date">Start Date</label>
-              <input
-                type="text"
-                id="news-search-start-date"
-                name="startDate"
-                ref={register}
-              />
-            </div>
-            <div className="input">
-              <label for="news-search-end-date">End Date</label>
-              <input
-                type="text"
-                id="news-search-end-date"
-                name="endDate"
-                ref={register}
-              />
-            </div>
+
+          <div className="input">
+            <label for="news-search-start-date">Start Date</label>
+            <input
+              type="text"
+              id="news-search-start-date"
+              name="startDate"
+              ref={register}
+            />
           </div>
+          <div className="input">
+            <label for="news-search-end-date">End Date</label>
+            <input
+              type="text"
+              id="news-search-end-date"
+              name="endDate"
+              ref={register}
+            />
+          </div>
+
           <div>
             <div className="input">
               <label for="news-search-sections">Section</label>

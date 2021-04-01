@@ -14,21 +14,17 @@ import { Button } from "../common/Button";
 import { Footer } from "../Footer";
 import { CarouselComponent } from "../CarouselComponent";
 
-export const Home = ({ savedStories, setSavedStories }) => {
-  const [topStories, setTopStories] = useState([]);
-  const [loadingTopStories, setLoadingTopStories] = useState(true);
+export const Home = ({
+  savedStories,
+  setSavedStories,
+  topStories,
+  setTopStories,
+  loadingTopStories,
+  setLoadingTopStories,
+}) => {
   const [currentDisplay, setCurrentDisplay] = useState("start");
   const [searchResults, setSearchResults] = useState([]);
 
-  useEffect(() => {
-    async function getData() {
-      const data = await getTopStories();
-      const cards = createCard(data);
-      setTopStories([...cards]);
-      setLoadingTopStories(false);
-    }
-    getData();
-  }, []);
   return (
     <React.Fragment>
       <Nav current={"home"} />
@@ -36,6 +32,7 @@ export const Home = ({ savedStories, setSavedStories }) => {
         setSearchResults={setSearchResults}
         currentDisplay={currentDisplay}
         setCurrentDisplay={setCurrentDisplay}
+        savedStories={savedStories}
       />
       <CarouselComponent
         cards={topStories}
@@ -44,27 +41,29 @@ export const Home = ({ savedStories, setSavedStories }) => {
         setSavedStories={setSavedStories}
       />
       <HorizontalLine></HorizontalLine>
-      {currentDisplay === "start" ? (
-        <Button
-          handler={() => {
-            setCurrentDisplay("modal");
-          }}
-          text="Search"
-        ></Button>
-      ) : (
-        ""
-      )}
-      {currentDisplay === "results" ? (
-        <NewsCardGrid
-          searchResults={searchResults}
-          savedStories={savedStories}
-          setSavedStories={setSavedStories}
-          currentDisplay={currentDisplay}
-          setCurrentDisplay={setCurrentDisplay}
-        />
-      ) : (
-        ""
-      )}
+
+      {
+        {
+          start: (
+            <Button
+              handler={() => {
+                setCurrentDisplay("modal");
+              }}
+              text="Search"
+            ></Button>
+          ),
+          modal: <div className="block"></div>,
+          results: (
+            <NewsCardGrid
+              searchResults={searchResults}
+              savedStories={savedStories}
+              setSavedStories={setSavedStories}
+              currentDisplay={currentDisplay}
+              setCurrentDisplay={setCurrentDisplay}
+            />
+          ),
+        }[currentDisplay]
+      }
       <HorizontalLine></HorizontalLine>
 
       <Footer />

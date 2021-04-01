@@ -12,7 +12,7 @@ export const CarouselComponent = ({
   loading,
 }) => {
   return (
-    <React.Fragment>
+    <div className="news-container">
       {" "}
       {loading ? (
         <div className="loading-news-container">
@@ -37,6 +37,6 @@ export const CarouselComponent = ({
           </Carousel>
         </div>
       )}{" "}
-    </React.Fragment>
+    </div>
   );
 };

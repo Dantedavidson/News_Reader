@@ -20,7 +20,7 @@ import { NotFound } from "./components/pages/NotFound";
 import { Stories } from "./components/pages/Stories";
 
 //Utilities
-import { getLocalStorage } from "./components/utilities";
+import { getLocalStorage, createCard } from "./components/utilities";
 
 //font awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -29,17 +29,27 @@ import {
   faHeart,
   faAngleLeft,
   faAngleRight,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faAngleDoubleUp, faHeart, faAngleLeft, faAngleRight);
+library.add(faAngleDoubleUp, faHeart, faAngleLeft, faAngleRight, faTimes);
 
 export const App = () => {
+  const [topStories, setTopStories] = useState([]);
+  const [loadingTopStories, setLoadingTopStories] = useState(true);
   const [savedStories, setSavedStories] = useState([]);
   const [tags, setTags] = useState([]);
-
+  console.log("app loaded");
   useEffect(() => {
     getLocalStorage(setSavedStories, "Stories");
     getLocalStorage(setTags, "Tags");
+    async function getData() {
+      const data = await getTopStories();
+      const cards = createCard(data, savedStories);
+      setTopStories([...cards]);
+      setLoadingTopStories(false);
+    }
+    getData();
   }, []);
   return (
     <div className="App">
@@ -100,6 +110,10 @@ export const App = () => {
               <Home
                 savedStories={savedStories}
                 setSavedStories={setSavedStories}
+                loadingTopStories={loadingTopStories}
+                setLoadingTopStories={setLoadingTopStories}
+                topStories={topStories}
+                setTopStories={setTopStories}
               />
             )}
           ></Route>

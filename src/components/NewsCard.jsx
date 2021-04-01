@@ -8,10 +8,7 @@ export const NewsCard = ({
   setSavedStories,
 }) => {
   const { imgUrl, title, byline, date, lead } = card.story;
-  useEffect(() => {
-    console.log(card);
-    console.log("i rendered");
-  });
+  useEffect(() => {});
 
   if (imgUrl) {
     return (

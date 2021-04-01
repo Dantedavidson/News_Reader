@@ -2,7 +2,6 @@ import uuid from "react-uuid";
 import { API_KEY } from "../API";
 
 export const cleanData = (data) => {
-  console.log(data);
   const story = {
     title: "",
     lead: "",
@@ -62,8 +61,14 @@ export const cleanData = (data) => {
 
   return story;
 };
-
-export const createCard = (data) => {
+const likeStatus = (saved, current) => {
+  let like = saved.some((item) => {
+    console.log(item.story.title, current.story.title, item.like);
+    return item.story.title === current.story.title && item.like === true;
+  });
+  return like;
+};
+export const createCard = (data, saved) => {
   const cards = data.map((item) => {
     let card = {
       story: cleanData(item),
@@ -71,6 +76,7 @@ export const createCard = (data) => {
       like: false,
       tags: ["NYT"],
     };
+    card.like = likeStatus(saved, card);
     return card;
   });
   return cards;
@@ -99,8 +105,9 @@ export const saveCard = (object, saveTo, setter) => {
 
 export const deleteCard = (object, saveTo, setter) => {
   const filtered = saveTo.filter((item) => {
-    return item.id !== object.id;
+    return item.story.title !== object.story.title;
   });
+  console.log(filtered);
   filtered.length > 0 ? setter([...filtered]) : setter([]);
 };
 
