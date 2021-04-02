@@ -73,6 +73,7 @@ export const App = () => {
               <Stories
                 savedStories={savedStories}
                 setSavedStories={setSavedStories}
+                tags={tags}
               />
             )}
           ></Route>
