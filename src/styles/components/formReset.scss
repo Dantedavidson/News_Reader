@@ -11,6 +11,9 @@ textarea {
   white-space: normal;
   background: none;
   line-height: 1;
+  &:focus {
+    outline: none;
+  }
 
   /* Browsers have different default form fonts */
 }

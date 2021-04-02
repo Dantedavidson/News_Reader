@@ -1,14 +1,21 @@
-.latest-container {
+.filter {
   margin-top: 3rem;
   width: 100%;
+  font-size: 2rem;
 }
 
-.latest-container input {
-  margin: auto;
-  display: block;
+.filter label,
+.filter input {
+  height: 44px;
+  line-height: 44px;
+}
+
+.filter label {
+  margin-right: 3rem;
+  font-weight: 700;
+}
+
+.filter input {
   width: 30%;
-  border: 1px solid #000;
-  border-radius: 20px;
-  padding-left: 10px;
 }
 /*# sourceMappingURL=filter.css.map */

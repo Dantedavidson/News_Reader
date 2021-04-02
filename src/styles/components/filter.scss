@@ -1,12 +1,31 @@
-.latest-container {
-  margin-top: 3rem;
-  width: 100%;
+.filter {
+  @include flex-container($justifyContent: center);
+  margin: 3rem auto 0 auto;
+  width: 80%;
+  font-size: 2rem;
+  label,
   input {
-    margin: auto;
-    display: block;
-    width: 30%;
-    border: 1px solid #000;
-    border-radius: 20px;
-    padding-left: 10px;
+    height: 44px;
+    line-height: 44px;
+  }
+  label {
+    white-space: nowrap;
+    margin-right: 3rem;
+    font-weight: 700;
+  }
+  input {
+    width: 50%;
+  }
+  select {
+    width: 100%;
+  }
+  .input {
+    &:nth-child(1) {
+      flex-grow: 2;
+      margin-right: auto;
+    }
+    &:nth-child(2) {
+      flex-grow: 1;
+    }
   }
 }

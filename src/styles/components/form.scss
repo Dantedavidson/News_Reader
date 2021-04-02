@@ -1,22 +1,28 @@
+//All Froms
+
 form {
   width: 80%;
   font-size: 1.4rem;
   margin: auto;
-  input,
-  select {
-    border-bottom: 1px solid #000;
-    // border-radius: 20px;
-    // padding-left: 10px;
-  }
-  .input {
-    @include flex-container;
-  }
+
   label {
     width: 150px;
     height: 100%;
     line-height: 31px;
   }
 }
+
+.input {
+  @include flex-container;
+}
+
+input,
+select {
+  border-bottom: 1px solid black;
+}
+
+//Modal Form
+
 .modal-bg {
   padding-top: 6rem;
   z-index: 100;
@@ -91,8 +97,7 @@ form {
   display: initial;
 }
 
-.form-input-container {
-}
+//User Card Form
 
 .form-create {
   width: 600px;
@@ -135,3 +140,5 @@ button.create {
     color: $yellow-highlight;
   }
 }
+
+//Search Filter
