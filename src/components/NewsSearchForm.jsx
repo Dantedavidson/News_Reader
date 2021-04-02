@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 //Libraries
 import { useForm } from "react-hook-form";
@@ -12,6 +12,7 @@ import { getSearchStories } from "../API";
 //Utilities
 import { createQuery } from "./utilities";
 import { createCard } from "./utilities";
+import { matchDate } from "./regex";
 
 //components
 import { Button } from "./common/Button";
@@ -20,13 +21,24 @@ import { Button } from "./common/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
+const schema = yup.object().shape({
+  term: yup.string().max(32).required(),
+  startDate: yup.string().matches(matchDate),
+  endDate: yup.string().matches(matchDate),
+  section: "",
+});
+
 export const NewsSearchForm = ({
   currentDisplay,
   setCurrentDisplay,
   setSearchResults,
   savedStories,
 }) => {
-  const { register, handleSubmit, reset } = useForm();
+  const [error, setError] = useState(false);
+  const { register, handleSubmit, reset, errors, clearErrors } = useForm({
+    resolver: yupResolver(schema),
+    reValidateMode: "onChange",
+  });
   const sections = [
     "All",
     "Adventure Sports",
@@ -141,12 +153,27 @@ export const NewsSearchForm = ({
     "Your Money",
   ];
   const onSubmit = async (data) => {
-    let query = createQuery(data);
-    let stories = await getSearchStories(query);
-    let results = createCard(stories, savedStories);
-    setSearchResults(results);
-    setCurrentDisplay("results");
+    console.log("i submited");
+    try {
+      console.log(data);
+      let query = createQuery(data);
+      let stories = await getSearchStories(query);
+      let results = createCard(stories, savedStories);
+      setSearchResults(results);
+      setCurrentDisplay("results");
+      clearErrors();
+    } catch (e) {
+      setError(e);
+    }
   };
+  useEffect(() => {
+    console.log(errors);
+  }, [currentDisplay]);
+  useEffect(() => {
+    setTimeout(() => {
+      setError(false);
+    }, 5000);
+  }, [error]);
   return (
     <div
       className={currentDisplay === "modal" ? "modal-bg bg-active" : "modal-bg"}
@@ -160,21 +187,27 @@ export const NewsSearchForm = ({
       >
         <span
           className="modal-close"
-          onClick={handleSubmit(() => {
+          onClick={() => {
             reset();
             setCurrentDisplay("start");
-          })}
+          }}
         >
           <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
         </span>
         <h3>Search The New York Times</h3>
         <form>
           <div>
-            <div className="input">
+            <div className={errors.term ? "input error" : "input"}>
               <label for="news-search">Search Term</label>
-              <input id="news-search" name="term" ref={register}></input>
+              <input
+                id="news-search"
+                name="term"
+                ref={register}
+                onChange={() => console.log(errors)}
+              ></input>
             </div>
           </div>
+          <p className="below error">{errors.term?.message}</p>
 
           <div className="input">
             <label for="news-search-start-date">Start Date</label>
@@ -183,9 +216,13 @@ export const NewsSearchForm = ({
               id="news-search-start-date"
               name="startDate"
               ref={register}
+              onChange={() => console.log(errors)}
             />
-            <p className="to-side">DD/MM/YYYY</p>
           </div>
+          <p className="below">DD/MM/YYYY</p>
+          <p className="below error">
+            {errors.startDate && "Please enter a valid date"}
+          </p>
           <div className="input">
             <label for="news-search-end-date">End Date</label>
             <input
@@ -193,9 +230,13 @@ export const NewsSearchForm = ({
               id="news-search-end-date"
               name="endDate"
               ref={register}
+              onChange={() => console.log(errors)}
             />
           </div>
           <p className="below">DD/MM/YYYY</p>
+          <p className="below error">
+            {errors.startEnd && "Please enter a valid date"}
+          </p>
 
           <div>
             <div className="input">
@@ -212,6 +253,7 @@ export const NewsSearchForm = ({
             </div>
           </div>
           <Button handler={handleSubmit(onSubmit)} text="Submit"></Button>
+          <p className="below-btn error">{error && `${error}`}</p>
         </form>
       </div>
     </div>
