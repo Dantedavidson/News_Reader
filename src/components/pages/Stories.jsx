@@ -10,11 +10,13 @@ export const Stories = ({ savedStories, setSavedStories, tags }) => {
   return (
     <React.Fragment>
       <Nav current={"stories"} />
-      <TempGrid
-        savedStories={savedStories}
-        setSavedStories={setSavedStories}
-        tags={tags}
-      ></TempGrid>
+      <div className="body stories">
+        <TempGrid
+          savedStories={savedStories}
+          setSavedStories={setSavedStories}
+          tags={tags}
+        ></TempGrid>
+      </div>
       <Footer />
     </React.Fragment>
   );

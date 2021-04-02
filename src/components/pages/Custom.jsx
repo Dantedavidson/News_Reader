@@ -17,7 +17,7 @@ export const Custom = ({ tags, setTags, savedStories, setSavedStories }) => {
   return (
     <React.Fragment>
       <Nav current={"custom"} />
-      <div className="custom-body">
+      <div className="create body">
         <CreateCardForm
           setUserInput={setUserInput}
           userInput={userInput}

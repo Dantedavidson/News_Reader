@@ -15,12 +15,11 @@ import { CarouselComponent } from "../CarouselComponent";
 export const Home = ({ savedStories, setSavedStories, data }) => {
   const [topStories, setTopStories] = useState([]);
   const [loadingTopStories, setLoadingTopStories] = useState(true);
-  const [currentDisplay, setCurrentDisplay] = useState("start");
+  const [currentDisplay, setCurrentDisplay] = useState("modal");
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     if (data.length === 0) {
-      console.log("i returned");
       return;
     }
     let stories = data.map((item) => {
@@ -33,44 +32,45 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
   return (
     <React.Fragment>
       <Nav current={"home"} />
-      <NewsSearchForm
-        setSearchResults={setSearchResults}
-        currentDisplay={currentDisplay}
-        setCurrentDisplay={setCurrentDisplay}
-        savedStories={savedStories}
-      />
-      <CarouselComponent
-        cards={topStories}
-        loading={loadingTopStories}
-        savedStories={savedStories}
-        setSavedStories={setSavedStories}
-      />
-      <HorizontalLine></HorizontalLine>
+      <div className="body home">
+        <NewsSearchForm
+          setSearchResults={setSearchResults}
+          currentDisplay={currentDisplay}
+          setCurrentDisplay={setCurrentDisplay}
+          savedStories={savedStories}
+        />
+        <CarouselComponent
+          cards={topStories}
+          loading={loadingTopStories}
+          savedStories={savedStories}
+          setSavedStories={setSavedStories}
+        />
+        <HorizontalLine></HorizontalLine>
 
-      {
         {
-          start: (
-            <Button
-              handler={() => {
-                setCurrentDisplay("modal");
-              }}
-              text="Search"
-            ></Button>
-          ),
-          modal: <div className="block"></div>,
-          results: (
-            <NewsCardGrid
-              searchResults={searchResults}
-              savedStories={savedStories}
-              setSavedStories={setSavedStories}
-              currentDisplay={currentDisplay}
-              setCurrentDisplay={setCurrentDisplay}
-            />
-          ),
-        }[currentDisplay]
-      }
-      <HorizontalLine></HorizontalLine>
-
+          {
+            start: (
+              <Button
+                handler={() => {
+                  setCurrentDisplay("modal");
+                }}
+                text="Search"
+              ></Button>
+            ),
+            modal: <div className="block"></div>,
+            results: (
+              <NewsCardGrid
+                searchResults={searchResults}
+                savedStories={savedStories}
+                setSavedStories={setSavedStories}
+                currentDisplay={currentDisplay}
+                setCurrentDisplay={setCurrentDisplay}
+              />
+            ),
+          }[currentDisplay]
+        }
+        <HorizontalLine></HorizontalLine>
+      </div>
       <Footer />
     </React.Fragment>
   );

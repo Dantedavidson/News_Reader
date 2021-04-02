@@ -1,7 +1,10 @@
-.custom-body {
-  @include flex-container($justifyContent: space-between);
+.body {
   width: 80%;
   margin: auto;
+}
+
+.body.create {
+  @include flex-container($justifyContent: space-between);
   > div {
     margin-top: 3rem;
     height: 400px;

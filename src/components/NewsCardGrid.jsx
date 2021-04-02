@@ -11,7 +11,7 @@ export const NewsCardGrid = ({
 }) => {
   return (
     <React.Fragment>
-      <div className="display-news-grid news-card-grid">
+      <div className="news-card-grid">
         {searchResults.map((card) => {
           return (
             <NewsCard

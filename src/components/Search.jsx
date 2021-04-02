@@ -1,6 +1,7 @@
 import React from "react";
+import uuid from "react-uuid";
 
-export const Search = ({ search, setSearch }) => {
+export const Search = ({ search, setSearch, tags }) => {
   const handleChange = (e) => {
     setSearch((prevState) => {
       return {
@@ -19,9 +20,13 @@ export const Search = ({ search, setSearch }) => {
       <div className="input">
         <label>Filter Tags</label>
         <select id="tags" value={search.tags} onChange={handleChange}>
-          <option Value="All">All</option>
-          <option Value="World">World</option>
-          <option Value="Environment">Environment</option>
+          <option value="All">All</option>
+          <option value="NYT">NYT</option>
+          {tags.map((tag) => (
+            <option value={tag} key={uuid()}>
+              {tag}
+            </option>
+          ))}
         </select>
       </div>
     </div>

@@ -111,16 +111,11 @@ select {
     input {
       width: 70%;
     }
-    button {
-      background-color: black;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      color: #fff;
-      transform: translateX(24px) translateY(5px);
-      p {
-        transform: translateY(-3px);
-      }
+
+    svg {
+      margin-left: 2rem;
+      transform: translateY(10px);
+      cursor: pointer;
     }
   }
   .input:nth-child(4) input,

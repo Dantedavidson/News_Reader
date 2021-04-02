@@ -30,9 +30,17 @@ import {
   faAngleLeft,
   faAngleRight,
   faTimes,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faAngleDoubleUp, faHeart, faAngleLeft, faAngleRight, faTimes);
+library.add(
+  faAngleDoubleUp,
+  faHeart,
+  faAngleLeft,
+  faAngleRight,
+  faTimes,
+  faPlus
+);
 
 export const App = () => {
   const [data, setData] = useState([]);

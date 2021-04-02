@@ -1,11 +1,18 @@
 import React from "react";
+
+//Libraries
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import uuid from "react-uuid";
+
 //API
 import { getSearchStories } from "../API";
+
 //Utilities
 import { createQuery } from "./utilities";
 import { createCard } from "./utilities";
+
 //components
 import { Button } from "./common/Button";
 
@@ -177,6 +184,7 @@ export const NewsSearchForm = ({
               name="startDate"
               ref={register}
             />
+            <p className="to-side">DD/MM/YYYY</p>
           </div>
           <div className="input">
             <label for="news-search-end-date">End Date</label>
@@ -187,6 +195,7 @@ export const NewsSearchForm = ({
               ref={register}
             />
           </div>
+          <p className="below">DD/MM/YYYY</p>
 
           <div>
             <div className="input">

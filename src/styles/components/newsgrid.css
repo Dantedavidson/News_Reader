@@ -1,15 +1,21 @@
 .news-card-grid {
   display: -ms-grid;
   display: grid;
+  width: 80%;
+  margin: auto;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -ms-grid-columns: (300px)[4];
-      grid-template-columns: repeat(4, 300px);
+  -ms-grid-columns: (300px)[3];
+      grid-template-columns: repeat(3, 300px);
   grid-auto-rows: auto;
   row-gap: 3rem;
-  -webkit-column-gap: 3rem;
-          column-gap: 3rem;
+  -webkit-column-gap: 10%;
+          column-gap: 10%;
+}
+
+div.card {
+  margin: auto;
 }
 
 .user-grid {

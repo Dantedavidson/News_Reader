@@ -4,19 +4,30 @@ import { Search } from "./Search";
 export const TempGrid = ({ savedStories, setSavedStories, tags }) => {
   const [search, setSearch] = useState({
     term: "",
-    tags: "all",
+    tags: "All",
   });
   let filtered = savedStories;
-  if (search.term) {
+
+  if (search.term && search.tags !== "All") {
+    console.log("both");
+    let temp = savedStories.filter((card) =>
+      card.story.title.toLowerCase().startsWith(search.term.toLowerCase())
+    );
+    console.log(temp);
+    filtered = temp.filter((card) => card.tags.includes(search.tags));
+  } else if (search.term) {
     filtered = savedStories.filter((card) =>
       card.story.title.toLowerCase().startsWith(search.term.toLowerCase())
     );
+  } else if (search.tags !== "All") {
+    console.log(search.tags);
+    filtered = savedStories.filter((card) => card.tags.includes(search.tags));
   }
 
   return (
-    <React.Fragment>
+    <div className="search-body">
       <Search search={search} setSearch={setSearch} tags={tags}></Search>
-      <div>{filtered.length === 0 ? <h3>No stories found</h3> : ""}</div>
+      {filtered.length === 0 ? <h3>No stories found</h3> : ""}
       <div className="user-grid">
         {filtered.map((story) => {
           return (
@@ -28,6 +39,6 @@ export const TempGrid = ({ savedStories, setSavedStories, tags }) => {
           );
         })}
       </div>
-    </React.Fragment>
+    </div>
   );
 };

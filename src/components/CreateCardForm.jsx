@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
+
+//Libraries
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+//Font awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 //Utilities
 import { isEmptyOrSpaces, setLocalStorage, userCard } from "./utilities";
@@ -99,9 +107,16 @@ export const CreateCardForm = ({
         <div className="input">
           <label for="author">Author</label>
           <input id="author" name="author" type="text" ref={register} />
-          <button className="add-btn" onClick={handleAdd}>
+
+          <FontAwesomeIcon
+            onClick={handleAdd}
+            className="add-btn"
+            icon={faPlus}
+          ></FontAwesomeIcon>
+
+          {/* <button className="add-btn" onClick={handleAdd}>
             <p>+</p>
-          </button>
+          </button> */}
         </div>
         <div className="input">
           <label for="tag">Tag</label>
@@ -112,9 +127,12 @@ export const CreateCardForm = ({
               <option value={tag}>{tag}</option>
             ))}
           </datalist>
-          <button className="add-btn" onClick={handleAdd}>
-            <p>+</p>
-          </button>
+
+          <FontAwesomeIcon
+            onClick={handleAdd}
+            className="add-btn"
+            icon={faPlus}
+          ></FontAwesomeIcon>
         </div>
       </form>
       <button className="create" onClick={handleSubmit(onSubmit)}>

@@ -1,5 +1,5 @@
 .carousel-container {
-  width: 80%;
+  width: 100%;
   margin: 3rem auto;
   .carousel-item-container {
     width: 100%;
@@ -34,11 +34,16 @@
       }
 
       div:nth-child(2) {
+        width: 95%;
         margin-bottom: 1rem;
         @include flex-container;
-        path {
-          transform: scale(1.4) translateX(-10rem) translateY(6rem);
+        svg {
+          width: 30px;
+          height: 30px;
         }
+        // path {
+        //   transform: scale(1.4) translateX(-10rem) translateY(6rem);
+        // }
       }
     }
   }
