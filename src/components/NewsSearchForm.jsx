@@ -12,7 +12,7 @@ import { getSearchStories } from "../API";
 //Utilities
 import { createQuery } from "./utilities";
 import { createCard } from "./utilities";
-import { matchDate } from "./regex";
+import { dateRegex } from "./regex";
 
 //components
 import { Button } from "./common/Button";
@@ -23,8 +23,8 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const schema = yup.object().shape({
   term: yup.string().max(32).required(),
-  startDate: yup.string().matches(matchDate),
-  endDate: yup.string().matches(matchDate),
+  startDate: yup.string().matches(dateRegex),
+  endDate: yup.string().matches(dateRegex),
   section: "",
 });
 
@@ -189,6 +189,7 @@ export const NewsSearchForm = ({
           className="modal-close"
           onClick={() => {
             reset();
+            clearErrors();
             setCurrentDisplay("start");
           }}
         >
@@ -235,7 +236,7 @@ export const NewsSearchForm = ({
           </div>
           <p className="below">DD/MM/YYYY</p>
           <p className="below error">
-            {errors.startEnd && "Please enter a valid date"}
+            {errors.endDate && "Please enter a valid date"}
           </p>
 
           <div>
