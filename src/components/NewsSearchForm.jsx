@@ -3,16 +3,13 @@ import React, { useState, useEffect } from "react";
 //Libraries
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import uuid from "react-uuid";
 
 //API
 import { getSearchStories } from "../API";
 
 //Utilities
-import { createQuery } from "./utilities";
-import { createCard } from "./utilities";
-import { dateRegex } from "./regex";
+import { createCard, createQuery, formatQueryDate } from "./utilities";
 
 //components
 import { Button } from "./common/Button";
@@ -21,12 +18,8 @@ import { Button } from "./common/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const schema = yup.object().shape({
-  term: yup.string().max(32).required(),
-  startDate: yup.string().matches(dateRegex),
-  endDate: yup.string().matches(dateRegex),
-  section: "",
-});
+//schema
+import { searchFormSchema } from "./schema";
 
 export const NewsSearchForm = ({
   currentDisplay,
@@ -36,7 +29,7 @@ export const NewsSearchForm = ({
 }) => {
   const [error, setError] = useState(false);
   const { register, handleSubmit, reset, errors, clearErrors } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(searchFormSchema),
     reValidateMode: "onChange",
   });
   const sections = [
@@ -152,23 +145,25 @@ export const NewsSearchForm = ({
     "World",
     "Your Money",
   ];
+
   const onSubmit = async (data) => {
     console.log("i submited");
     try {
-      console.log(data);
+      data.startDate = formatQueryDate(data.startDate);
+      data.endDate = formatQueryDate(data.endDate);
+
       let query = createQuery(data);
       let stories = await getSearchStories(query);
       let results = createCard(stories, savedStories);
+      clearErrors();
+      reset();
       setSearchResults(results);
       setCurrentDisplay("results");
-      clearErrors();
     } catch (e) {
       setError(e);
     }
   };
-  useEffect(() => {
-    console.log(errors);
-  }, [currentDisplay]);
+
   useEffect(() => {
     setTimeout(() => {
       setError(false);
@@ -188,8 +183,8 @@ export const NewsSearchForm = ({
         <span
           className="modal-close"
           onClick={() => {
-            reset();
             clearErrors();
+            reset();
             setCurrentDisplay("start");
           }}
         >
@@ -200,38 +195,31 @@ export const NewsSearchForm = ({
           <div>
             <div className={errors.term ? "input error" : "input"}>
               <label for="news-search">Search Term</label>
-              <input
-                id="news-search"
-                name="term"
-                ref={register}
-                onChange={() => console.log(errors)}
-              ></input>
+              <input id="news-search" name="term" ref={register}></input>
             </div>
           </div>
           <p className="below error">{errors.term?.message}</p>
 
-          <div className="input">
+          <div className={errors.startDate ? "input error" : "input"}>
             <label for="news-search-start-date">Start Date</label>
             <input
               type="text"
               id="news-search-start-date"
               name="startDate"
               ref={register}
-              onChange={() => console.log(errors)}
             />
           </div>
           <p className="below">DD/MM/YYYY</p>
           <p className="below error">
             {errors.startDate && "Please enter a valid date"}
           </p>
-          <div className="input">
+          <div className={errors.endDate ? "input error" : "input"}>
             <label for="news-search-end-date">End Date</label>
             <input
               type="text"
               id="news-search-end-date"
               name="endDate"
               ref={register}
-              onChange={() => console.log(errors)}
             />
           </div>
           <p className="below">DD/MM/YYYY</p>

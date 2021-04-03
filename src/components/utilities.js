@@ -144,22 +144,38 @@ export const getLocalStorage = (setter, location) => {
 };
 
 export const createQuery = (data) => {
-  let { term, startDate, endDate, section } = data;
-  let queryTerms = [
-    `q=${term}`,
-    `begin_date=${startDate}`,
-    `end_date=${endDate}`,
-    `fq=news_desk:(${section})`,
-  ];
+  const arr = (({ term, startDate, endDate, section }) => [
+    term,
+    startDate,
+    endDate,
+    section,
+  ])(data);
+
   let query = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
-  query = queryTerms.reduce((start, term, index) => {
-    if (index === 3) {
-      return term === "fq=news_desk:(All)"
-        ? `${start}&api-key=${API_KEY}`
-        : `${start}${term}&api-key=${API_KEY}`;
-    } else {
-      return `${start}&${term}`;
+  query = arr.reduce((start, value, index) => {
+    if (value === null || value === "All") return `${start}`;
+    switch (index) {
+      case 0:
+        return `${start}q=${value}`;
+      case 1:
+        return `${start}&begin_date=${value}`;
+      case 2:
+        return `${start}&end_date=${value}`;
+      case 3:
+        return `${start}&fq=news_desk:(${value})`;
+      default:
+        return `${start}`;
     }
   }, query);
+  query = `${query}&api-key=${API_KEY}`;
+
   return query;
+};
+export const formatQueryDate = (date) => {
+  if (!date) {
+    return null;
+  }
+  const [d, m, y] = date.split("/");
+  const queryDate = `${y}${m}${d}`;
+  return queryDate;
 };

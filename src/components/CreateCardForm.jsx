@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 //Libraries
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 //Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +10,9 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 //Utilities
 import { isEmptyOrSpaces, setLocalStorage, userCard } from "./utilities";
+
+//Schema
+import { userCardSchema } from "./schema";
 
 export const CreateCardForm = ({
   setUserInput,
@@ -20,7 +22,10 @@ export const CreateCardForm = ({
   savedStories,
   setSavedStories,
 }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors, clearErrors } = useForm({
+    resolver: yupResolver(userCardSchema),
+    reValidateMode: "onChange",
+  });
 
   const handleChange = (data) => {
     console.log(userInput[data.target.id]);
@@ -74,7 +79,7 @@ export const CreateCardForm = ({
   return (
     <React.Fragment>
       <form className="form-create">
-        <div className="input">
+        <div className={errors.title ? "input error" : "input"}>
           <label for="title">Title</label>
           <input
             id="title"
@@ -84,7 +89,10 @@ export const CreateCardForm = ({
             onChange={handleChange}
           />
         </div>
-        <div className="input">
+        <p className="error below">
+          {errors.title && "Please include a title."}
+        </p>
+        <div className={errors.description ? "input error" : "input"}>
           <label for="description">Description</label>
           <input
             id="description"
@@ -94,7 +102,11 @@ export const CreateCardForm = ({
             onChange={handleChange}
           />
         </div>
-        <div className="input">
+        <p className="error below">
+          {errors.title &&
+            "Please enter a valid description that is less than 250 characters."}
+        </p>
+        <div className={errors.url ? "input error" : "input"}>
           <label for="url">Url</label>
           <input
             id="url"
@@ -104,6 +116,9 @@ export const CreateCardForm = ({
             onChange={handleChange}
           />
         </div>
+        <p className="error below">
+          {errors.url && "Please enter a valid URL."}
+        </p>
         <div className="input">
           <label for="author">Author</label>
           <input id="author" name="author" type="text" ref={register} />
@@ -113,10 +128,6 @@ export const CreateCardForm = ({
             className="add-btn"
             icon={faPlus}
           ></FontAwesomeIcon>
-
-          {/* <button className="add-btn" onClick={handleAdd}>
-            <p>+</p>
-          </button> */}
         </div>
         <div className="input">
           <label for="tag">Tag</label>
