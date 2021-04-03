@@ -12,7 +12,12 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { isEmptyOrSpaces, setLocalStorage, userCard } from "./utilities";
 
 //Schema
-import { userCardSchema } from "./schema";
+
+import * as yup from "yup";
+
+//regex
+import { urlRegex, dateRegex } from "./regex";
+// import { userCardSchema } from "./schema";
 
 export const CreateCardForm = ({
   setUserInput,
@@ -22,7 +27,13 @@ export const CreateCardForm = ({
   savedStories,
   setSavedStories,
 }) => {
-  const { register, handleSubmit, errors, clearErrors } = useForm({
+  const userCardSchema = yup.object().shape({
+    title: yup.string().max(100).required(),
+    description: yup.string().max(250),
+    url: yup.string().matches(urlRegex, { excludeEmptyString: true }),
+    // tag: yup.mixed().notOneOf(userInput.tag),
+  });
+  const { register, handleSubmit, errors, clearErrors, setError } = useForm({
     resolver: yupResolver(userCardSchema),
     reValidateMode: "onChange",
   });
@@ -40,10 +51,14 @@ export const CreateCardForm = ({
   };
   const handleAdd = (e) => {
     e.preventDefault();
+    console.log(errors);
     const key = e.currentTarget.parentNode.childNodes[1].id;
     const value = e.currentTarget.parentNode.childNodes[1].value;
     if (userInput[key].includes(value)) {
-      console.log(`${key} must be unique`);
+      setError("tag", {
+        message: "Tags must be unique",
+        type: "notOneOf",
+      });
       return;
     }
 
@@ -103,7 +118,7 @@ export const CreateCardForm = ({
           />
         </div>
         <p className="error below">
-          {errors.title &&
+          {errors.description &&
             "Please enter a valid description that is less than 250 characters."}
         </p>
         <div className={errors.url ? "input error" : "input"}>
@@ -145,7 +160,17 @@ export const CreateCardForm = ({
             icon={faPlus}
           ></FontAwesomeIcon>
         </div>
+        <p className="error below">{errors.tag && errors.tag.message}</p>
       </form>
+
+      <button
+        onClick={() => {
+          console.log(errors);
+          console.log(`${userInput["tag"]} is ${typeof userInput["tag"]}`);
+        }}
+      >
+        test
+      </button>
       <button className="create" onClick={handleSubmit(onSubmit)}>
         Add Card
       </button>

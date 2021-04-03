@@ -15,7 +15,7 @@ import { CarouselComponent } from "../CarouselComponent";
 export const Home = ({ savedStories, setSavedStories, data }) => {
   const [topStories, setTopStories] = useState([]);
   const [loadingTopStories, setLoadingTopStories] = useState(true);
-  const [currentDisplay, setCurrentDisplay] = useState("modal");
+  const [currentDisplay, setCurrentDisplay] = useState("start");
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {

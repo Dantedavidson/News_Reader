@@ -61,12 +61,14 @@ export const cleanData = (data) => {
 
   return story;
 };
+
 export const likeStatus = (saved, current) => {
   let like = saved.some((item) => {
     return item.story.title === current.story.title && item.like === true;
   });
   return like;
 };
+
 export const createCard = (data, saved) => {
   const cards = data.map((item) => {
     let card = {
@@ -171,6 +173,7 @@ export const createQuery = (data) => {
 
   return query;
 };
+
 export const formatQueryDate = (date) => {
   if (!date) {
     return null;

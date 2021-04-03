@@ -17,6 +17,7 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
     }
   };
   const getCurrentPosts = () => {
+    console.log(`current posts ${typeof userInput.tag}`);
     return userInput.tag.slice(indexOfFirstPost, indexOfLastPost);
   };
   const totalPages = Math.ceil(userInput.tag.length / 2);
@@ -33,6 +34,9 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
       currentPosts = getCurrentPosts();
     }
   }, [userInput]);
+  useEffect(() => {
+    console.log(`display useeffect ${typeof userInput.tag}`);
+  });
   return (
     <div className="custom-card">
       <h3>{userInput.title}</h3>
