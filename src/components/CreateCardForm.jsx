@@ -91,7 +91,8 @@ export const CreateCardForm = ({
       setTags([...tags, value]);
     }
   };
-  const onSubmit = () => {
+  const onSubmit = (data) => {
+    console.log(data);
     const card = userCard(userInput);
     setSavedStories([...savedStories, card]);
     setUserInput({

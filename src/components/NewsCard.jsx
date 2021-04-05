@@ -1,13 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { LikeBtn } from "./common/LikeBtn";
 
 export const NewsCard = ({ card, savedStories, setSavedStories }) => {
-  const { imgUrl, title, byline, date, lead } = card.story;
+  const { imgUrl, title, byline, date, lead, url } = card.story;
 
   if (imgUrl) {
     return (
       <div className="display-card card">
-        <h3>{title}</h3>
+        <a href={url} target="_blank">
+          <h3>{title}</h3>
+        </a>
         <img src={imgUrl} alt={title} />
         <div>
           <div>
@@ -25,7 +28,9 @@ export const NewsCard = ({ card, savedStories, setSavedStories }) => {
   } else {
     return (
       <div className="display-card card">
-        <h3>{title}</h3>
+        <a href={url} target="_blank">
+          <h3>{title}</h3>
+        </a>
 
         <p>{lead}</p>
         <div>

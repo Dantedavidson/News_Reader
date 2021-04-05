@@ -3,7 +3,7 @@ import React from "react";
 import { LikeBtn } from "./common/LikeBtn";
 
 export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
-  const { title, lead, byline, date, imgUrl } = card.story;
+  const { title, lead, byline, date, imgUrl, url } = card.story;
   return (
     <div className="carousel-item-container">
       <div className="image">
@@ -11,7 +11,9 @@ export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
       </div>
       <div>
         <div>
-          <h2>{title}</h2>
+          <a href={url} target="_blank">
+            <h2>{title}</h2>
+          </a>
           <h3>{lead}</h3>
         </div>
         <div>

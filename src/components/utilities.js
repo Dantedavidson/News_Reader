@@ -58,7 +58,7 @@ export const cleanData = (data) => {
   if (data.url) {
     story.url = data.url;
   } else {
-    story.url = "https://www.nytimes.com/";
+    story.url = `https://www.nytimes.com/search?query=${story.title}`;
   }
 
   if (data.multimedia && data.multimedia.length > 0) {
@@ -111,6 +111,9 @@ export const userCard = (data) => {
     like: true,
     tags: data.tag,
   };
+  card.story.url = data.url
+    ? data.url
+    : `https://www.nytimes.com/search?query=${card.story.title}`;
   return card;
 };
 
