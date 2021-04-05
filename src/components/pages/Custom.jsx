@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { CreateCardForm } from "../CreateCardForm";
 import { DisplayCustomCard } from "../DisplayCustomCard";
 
@@ -13,10 +13,7 @@ export const Custom = ({ tags, setTags, savedStories, setSavedStories }) => {
     author: [],
     tag: [],
   });
-  useEffect(() => {
-    console.log(userInput.tag);
-    console.log(`use effect type value: ${typeof userInput.tag}`);
-  }, [userInput]);
+
   return (
     <React.Fragment>
       <Nav current={"custom"} />

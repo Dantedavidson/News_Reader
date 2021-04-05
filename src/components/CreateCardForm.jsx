@@ -13,6 +13,7 @@ import { isEmptyOrSpaces, setLocalStorage, userCard } from "./utilities";
 
 //Schema
 import { userCardSchema } from "./schema";
+import uuid from "react-uuid";
 
 export const CreateCardForm = ({
   setUserInput,
@@ -22,13 +23,19 @@ export const CreateCardForm = ({
   savedStories,
   setSavedStories,
 }) => {
-  const { register, handleSubmit, errors, setError } = useForm({
+  const {
+    register,
+    handleSubmit,
+    errors,
+    setError,
+    clearErrors,
+    getValues,
+  } = useForm({
     resolver: yupResolver(userCardSchema),
     reValidateMode: "onChange",
   });
 
   const handleChange = (data) => {
-    console.log(userInput[data.target.id]);
     setUserInput((prevState) => {
       return {
         ...prevState,
@@ -38,18 +45,36 @@ export const CreateCardForm = ({
       };
     });
   };
-
-  const handleAdd = (e) => {
-    e.preventDefault();
-
-    const key = e.currentTarget.parentNode.childNodes[1].id;
-    const value = e.currentTarget.parentNode.childNodes[1].value;
-
-    if (userInput[key].includes(value)) {
+  const handleTag = (e) => {
+    if (userInput.tag.includes(e.target.value)) {
       setError("tag", {
         message: "Tags must be unique",
         type: "notOneOf",
       });
+    } else if (e.target.value.trim() === "") {
+      setError("tag", {
+        message: "Tag cannot be empty",
+        type: "notOneOf",
+      });
+    } else {
+      clearErrors("tag");
+    }
+    return;
+  };
+
+  const handleAdd = (e) => {
+    const key = e.currentTarget.parentNode.childNodes[1].id;
+    const value = e.currentTarget.parentNode.childNodes[1].value;
+    if (value === "") {
+      setError(key, {
+        message: `Can't add ${key} with no value.`,
+        type: "required",
+      });
+      setTimeout(() => {
+        clearErrors(key);
+      }, 5000);
+    }
+    if (errors[key]) {
       return;
     }
 
@@ -76,7 +101,6 @@ export const CreateCardForm = ({
       tag: [],
     });
   };
-
   useEffect(() => {
     setLocalStorage(savedStories, "Stories");
   }, [savedStories]);
@@ -127,35 +151,44 @@ export const CreateCardForm = ({
         <p className="error below">
           {errors.url && "Please enter a valid URL."}
         </p>
-        <div className="input">
+        <div className={errors.author ? "input error" : "input"}>
           <label for="author">Author</label>
           <input id="author" name="author" type="text" ref={register} />
 
           <FontAwesomeIcon
             onClick={handleAdd}
-            className="add-btn"
+            className={errors.author ? "add-btn error" : "add-btn"}
             icon={faPlus}
           ></FontAwesomeIcon>
         </div>
-        <div className="input">
+        <p className="error below">{errors.author && errors.author.message}</p>
+        <div className={errors.tag ? "input error" : "input"}>
           <label for="tag">Tag</label>
-          <input id="tag" name="tag" list="tags" type="text" ref={register} />
+          <input
+            id="tag"
+            name="tag"
+            list="tags"
+            type="text"
+            ref={register}
+            onChange={(e) => handleTag(e)}
+          />
           <datalist id="tags">
             <option value="world">World</option>
             {tags.map((tag) => (
-              <option value={tag}>{tag}</option>
+              <option key={uuid()} value={tag}>
+                {tag}
+              </option>
             ))}
           </datalist>
 
           <FontAwesomeIcon
             onClick={handleAdd}
-            className="add-btn"
+            className={errors.tag ? "add-btn error" : "add-btn"}
             icon={faPlus}
           ></FontAwesomeIcon>
         </div>
         <p className="error below">{errors.tag && errors.tag.message}</p>
       </form>
-
       <button className="create" onClick={handleSubmit(onSubmit)}>
         Add Card
       </button>

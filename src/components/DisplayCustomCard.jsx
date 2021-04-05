@@ -25,7 +25,6 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
   };
 
   const getCurrentPosts = () => {
-    console.log(`current posts ${typeof userInput.tag}`);
     return userInput.tag.slice(indexOfFirstPost, indexOfLastPost);
   };
 

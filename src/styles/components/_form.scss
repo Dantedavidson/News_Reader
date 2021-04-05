@@ -1,5 +1,4 @@
 //All Froms
-
 form {
   width: 80%;
   font-size: 1.4rem;
@@ -25,12 +24,15 @@ select {
   font-size: 0.8rem;
   margin: -1.6rem 0 0 150px;
 }
+
 .below-btn {
   font-size: 0.8rem;
   position: absolute;
   bottom: 0.5rem;
 }
-p.error {
+
+p.error,
+.add-btn.error {
   color: red;
 }
 .input.error input {
@@ -38,7 +40,6 @@ p.error {
 }
 
 //Modal Form
-
 .modal-bg {
   padding-top: 6rem;
   z-index: 100;
@@ -55,10 +56,12 @@ p.error {
   opacity: 0;
   transition: visibility 0s, opacity 0.5s;
 }
+
 .bg-active {
   visibility: visible;
   opacity: 1;
 }
+
 .modal-custom {
   position: relative;
   background-color: #fff;
@@ -84,16 +87,9 @@ p.error {
 
     > div:nth-child(1) {
       input {
-        //   width: 85%;
         flex-grow: 1;
         flex-basis: 1;
       }
-    }
-
-    > div:nth-child(3) {
-      // select {
-      //   width: 35%;
-      // }
     }
     .button {
       margin-top: 3rem;
@@ -121,16 +117,17 @@ p.error {
 }
 
 //User Card Form
-
 .form-create {
   width: 600px;
   height: 400px;
   border: 1px solid black;
-  margin: 3rem 0 6rem 0;
+  margin: 0 0 6rem 0;
   padding-left: 1rem;
   @include flex-container(column, space-around);
+
   .input {
     width: 100%;
+
     input {
       width: 70%;
     }
@@ -141,11 +138,13 @@ p.error {
       cursor: pointer;
     }
   }
+
   .input:nth-of-type(4) input,
   .input:nth-of-type(5) input {
     width: 60%;
   }
 }
+
 button.create {
   width: 400px;
   height: 40px;
@@ -158,5 +157,3 @@ button.create {
     color: $yellow-highlight;
   }
 }
-
-//Search Filter
