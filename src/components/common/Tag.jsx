@@ -1,13 +1,6 @@
 import React from "react";
 
-export const Tag = ({
-  title,
-  tags,
-  setTags,
-  totalPages,
-  currentPage,
-  setCurrentPage,
-}) => {
+export const Tag = ({ title, tags, setTags }) => {
   const removeTag = (e) => {
     let filtered = tags.filter(
       (current) => current !== e.currentTarget.parentNode.id

@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
-import uuid from "react-uuid";
+
+//Components
 import { Tag } from "./common/Tag";
+
+//Libraries
+import uuid from "react-uuid";
+
+//Fa
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
+//Utilities
 import { formatAuthors } from "./utilities";
 
 export const DisplayCustomCard = ({ userInput, setUserInput }) => {
@@ -16,27 +23,28 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
       setCurrentPage(currentPage + 1);
     }
   };
+
   const getCurrentPosts = () => {
     console.log(`current posts ${typeof userInput.tag}`);
     return userInput.tag.slice(indexOfFirstPost, indexOfLastPost);
   };
+
   const totalPages = Math.ceil(userInput.tag.length / 2);
   const indexOfLastPost = currentPage * 2;
   const indexOfFirstPost = indexOfLastPost - 2;
   let currentPosts = getCurrentPosts();
+
   useEffect(() => {
     if (currentPage === 1) {
       return;
     }
-    console.log(currentPage, totalPages);
+
     if (currentPage > totalPages) {
       setCurrentPage(totalPages);
       currentPosts = getCurrentPosts();
     }
   }, [userInput]);
-  useEffect(() => {
-    console.log(`display useeffect ${typeof userInput.tag}`);
-  });
+
   return (
     <div className="custom-card">
       <h3>{userInput.title}</h3>
@@ -62,9 +70,6 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
                 key={uuid()}
                 tags={userInput.tag}
                 setTags={setUserInput}
-                totalPages={totalPages}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
               ></Tag>
             );
           })

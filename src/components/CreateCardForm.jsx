@@ -12,12 +12,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { isEmptyOrSpaces, setLocalStorage, userCard } from "./utilities";
 
 //Schema
-
-import * as yup from "yup";
-
-//regex
-import { urlRegex, dateRegex } from "./regex";
-// import { userCardSchema } from "./schema";
+import { userCardSchema } from "./schema";
 
 export const CreateCardForm = ({
   setUserInput,
@@ -27,13 +22,7 @@ export const CreateCardForm = ({
   savedStories,
   setSavedStories,
 }) => {
-  const userCardSchema = yup.object().shape({
-    title: yup.string().max(100).required(),
-    description: yup.string().max(250),
-    url: yup.string().matches(urlRegex, { excludeEmptyString: true }),
-    // tag: yup.mixed().notOneOf(userInput.tag),
-  });
-  const { register, handleSubmit, errors, clearErrors, setError } = useForm({
+  const { register, handleSubmit, errors, setError } = useForm({
     resolver: yupResolver(userCardSchema),
     reValidateMode: "onChange",
   });
@@ -49,11 +38,13 @@ export const CreateCardForm = ({
       };
     });
   };
+
   const handleAdd = (e) => {
     e.preventDefault();
-    console.log(errors);
+
     const key = e.currentTarget.parentNode.childNodes[1].id;
     const value = e.currentTarget.parentNode.childNodes[1].value;
+
     if (userInput[key].includes(value)) {
       setError("tag", {
         message: "Tags must be unique",
@@ -68,7 +59,9 @@ export const CreateCardForm = ({
         [key]: [...prevState[key], value],
       };
     });
+
     e.currentTarget.parentNode.childNodes[1].value = "";
+
     if (key === "tag" && !tags.includes(value)) {
       setTags([...tags, value]);
     }
@@ -83,13 +76,13 @@ export const CreateCardForm = ({
       tag: [],
     });
   };
+
   useEffect(() => {
     setLocalStorage(savedStories, "Stories");
-    console.log("i went off");
   }, [savedStories]);
+
   useEffect(() => {
     setLocalStorage(tags, "Tags");
-    console.log("i went off");
   }, [tags]);
   return (
     <React.Fragment>
@@ -163,14 +156,6 @@ export const CreateCardForm = ({
         <p className="error below">{errors.tag && errors.tag.message}</p>
       </form>
 
-      <button
-        onClick={() => {
-          console.log(errors);
-          console.log(`${userInput["tag"]} is ${typeof userInput["tag"]}`);
-        }}
-      >
-        test
-      </button>
       <button className="create" onClick={handleSubmit(onSubmit)}>
         Add Card
       </button>

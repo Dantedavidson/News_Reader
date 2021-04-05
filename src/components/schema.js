@@ -8,3 +8,9 @@ export const searchFormSchema = yup.object().shape({
   startDate: yup.string().matches(dateRegex, { excludeEmptyString: true }),
   endDate: yup.string().matches(dateRegex, { excludeEmptyString: true }),
 });
+
+export const userCardSchema = yup.object().shape({
+  title: yup.string().max(100).required(),
+  description: yup.string().max(250),
+  url: yup.string().matches(urlRegex, { excludeEmptyString: true }),
+});
