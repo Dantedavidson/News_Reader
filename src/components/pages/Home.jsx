@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import { getTopStories } from "../../API";
-import { createCard, likeStatus } from "../utilities";
-
 //Components
 import { Nav } from "../Nav";
 import { NewsSearchForm } from "../NewsSearchForm";
@@ -11,6 +8,9 @@ import { HorizontalLine } from "../common/HorizontalLine";
 import { Button } from "../common/Button";
 import { Footer } from "../Footer";
 import { CarouselComponent } from "../CarouselComponent";
+
+//Utilities
+import { likeStatus } from "../utilities";
 
 export const Home = ({ savedStories, setSavedStories, data }) => {
   const [topStories, setTopStories] = useState([]);

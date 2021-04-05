@@ -1,8 +1,11 @@
 import React from "react";
+
+//Libraries
 import Carousel from "react-bootstrap/Carousel";
-import uuid from "react-uuid";
 import { CarouselItem } from "./CarouselItem";
-import { HorizontalLine } from "./common/HorizontalLine";
+import uuid from "react-uuid";
+
+//Components
 import { Loading } from "./common/Loading";
 
 export const CarouselComponent = ({

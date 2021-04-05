@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 //Fa
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
 //Utilities
 import { saveCard, deleteCard, setLocalStorage } from "../utilities";
 

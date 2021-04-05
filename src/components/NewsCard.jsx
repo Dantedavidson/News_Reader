@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { LikeBtn } from "./common/LikeBtn";
 
 export const NewsCard = ({ card, savedStories, setSavedStories }) => {
   const { imgUrl, title, byline, date, lead } = card.story;
-  useEffect(() => {});
 
   if (imgUrl) {
     return (
       <div className="display-card card">
         <h3>{title}</h3>
-        <img src={imgUrl} alt="" />
+        <img src={imgUrl} alt={title} />
         <div>
           <div>
             <h6>{byline}</h6>

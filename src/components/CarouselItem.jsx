@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { LikeBtn } from "./common/LikeBtn";
 
 export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
   const { title, lead, byline, date, imgUrl } = card.story;
-  useEffect(() => {}, []);
   return (
     <div className="carousel-item-container">
       <div className="image">

@@ -5,12 +5,9 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+
 //Api
 import { getTopStories } from "./API";
-
-//Style
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles/style.scss";
 
 //Pages
 import { Custom } from "./components/pages/Custom";
@@ -20,6 +17,10 @@ import { Stories } from "./components/pages/Stories";
 
 //Utilities
 import { getLocalStorage, createCard } from "./components/utilities";
+
+//Style
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/style.scss";
 
 //font awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
