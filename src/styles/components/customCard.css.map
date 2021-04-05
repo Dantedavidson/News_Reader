@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,YAAY,CAAC;EACX,OAAO,EAAE,IAAI;CACd",
-    "sources": [
-        "customCard.scss"
-    ],
-    "names": [],
-    "file": "customCard.css"
-}
