@@ -1,11 +1,25 @@
 import uuid from "react-uuid";
 import { API_KEY } from "../API";
+import { DateTime } from "luxon";
+
+const formatApiDate = (date) => {
+  let [y, m, d] = date
+    .match(/[0-9-]{10}/g)
+    .toString()
+    .split("-");
+  return `${d}-${m}-${y}`;
+};
+
+const currentDate = () => {
+  let date = DateTime.now().setLocale("en-gb").toLocaleString();
+  return date;
+};
 
 export const cleanData = (data) => {
   const story = {
     title: "",
     lead: "",
-    date: "",
+    date: "Published ",
     byline: "",
     url: "",
     imgUrl: "",
@@ -26,11 +40,11 @@ export const cleanData = (data) => {
   }
 
   if (data.published_date) {
-    story.date = data.published_date; //add date format
+    story.date += formatApiDate(data.published_date);
   } else if (data.pub_date) {
-    story.date = data.pub_date; //add date format
+    story.date += formatApiDate(data.pub_date);
   } else {
-    story.date = null; //make current date
+    story.date += currentDate();
   }
 
   if (data.byline && typeof data.byline === "string") {
@@ -88,7 +102,7 @@ export const userCard = (data) => {
     story: {
       title: data.title,
       lead: data.description,
-      date: "01/04/2021", //set to current date and format
+      date: `Published ${currentDate()}`,
       byline: formatAuthors(data.author),
       url: data.url,
       imgUrl: null,

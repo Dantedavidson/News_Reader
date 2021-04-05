@@ -12,7 +12,6 @@ import { getTopStories } from "./API";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/style.scss";
 
-//<i class="fas fa-angle-left"></i>
 //Pages
 import { Custom } from "./components/pages/Custom";
 import { Home } from "./components/pages/Home";

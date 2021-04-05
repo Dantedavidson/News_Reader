@@ -7,7 +7,7 @@ export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
   useEffect(() => {}, []);
   return (
     <div className="carousel-item-container">
-      <div>
+      <div className="image">
         <img src={imgUrl} alt="" />
       </div>
       <div>
@@ -18,7 +18,7 @@ export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
         <div>
           <div>
             <p>From {byline}</p>
-            <p>Published {date}</p>
+            <p>{date}</p>
           </div>
           <LikeBtn
             card={card}

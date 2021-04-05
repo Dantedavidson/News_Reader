@@ -1,18 +1,13 @@
 import React, { useEffect } from "react";
 import { LikeBtn } from "./common/LikeBtn";
 
-export const NewsCard = ({
-  cardDisplay,
-  card,
-  savedStories,
-  setSavedStories,
-}) => {
+export const NewsCard = ({ card, savedStories, setSavedStories }) => {
   const { imgUrl, title, byline, date, lead } = card.story;
   useEffect(() => {});
 
   if (imgUrl) {
     return (
-      <div className={cardDisplay === "results" ? "display-card card" : "card"}>
+      <div className="display-card card">
         <h3>{title}</h3>
         <img src={imgUrl} alt="" />
         <div>
@@ -30,7 +25,7 @@ export const NewsCard = ({
     );
   } else {
     return (
-      <div className={cardDisplay === "results" ? "display-card card" : "card"}>
+      <div className="display-card card">
         <h3>{title}</h3>
 
         <p>{lead}</p>
