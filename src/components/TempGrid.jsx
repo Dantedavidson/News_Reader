@@ -1,26 +1,27 @@
 import React, { useState } from "react";
+
+//Components
 import { NewsCard } from "./NewsCard";
 import { Search } from "./Search";
+
 export const TempGrid = ({ savedStories, setSavedStories, tags }) => {
   const [search, setSearch] = useState({
     term: "",
     tags: "All",
   });
+
   let filtered = savedStories;
 
   if (search.term && search.tags !== "All") {
-    console.log("both");
     let temp = savedStories.filter((card) =>
       card.story.title.toLowerCase().startsWith(search.term.toLowerCase())
     );
-    console.log(temp);
     filtered = temp.filter((card) => card.tags.includes(search.tags));
   } else if (search.term) {
     filtered = savedStories.filter((card) =>
       card.story.title.toLowerCase().startsWith(search.term.toLowerCase())
     );
   } else if (search.tags !== "All") {
-    console.log(search.tags);
     filtered = savedStories.filter((card) => card.tags.includes(search.tags));
   }
 

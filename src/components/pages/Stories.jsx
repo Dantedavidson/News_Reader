@@ -1,8 +1,7 @@
 import React from "react";
 
-import { TempGrid } from "../TempGrid";
-
 //Components
+import { TempGrid } from "../TempGrid";
 import { Nav } from "../Nav";
 import { Footer } from "../Footer";
 
