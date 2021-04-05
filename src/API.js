@@ -9,9 +9,9 @@ export const getTopStories = async () => {
 
   return data;
 };
-
 export const getSearchStories = async (q) => {
   const res = await axios.get(q);
+  console.log(res);
   const data = res.data.response.docs;
   return data;
 };

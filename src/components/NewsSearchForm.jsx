@@ -147,13 +147,13 @@ export const NewsSearchForm = ({
   ];
 
   const onSubmit = async (data) => {
-    console.log("i submited");
     try {
       data.startDate = formatQueryDate(data.startDate);
       data.endDate = formatQueryDate(data.endDate);
 
       let query = createQuery(data);
       let stories = await getSearchStories(query);
+
       let results = createCard(stories, savedStories);
       clearErrors();
       reset();
