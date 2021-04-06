@@ -12,6 +12,5 @@ export const getTopStories = async () => {
 export const getSearchStories = async (q) => {
   const res = await axios.get(q);
   console.log(res);
-  const data = res.data.response.docs;
-  return data;
+  return res;
 };

@@ -13,10 +13,15 @@ import { CarouselComponent } from "../CarouselComponent";
 import { likeStatus } from "../utilities";
 
 export const Home = ({ savedStories, setSavedStories, data }) => {
+  const initialPagination = {
+    total: "",
+    results: [],
+    currentPage: 0,
+  };
   const [topStories, setTopStories] = useState([]);
   const [loadingTopStories, setLoadingTopStories] = useState(true);
   const [currentDisplay, setCurrentDisplay] = useState("start");
-  const [searchResults, setSearchResults] = useState([]);
+  const [pagination, setPagination] = useState(initialPagination);
 
   useEffect(() => {
     if (data.length === 0) {
@@ -34,7 +39,8 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
       <Nav current={"home"} />
       <div className="body home">
         <NewsSearchForm
-          setSearchResults={setSearchResults}
+          setPagination={setPagination}
+          initialPagination={initialPagination}
           currentDisplay={currentDisplay}
           setCurrentDisplay={setCurrentDisplay}
           savedStories={savedStories}
@@ -60,7 +66,8 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
             modal: <div className="block"></div>,
             results: (
               <NewsCardGrid
-                searchResults={searchResults}
+                pagination={pagination}
+                setPagination={setPagination}
                 savedStories={savedStories}
                 setSavedStories={setSavedStories}
                 currentDisplay={currentDisplay}

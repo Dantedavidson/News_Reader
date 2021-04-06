@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 //Utilities
-import { formatAuthors } from "./utilities";
+import { formatAuthors, paginationDisplay } from "./utilities";
 
 export const DisplayCustomCard = ({ userInput, setUserInput }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,14 +24,14 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
     }
   };
 
-  const getCurrentPosts = () => {
-    return userInput.tag.slice(indexOfFirstPost, indexOfLastPost);
-  };
-
   const totalPages = Math.ceil(userInput.tag.length / 2);
   const indexOfLastPost = currentPage * 2;
   const indexOfFirstPost = indexOfLastPost - 2;
-  let currentPosts = getCurrentPosts();
+  let currentPosts = paginationDisplay(
+    indexOfFirstPost,
+    indexOfLastPost,
+    userInput.tag
+  );
 
   useEffect(() => {
     if (currentPage === 1) {
@@ -40,7 +40,11 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
 
     if (currentPage > totalPages) {
       setCurrentPage(totalPages);
-      currentPosts = getCurrentPosts();
+      currentPosts = paginationDisplay(
+        indexOfFirstPost,
+        indexOfLastPost,
+        userInput.tag
+      );
     }
   }, [userInput]);
 

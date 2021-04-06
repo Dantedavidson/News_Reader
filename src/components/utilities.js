@@ -162,7 +162,7 @@ export const getLocalStorage = (setter, location) => {
   }
 };
 
-export const createQuery = (data) => {
+export const createQuery = (data, page) => {
   const arr = (({ term, startDate, endDate, section }) => [
     term,
     startDate,
@@ -186,7 +186,7 @@ export const createQuery = (data) => {
         return `${start}`;
     }
   }, query);
-  query = `${query}&api-key=${API_KEY}`;
+  query = `${query}&page=${page}&api-key=${API_KEY}`;
 
   return query;
 };
@@ -198,4 +198,8 @@ export const formatQueryDate = (date) => {
   const [d, m, y] = date.split("/");
   const queryDate = `${y}${m}${d}`;
   return queryDate;
+};
+
+export const paginationDisplay = (first, last, array) => {
+  return array.slice(first, last);
 };

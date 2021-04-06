@@ -1,18 +1,22 @@
 import React from "react";
+
+//components
 import { NewsCard } from "./NewsCard";
 import { Button } from "./common/Button";
+import { PaginationBar } from "./common/PaginationBar";
 
 export const NewsCardGrid = ({
   currentDisplay,
   setCurrentDisplay,
-  searchResults,
+  pagination,
+  setPagination,
   savedStories,
   setSavedStories,
 }) => {
   return (
     <React.Fragment>
       <div className="news-card-grid">
-        {searchResults.map((card) => {
+        {pagination.results.map((card) => {
           return (
             <NewsCard
               card={card}
@@ -36,6 +40,11 @@ export const NewsCardGrid = ({
           text="Load More"
         ></Button>
       </div>
+      <PaginationBar
+        currentPage={pagination.currentPage}
+        total={pagination.total}
+        perPage={10}
+      ></PaginationBar>
     </React.Fragment>
   );
 };
