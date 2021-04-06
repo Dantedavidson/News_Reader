@@ -8,15 +8,15 @@ import { PaginationBar } from "./common/PaginationBar";
 export const NewsCardGrid = ({
   currentDisplay,
   setCurrentDisplay,
-  pagination,
-  setPagination,
+  query,
+  setQuery,
   savedStories,
   setSavedStories,
 }) => {
   return (
     <React.Fragment>
       <div className="news-card-grid">
-        {pagination.results.map((card) => {
+        {query.results.map((card) => {
           return (
             <NewsCard
               card={card}
@@ -41,9 +41,10 @@ export const NewsCardGrid = ({
         ></Button>
       </div>
       <PaginationBar
-        currentPage={pagination.currentPage}
-        total={pagination.total}
+        currentPage={query.currentPage}
+        total={query.total}
         perPage={10}
+        setQuery={setQuery}
       ></PaginationBar>
     </React.Fragment>
   );

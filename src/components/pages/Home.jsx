@@ -13,7 +13,7 @@ import { CarouselComponent } from "../CarouselComponent";
 import { likeStatus } from "../utilities";
 
 export const Home = ({ savedStories, setSavedStories, data }) => {
-  const initialPagination = {
+  const initialQuery = {
     total: "",
     results: [],
     currentPage: 0,
@@ -21,7 +21,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
   const [topStories, setTopStories] = useState([]);
   const [loadingTopStories, setLoadingTopStories] = useState(true);
   const [currentDisplay, setCurrentDisplay] = useState("start");
-  const [pagination, setPagination] = useState(initialPagination);
+  const [query, setQuery] = useState(initialQuery);
 
   useEffect(() => {
     if (data.length === 0) {
@@ -34,13 +34,17 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
     setTopStories(stories);
     setLoadingTopStories(false);
   }, [data]);
+
+  useEffect(() => {
+    console.log(query.currentPage);
+  }, [query.currentPage]);
   return (
     <React.Fragment>
       <Nav current={"home"} />
       <div className="body home">
         <NewsSearchForm
-          setPagination={setPagination}
-          initialPagination={initialPagination}
+          setQuery={setQuery}
+          initialQuery={initialQuery}
           currentDisplay={currentDisplay}
           setCurrentDisplay={setCurrentDisplay}
           savedStories={savedStories}
@@ -66,8 +70,8 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
             modal: <div className="block"></div>,
             results: (
               <NewsCardGrid
-                pagination={pagination}
-                setPagination={setPagination}
+                query={query}
+                setQuery={setQuery}
                 savedStories={savedStories}
                 setSavedStories={setSavedStories}
                 currentDisplay={currentDisplay}

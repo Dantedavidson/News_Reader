@@ -7,7 +7,7 @@ import PageItem from "react-bootstrap/PageItem";
 //Utilities
 import { paginationDisplay } from "../utilities";
 
-export const PaginationBar = ({ currentPage, total, perPage }) => {
+export const PaginationBar = ({ currentPage, total, perPage, setQuery }) => {
   const [display, setDisplay] = useState({
     active: currentPage,
     pages: Math.ceil(total / perPage),
@@ -17,6 +17,31 @@ export const PaginationBar = ({ currentPage, total, perPage }) => {
     display: [],
   });
 
+  const current = (number) => {
+    if (number > display.pages - perPage) {
+      let active = number;
+      let first = display.pages - perPage;
+      let last = display.pages;
+      setDisplay((prevState) => ({
+        ...prevState,
+        active: active,
+        first: first,
+        last: last,
+        display: paginationDisplay(first, last, display.items),
+      }));
+      return;
+    }
+    let active = number;
+    let first = number - 1;
+    let last = number + perPage - 1;
+    setDisplay((prevState) => ({
+      ...prevState,
+      active: active,
+      first: first,
+      last: last,
+      display: paginationDisplay(first, last, display.items),
+    }));
+  };
   const next = () => {
     if (display.active >= display.pages - (perPage - 1)) {
       console.log("display last ten");
@@ -69,7 +94,6 @@ export const PaginationBar = ({ currentPage, total, perPage }) => {
       display: paginationDisplay(first, last, display.items),
     }));
   };
-
   const last = () => {
     if (display.active === display.pages - perPage) return;
     const active = display.pages - (perPage - 1);
@@ -101,9 +125,13 @@ export const PaginationBar = ({ currentPage, total, perPage }) => {
       ),
     }));
   }, []);
+
   useEffect(() => {
-    console.log(display.first, display.last, display.active);
-  }, [display]);
+    setQuery((prevState) => ({
+      ...prevState,
+      currentPage: display.active,
+    }));
+  }, [display.active]);
 
   return (
     <div>
@@ -121,6 +149,7 @@ export const PaginationBar = ({ currentPage, total, perPage }) => {
           <Pagination.Item
             key={item}
             active={item === display.active}
+            onClick={() => current(item)}
             className={
               item === display.active ? "page-item active" : "page-item"
             }

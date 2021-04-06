@@ -24,8 +24,8 @@ import { searchFormSchema } from "./schema";
 export const NewsSearchForm = ({
   currentDisplay,
   setCurrentDisplay,
-  setPagination,
-  initialPagination,
+  setQuery,
+  initialQuery,
   savedStories,
 }) => {
   const [error, setError] = useState(false);
@@ -149,12 +149,12 @@ export const NewsSearchForm = ({
 
   const onSubmit = async (data) => {
     try {
-      setPagination(initialPagination);
+      setQuery(initialQuery);
 
       data.startDate = formatQueryDate(data.startDate);
       data.endDate = formatQueryDate(data.endDate);
 
-      let query = createQuery(data, initialPagination.currentPage);
+      let query = createQuery(data, initialQuery.currentPage);
       let res = await getSearchStories(query);
       let total =
         res.headers["content-length"] > 1000
@@ -163,7 +163,7 @@ export const NewsSearchForm = ({
       let results = createCard(res.data.response.docs, savedStories);
       clearErrors();
       reset();
-      setPagination({
+      setQuery({
         total: total,
         results: results,
         currentPage: 1,
