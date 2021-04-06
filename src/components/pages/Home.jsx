@@ -48,6 +48,10 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
   // let results = createCard(res.data.response.docs, savedStories);
 
   useEffect(() => {
+    setQuery((prevState) => ({
+      ...prevState,
+      loading: true,
+    }));
     async function getData() {
       let res = await getSearchStories(
         `${query.queryString}&page=${query.currentPage}`

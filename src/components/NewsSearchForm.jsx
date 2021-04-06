@@ -156,7 +156,6 @@ export const NewsSearchForm = ({
       ...prevState,
       queryString: query,
       currentPage: 0,
-      loading: true,
     }));
 
     //Reset form and close modal
