@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 
+//API
+import { getSearchStories } from "../../API";
+
 //Components
 import { Nav } from "../Nav";
 import { NewsSearchForm } from "../NewsSearchForm";
@@ -10,13 +13,15 @@ import { Footer } from "../Footer";
 import { CarouselComponent } from "../CarouselComponent";
 
 //Utilities
-import { likeStatus } from "../utilities";
+import { likeStatus, createCard } from "../utilities";
 
 export const Home = ({ savedStories, setSavedStories, data }) => {
   const initialQuery = {
-    total: "",
+    total: null,
     results: [],
-    currentPage: 0,
+    currentPage: null,
+    queryString: null,
+    loading: false,
   };
   const [topStories, setTopStories] = useState([]);
   const [loadingTopStories, setLoadingTopStories] = useState(true);
@@ -35,8 +40,31 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
     setLoadingTopStories(false);
   }, [data]);
 
+  // let res = await getSearchStories(query);
+  // let total =
+  //   res.headers["content-length"] > 1000
+  //     ? 1000
+  //     : res.headers["content-length"];
+  // let results = createCard(res.data.response.docs, savedStories);
+
   useEffect(() => {
-    console.log(query.currentPage);
+    async function getData() {
+      let res = await getSearchStories(
+        `${query.queryString}&page=${query.currentPage}`
+      );
+      let total =
+        res.headers["content-length"] > 1000
+          ? 1000
+          : res.headers["content-length"];
+      let results = createCard(res.data.response.docs, savedStories);
+      setQuery((prevState) => ({
+        ...prevState,
+        total: total,
+        results: results,
+        loading: false,
+      }));
+    }
+    getData();
   }, [query.currentPage]);
   return (
     <React.Fragment>

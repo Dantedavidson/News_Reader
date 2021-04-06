@@ -4,6 +4,7 @@ import React from "react";
 import { NewsCard } from "./NewsCard";
 import { Button } from "./common/Button";
 import { PaginationBar } from "./common/PaginationBar";
+import { Loading } from "./common/Loading";
 
 export const NewsCardGrid = ({
   currentDisplay,
@@ -13,7 +14,11 @@ export const NewsCardGrid = ({
   savedStories,
   setSavedStories,
 }) => {
-  return (
+  return query.loading ? (
+    <React.Fragment>
+      <Loading></Loading>
+    </React.Fragment>
+  ) : (
     <React.Fragment>
       <div className="news-card-grid">
         {query.results.map((card) => {

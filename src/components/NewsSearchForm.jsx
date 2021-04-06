@@ -5,11 +5,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import uuid from "react-uuid";
 
-//API
-import { getSearchStories } from "../API";
-
 //Utilities
-import { createCard, createQuery, formatQueryDate } from "./utilities";
+import { createQuery, formatQueryDate } from "./utilities";
 
 //components
 import { Button } from "./common/Button";
@@ -26,9 +23,7 @@ export const NewsSearchForm = ({
   setCurrentDisplay,
   setQuery,
   initialQuery,
-  savedStories,
 }) => {
-  const [error, setError] = useState(false);
   const { register, handleSubmit, reset, errors, clearErrors } = useForm({
     resolver: yupResolver(searchFormSchema),
     reValidateMode: "onChange",
@@ -147,38 +142,29 @@ export const NewsSearchForm = ({
     "Your Money",
   ];
 
-  const onSubmit = async (data) => {
-    try {
-      setQuery(initialQuery);
+  const onSubmit = (data) => {
+    //Reset to default
+    setQuery(initialQuery);
 
-      data.startDate = formatQueryDate(data.startDate);
-      data.endDate = formatQueryDate(data.endDate);
+    //format form dates
+    data.startDate = formatQueryDate(data.startDate);
+    data.endDate = formatQueryDate(data.endDate);
 
-      let query = createQuery(data, initialQuery.currentPage);
-      let res = await getSearchStories(query);
-      let total =
-        res.headers["content-length"] > 1000
-          ? 1000
-          : res.headers["content-length"];
-      let results = createCard(res.data.response.docs, savedStories);
-      clearErrors();
-      reset();
-      setQuery({
-        total: total,
-        results: results,
-        currentPage: 1,
-      });
-      setCurrentDisplay("results");
-    } catch (e) {
-      setError(e);
-    }
+    // create query and store to setQuery
+    let query = createQuery(data);
+    setQuery((prevState) => ({
+      ...prevState,
+      queryString: query,
+      currentPage: 0,
+      loading: true,
+    }));
+
+    //Reset form and close modal
+    clearErrors();
+    reset();
+    setCurrentDisplay("results");
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setError(false);
-    }, 5000);
-  }, [error]);
   return (
     <div
       className={currentDisplay === "modal" ? "modal-bg bg-active" : "modal-bg"}
@@ -252,7 +238,6 @@ export const NewsSearchForm = ({
             </div>
           </div>
           <Button handler={handleSubmit(onSubmit)} text="Submit"></Button>
-          <p className="below-btn error">{error && `${error}`}</p>
         </form>
       </div>
     </div>

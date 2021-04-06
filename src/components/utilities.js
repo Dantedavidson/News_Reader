@@ -162,7 +162,7 @@ export const getLocalStorage = (setter, location) => {
   }
 };
 
-export const createQuery = (data, page) => {
+export const createQuery = (data) => {
   const arr = (({ term, startDate, endDate, section }) => [
     term,
     startDate,
@@ -186,7 +186,7 @@ export const createQuery = (data, page) => {
         return `${start}`;
     }
   }, query);
-  query = `${query}&page=${page}&api-key=${API_KEY}`;
+  query = `${query}&api-key=${API_KEY}`;
 
   return query;
 };
