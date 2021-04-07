@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 
+import { scrollTop } from "./utilities";
+
 export const Footer = () => {
-  //set scroll to top of page
-  const scrollTop = () => {
-    window.scrollTo(0, 0);
-  };
   return (
     <footer>
       <div>

@@ -1,6 +1,6 @@
 //Shared state for home page, renders components
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 //API
 import { getSearchStories } from "../../API";
@@ -17,12 +17,7 @@ import { CarouselComponent } from "../CarouselComponent";
 import { PaginationBar } from "../common/PaginationBar";
 
 //Utilities
-import {
-  likeStatus,
-  createCard,
-  paginationDisplay,
-  getPages,
-} from "../utilities";
+import { likeStatus, createCard, getPages } from "../utilities";
 
 export const Home = ({ savedStories, setSavedStories, data }) => {
   //Object containing query and pagination data
@@ -41,10 +36,24 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
     lastDisplay: null,
     pageRange: [],
   };
+
   const [topStories, setTopStories] = useState([]);
   const [loadingTopStories, setLoadingTopStories] = useState(true);
   const [currentDisplay, setCurrentDisplay] = useState("start");
   const [query, setQuery] = useState(initialQuery);
+
+  //Ref && function for scrolling
+  const topLine = useRef(null);
+  const executeScroll = () => {
+    const yOffset = -24;
+    const y =
+      topLine.current.getBoundingClientRect().top +
+      window.pageYOffset +
+      yOffset;
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
   //check if stories from api have been saved, set like status accordingly
   useEffect(() => {
     if (data.length === 0) {
@@ -63,7 +72,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
     //Check querySting is set
     if (!query.queryString) return;
 
-    // Set Loading
+    // Set Loading && scroll top
     setQuery((prevState) => ({
       ...prevState,
       loading: true,
@@ -96,6 +105,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
           firstDisplay: prevState.firstDisplay ? prevState.firstDisplay : 0,
           lastDisplay: prevState.lastDisplay ? prevState.lastDisplay : lastTemp,
         }));
+        executeScroll();
       } catch (e) {
         console.log(e);
       }
@@ -119,7 +129,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
           savedStories={savedStories}
           setSavedStories={setSavedStories}
         />
-        <HorizontalLine></HorizontalLine>
+        <HorizontalLine topLine={topLine}></HorizontalLine>
 
         {
           {
@@ -145,7 +155,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
                   currentDisplay={currentDisplay}
                   setCurrentDisplay={setCurrentDisplay}
                 />
-                <HorizontalLine></HorizontalLine>
+                <HorizontalLine id={"bottom"}></HorizontalLine>
                 <div className="button-container">
                   <PaginationBar
                     size={"lg"}

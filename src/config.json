@@ -1,0 +1,5 @@
+{
+  "NYT_TOP_STORIES": "https://api.nytimes.com/svc/topstories/v2/world.json?",
+  "NYT_ARTICLE_SEARCH": "https://api.nytimes.com/svc/search/v2/articlesearch.json?",
+  "NYT_URL": "https://www.nytimes.com/"
+}

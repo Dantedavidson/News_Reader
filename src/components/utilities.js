@@ -1,4 +1,6 @@
 import uuid from "react-uuid";
+import config from "../config.json";
+
 import { API_KEY } from "../API";
 import { DateTime } from "luxon";
 
@@ -63,14 +65,14 @@ export const cleanData = (data) => {
   } else if (data.web_url) {
     story.url = data.web_url;
   } else {
-    story.url = `https://www.nytimes.com/search?query=${story.title}`;
+    story.url = `${config.NYT_URL}search?query=${story.title}`;
   }
 
   if (data.multimedia && data.multimedia.length > 0) {
     if (data.multimedia[0].url.startsWith("https")) {
       story.imgUrl = data.multimedia[0].url;
     } else if (data.multimedia[0].url.startsWith("image")) {
-      story.imgUrl = `https://www.nytimes.com/${data.multimedia[0].url}`;
+      story.imgUrl = `${config.NYT_URL}${data.multimedia[0].url}`;
     } else {
       story.imgUrl = null;
     }
@@ -184,8 +186,9 @@ export const createQuery = (data) => {
     section,
   ])(data);
 
-  let query = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
+  let query = "";
   query = arr.reduce((start, value, index) => {
+    console.log(query);
     if (value === null || value === "All") return `${start}`;
     switch (index) {
       case 0:
@@ -199,7 +202,7 @@ export const createQuery = (data) => {
       default:
         return `${start}`;
     }
-  }, query);
+  }, config.NYT_ARTICLE_SEARCH);
   query = `${query}&api-key=${API_KEY}`;
 
   return query;
@@ -222,3 +225,9 @@ export const paginationDisplay = (first, last, array) => {
 };
 //Takes the total number results and results per pages. Returnes total number of pages.
 export const getPages = (total, perPage) => Math.ceil(total / perPage);
+
+//set scroll to top of page
+export const scrollTop = () => {
+  console.log("scroll to top");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};

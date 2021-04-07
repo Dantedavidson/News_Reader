@@ -2,6 +2,10 @@
 
 import React from "react";
 
-export const HorizontalLine = () => {
-  return <span className="horizontal-line"> </span>;
+export const HorizontalLine = ({ topLine }) => {
+  return (
+    <span ref={topLine} className="horizontal-line">
+      {" "}
+    </span>
+  );
 };
