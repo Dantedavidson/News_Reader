@@ -8,7 +8,15 @@ import Pagination from "react-bootstrap/Pagination";
 import { paginationDisplay } from "../utilities";
 
 export const PaginationBar = ({ query, setQuery }) => {
-  const { pages, perPage, items, active, lastDisplay, pageRange } = query;
+  const {
+    pages,
+    perPage,
+    items,
+    active,
+    lastDisplay,
+    pageRange,
+    displayPagination,
+  } = query;
 
   //Takes a number and sets search and display to that number.
   const current = (number) => {
@@ -119,6 +127,7 @@ export const PaginationBar = ({ query, setQuery }) => {
   };
   // Set total number of pages to state. Set pageRange to first set of pages.
   useEffect(() => {
+    if (!pages) return;
     for (let n = 1; n <= pages; n++) {
       setQuery((prevState) => ({
         ...prevState,
@@ -132,20 +141,24 @@ export const PaginationBar = ({ query, setQuery }) => {
         prevState.lastDisplay,
         prevState.items
       ),
+      displayPagination: true,
     }));
-  }, []);
+  }, [pages]);
 
-  return (
+  return displayPagination ? (
     <div>
-      {" "}
       <Pagination>
         <Pagination.First
           onClick={firstPage}
-          className={active <= perPage ? "display-none" : ""}
+          className={
+            active <= perPage ? "display-none page-control" : "page-control"
+          }
         />
         <Pagination.Prev
           onClick={back}
-          className={active === 1 ? "display-none" : ""}
+          className={
+            active === 1 ? "display-none page-control" : "page-control"
+          }
         />
         {pageRange.map((item) => (
           <Pagination.Item
@@ -159,13 +172,21 @@ export const PaginationBar = ({ query, setQuery }) => {
         ))}
         <Pagination.Next
           onClick={next}
-          className={active === pages ? "display-none" : ""}
+          className={
+            active === pages ? "display-none page-control" : "page-control"
+          }
         />
         <Pagination.Last
           onClick={lastPage}
-          className={active >= pages - (perPage - 1) ? "display-none" : ""}
+          className={
+            active >= pages - (perPage - 1)
+              ? "display-none page-control"
+              : "page-control"
+          }
         />
       </Pagination>
     </div>
+  ) : (
+    <div></div>
   );
 };

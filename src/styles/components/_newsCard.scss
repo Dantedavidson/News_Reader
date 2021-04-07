@@ -42,10 +42,11 @@
 }
 
 .button-container {
-  margin: 3rem auto;
-  max-width: 660px;
-  @include flex-container;
+  margin: 3rem auto 9rem auto;
+  width: 80%;
+  @include flex-container($justifyContent: space-between);
   .button {
-    margin-bottom: 0;
+    width: 40%;
+    margin: 0;
   }
 }

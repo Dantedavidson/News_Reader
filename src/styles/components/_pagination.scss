@@ -1,6 +1,12 @@
 .display-none {
   display: none;
 }
+
 .page-item {
-  //   width: 2.8rem;
+  font-size: 1.4rem;
+}
+.page-control {
+  span {
+    font-size: 1.4rem;
+  }
 }

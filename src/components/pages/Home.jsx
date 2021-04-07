@@ -14,6 +14,8 @@ import { Button } from "../common/Button";
 import { Footer } from "../Footer";
 import { CarouselComponent } from "../CarouselComponent";
 
+import { PaginationBar } from "../common/PaginationBar";
+
 //Utilities
 import {
   likeStatus,
@@ -32,6 +34,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
     currentPage: null,
     queryString: null,
     loading: false,
+    displayPagination: false,
     active: null,
     items: [],
     firstDisplay: null,
@@ -121,27 +124,45 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
         {
           {
             start: (
-              <Button
-                handler={() => {
-                  setCurrentDisplay("modal");
-                }}
-                text="Search"
-              ></Button>
+              <React.Fragment>
+                <Button
+                  handler={() => {
+                    setCurrentDisplay("modal");
+                  }}
+                  text="Search"
+                ></Button>
+                <HorizontalLine></HorizontalLine>
+              </React.Fragment>
             ),
             modal: <div className="block"></div>,
             results: (
-              <NewsCardGrid
-                query={query}
-                setQuery={setQuery}
-                savedStories={savedStories}
-                setSavedStories={setSavedStories}
-                currentDisplay={currentDisplay}
-                setCurrentDisplay={setCurrentDisplay}
-              />
+              <React.Fragment>
+                <NewsCardGrid
+                  query={query}
+                  setQuery={setQuery}
+                  savedStories={savedStories}
+                  setSavedStories={setSavedStories}
+                  currentDisplay={currentDisplay}
+                  setCurrentDisplay={setCurrentDisplay}
+                />
+                <HorizontalLine></HorizontalLine>
+                <div className="button-container">
+                  <PaginationBar
+                    size={"lg"}
+                    query={query}
+                    setQuery={setQuery}
+                  ></PaginationBar>
+                  <Button
+                    handler={() => {
+                      setCurrentDisplay("modal");
+                    }}
+                    text="New Search"
+                  ></Button>
+                </div>
+              </React.Fragment>
             ),
           }[currentDisplay]
         }
-        <HorizontalLine></HorizontalLine>
       </div>
       <Footer />
     </React.Fragment>
