@@ -2,123 +2,117 @@ import React, { useState, useEffect } from "react";
 
 //Libraries
 import Pagination from "react-bootstrap/Pagination";
-import PageItem from "react-bootstrap/PageItem";
 
 //Utilities
 import { paginationDisplay } from "../utilities";
 
-export const PaginationBar = ({ currentPage, total, perPage, setQuery }) => {
-  const [display, setDisplay] = useState({
-    active: currentPage,
-    pages: Math.ceil(total / perPage),
-    items: [],
-    first: 0,
-    last: perPage,
-    display: [],
-  });
+export const PaginationBar = ({ query, setQuery }) => {
+  console.log(query);
+  const { pages, perPage, items, active, last, first, pageRange } = query;
 
   const current = (number) => {
-    if (number > display.pages - perPage) {
+    if (number > pages - perPage) {
       let active = number;
-      let first = display.pages - perPage;
-      let last = display.pages;
-      setDisplay((prevState) => ({
+      let first = pages - perPage;
+      let last = pages;
+      setQuery((prevState) => ({
         ...prevState,
         active: active,
         first: first,
         last: last,
-        display: paginationDisplay(first, last, display.items),
+        pageRange: paginationDisplay(first, last, items),
       }));
       return;
     }
     let active = number;
     let first = number - 1;
     let last = number + perPage - 1;
-    setDisplay((prevState) => ({
+    setQuery((prevState) => ({
       ...prevState,
       active: active,
       first: first,
       last: last,
-      display: paginationDisplay(first, last, display.items),
+      pageRange: paginationDisplay(first, last, items),
     }));
   };
   const next = () => {
-    if (display.active >= display.pages - (perPage - 1)) {
-      console.log("display last ten");
-      setDisplay((prevState) => ({
+    if (active >= pages - (perPage - 1)) {
+      setQuery((prevState) => ({
         ...prevState,
         active: prevState.active + 1,
+        currentPage: prevState.currentPage + 1,
       }));
       return;
     }
-    const active = display.active + 1;
-    const last = display.last + 1;
-    const first = last - perPage;
-    setDisplay((prevState) => ({
+    const activeTemp = active + 1;
+    const lastTemp = last + 1;
+    const firstTemp = last - perPage;
+    setQuery((prevState) => ({
       ...prevState,
-      active: active,
-      first: first,
-      last: last,
-      display: paginationDisplay(first, last, display.items),
+      active: activeTemp,
+      currentPage: activeTemp - 1,
+      first: firstTemp,
+      last: lastTemp,
+      pageRange: paginationDisplay(firstTemp, lastTemp, items),
     }));
   };
   const back = () => {
-    if (display.active > display.pages - (perPage - 1)) {
-      console.log(display.active, display.pages - (perPage - 1));
-      setDisplay((prevState) => ({
+    if (active > pages - (perPage - 1)) {
+      console.log(active, pages - (perPage - 1));
+      setQuery((prevState) => ({
         ...prevState,
         active: prevState.active - 1,
       }));
       return;
     }
-    const active = display.active - 1;
-    const last = display.last - 1;
-    const first = last - perPage;
-    setDisplay((prevState) => ({
+    const activeTemp = active - 1;
+    const lastTemp = last - 1;
+    const firstTemp = last - perPage;
+    setQuery((prevState) => ({
       ...prevState,
-      active: active,
-      first: first,
-      last: last,
-      display: paginationDisplay(first, last, display.items),
+      active: activeTemp,
+      first: firstTemp,
+      last: lastTemp,
+      pageRange: paginationDisplay(firstTemp, lastTemp, items),
     }));
   };
-  const first = () => {
-    const active = 1;
-    const last = perPage;
-    const first = last - perPage;
-    setDisplay((prevState) => ({
+  const firstPage = () => {
+    const activeTemp = 1;
+    const lastTemp = perPage;
+    const firstTemp = last - perPage;
+    setQuery((prevState) => ({
       ...prevState,
-      active: active,
-      first: first,
-      last: last,
-      display: paginationDisplay(first, last, display.items),
+      active: activeTemp,
+      first: firstTemp,
+      last: lastTemp,
+      pageRange: paginationDisplay(firstTemp, lastTemp, items),
     }));
   };
-  const last = () => {
-    if (display.active === display.pages - perPage) return;
-    const active = display.pages - (perPage - 1);
+  const lastPage = () => {
+    if (active === pages - perPage) return;
 
-    const last = active - 1 + perPage;
-    const first = last - perPage;
-    setDisplay((prevState) => ({
+    const activeTemp = pages - (perPage - 1);
+    const lastTemp = active - 1 + perPage;
+    const firstTemp = last - perPage;
+    setQuery((prevState) => ({
       ...prevState,
-      active: active,
-      first: first,
-      last: last,
-      display: paginationDisplay(first, last, display.items),
+      active: activeTemp,
+      first: firstTemp,
+      last: lastTemp,
+      pageRange: paginationDisplay(firstTemp, lastTemp, items),
     }));
   };
 
   useEffect(() => {
-    for (let n = 1; n <= display.pages; n++) {
-      setDisplay((prevState) => ({
+    for (let n = 1; n <= pages; n++) {
+      setQuery((prevState) => ({
         ...prevState,
         items: [...prevState.items, n],
       }));
     }
-    setDisplay((prevState) => ({
+    setQuery((prevState) => ({
       ...prevState,
-      display: paginationDisplay(
+      pageRange: paginationDisplay(
         prevState.first,
         prevState.last,
         prevState.items
@@ -126,48 +120,35 @@ export const PaginationBar = ({ currentPage, total, perPage, setQuery }) => {
     }));
   }, []);
 
-  useEffect(() => {
-    setQuery((prevState) => ({
-      ...prevState,
-      currentPage: display.active,
-    }));
-  }, [display.active]);
-
   return (
     <div>
       {" "}
       <Pagination>
         <Pagination.First
-          onClick={first}
-          className={display.active <= perPage ? "display-none" : ""}
+          onClick={firstPage}
+          className={active <= perPage ? "display-none" : ""}
         />
         <Pagination.Prev
           onClick={back}
-          className={display.active === 1 ? "display-none" : ""}
+          className={active === 1 ? "display-none" : ""}
         />
-        {display.display.map((item) => (
+        {pageRange.map((item) => (
           <Pagination.Item
             key={item}
-            active={item === display.active}
+            active={item === active}
             onClick={() => current(item)}
-            className={
-              item === display.active ? "page-item active" : "page-item"
-            }
+            className={item === active ? "page-item active" : "page-item"}
           >
             {item}
           </Pagination.Item>
         ))}
         <Pagination.Next
           onClick={next}
-          className={display.active === display.pages ? "display-none" : ""}
+          className={active === pages ? "display-none" : ""}
         />
         <Pagination.Last
-          onClick={last}
-          className={
-            display.active >= display.pages - (perPage - 1)
-              ? "display-none"
-              : ""
-          }
+          onClick={lastPage}
+          className={active >= pages - (perPage - 1) ? "display-none" : ""}
         />
       </Pagination>
     </div>

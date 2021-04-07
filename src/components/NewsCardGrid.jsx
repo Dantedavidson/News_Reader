@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 //components
 import { NewsCard } from "./NewsCard";
@@ -14,6 +14,9 @@ export const NewsCardGrid = ({
   savedStories,
   setSavedStories,
 }) => {
+  useEffect(() => {
+    console.log(query);
+  }, [query]);
   return query.loading ? (
     <React.Fragment>
       <Loading></Loading>
@@ -45,12 +48,7 @@ export const NewsCardGrid = ({
           text="Load More"
         ></Button>
       </div>
-      <PaginationBar
-        currentPage={query.currentPage}
-        total={query.total}
-        perPage={10}
-        setQuery={setQuery}
-      ></PaginationBar>
+      <PaginationBar query={query} setQuery={setQuery}></PaginationBar>
     </React.Fragment>
   );
 };

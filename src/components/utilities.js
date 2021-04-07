@@ -201,5 +201,11 @@ export const formatQueryDate = (date) => {
 };
 
 export const paginationDisplay = (first, last, array) => {
+  if (first === null || last === null) {
+    console.log("got null");
+    return null;
+  }
   return array.slice(first, last);
 };
+
+export const getPages = (total, perPage) => Math.ceil(total / perPage);
