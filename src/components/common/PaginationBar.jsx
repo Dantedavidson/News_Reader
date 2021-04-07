@@ -12,27 +12,29 @@ export const PaginationBar = ({ query, setQuery }) => {
 
   const current = (number) => {
     if (number > pages - perPage) {
-      let active = number;
-      let first = pages - perPage;
-      let last = pages;
+      let activeTemp = number;
+      let firstTemp = pages - perPage;
+      let lastTemp = pages;
       setQuery((prevState) => ({
         ...prevState,
-        active: active,
-        first: first,
-        last: last,
-        pageRange: paginationDisplay(first, last, items),
+        active: activeTemp,
+        currentPage: activeTemp - 1,
+        first: firstTemp,
+        last: lastTemp,
+        pageRange: paginationDisplay(firstTemp, lastTemp, items),
       }));
       return;
     }
-    let active = number;
-    let first = number - 1;
-    let last = number + perPage - 1;
+    let activeTemp = number;
+    let firstTemp = number - 1;
+    let lastTemp = number + perPage - 1;
     setQuery((prevState) => ({
       ...prevState,
-      active: active,
-      first: first,
-      last: last,
-      pageRange: paginationDisplay(first, last, items),
+      active: activeTemp,
+      currentPage: activeTemp - 1,
+      first: firstTemp,
+      last: lastTemp,
+      pageRange: paginationDisplay(firstTemp, lastTemp, items),
     }));
   };
   const next = () => {
@@ -46,7 +48,7 @@ export const PaginationBar = ({ query, setQuery }) => {
     }
     const activeTemp = active + 1;
     const lastTemp = last + 1;
-    const firstTemp = last - perPage;
+    const firstTemp = last - (perPage - 1);
     setQuery((prevState) => ({
       ...prevState,
       active: activeTemp,
@@ -58,19 +60,20 @@ export const PaginationBar = ({ query, setQuery }) => {
   };
   const back = () => {
     if (active > pages - (perPage - 1)) {
-      console.log(active, pages - (perPage - 1));
       setQuery((prevState) => ({
         ...prevState,
         active: prevState.active - 1,
+        currentPage: prevState.currentPage - 1,
       }));
       return;
     }
     const activeTemp = active - 1;
     const lastTemp = last - 1;
-    const firstTemp = last - perPage;
+    const firstTemp = last - (perPage + 1);
     setQuery((prevState) => ({
       ...prevState,
       active: activeTemp,
+      currentPage: activeTemp - 1,
       first: firstTemp,
       last: lastTemp,
       pageRange: paginationDisplay(firstTemp, lastTemp, items),
@@ -79,24 +82,24 @@ export const PaginationBar = ({ query, setQuery }) => {
   const firstPage = () => {
     const activeTemp = 1;
     const lastTemp = perPage;
-    const firstTemp = last - perPage;
+    const firstTemp = lastTemp - perPage;
     setQuery((prevState) => ({
       ...prevState,
       active: activeTemp,
+      currentPage: 0,
       first: firstTemp,
       last: lastTemp,
       pageRange: paginationDisplay(firstTemp, lastTemp, items),
     }));
   };
   const lastPage = () => {
-    if (active === pages - perPage) return;
-
     const activeTemp = pages - (perPage - 1);
-    const lastTemp = active - 1 + perPage;
-    const firstTemp = last - perPage;
+    const lastTemp = activeTemp - 1 + perPage;
+    const firstTemp = lastTemp - perPage;
     setQuery((prevState) => ({
       ...prevState,
       active: activeTemp,
+      currentPage: activeTemp - 1,
       first: firstTemp,
       last: lastTemp,
       pageRange: paginationDisplay(firstTemp, lastTemp, items),

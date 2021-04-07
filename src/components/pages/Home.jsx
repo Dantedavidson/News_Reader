@@ -83,8 +83,8 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
           results: results,
           loading: false,
           active: prevState.active ? prevState.active : 1,
-          first: 0,
-          last: 10,
+          first: prevState.first ? prevState.first : 0,
+          last: prevState.last ? prevState.last : 10,
         }));
       } catch (e) {
         console.log(e);

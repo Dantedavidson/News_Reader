@@ -57,6 +57,8 @@ export const cleanData = (data) => {
 
   if (data.url) {
     story.url = data.url;
+  } else if (data.web_url) {
+    story.url = data.web_url;
   } else {
     story.url = `https://www.nytimes.com/search?query=${story.title}`;
   }
