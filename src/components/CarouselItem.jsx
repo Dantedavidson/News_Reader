@@ -1,3 +1,4 @@
+//Individual Carousel item
 import React from "react";
 
 import { LikeBtn } from "./common/LikeBtn";

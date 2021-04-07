@@ -1,9 +1,11 @@
+//Footer component
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 
 export const Footer = () => {
+  //set scroll to top of page
   const scrollTop = () => {
     window.scrollTo(0, 0);
   };

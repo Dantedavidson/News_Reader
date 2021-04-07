@@ -1,3 +1,5 @@
+//Shared state for home page, renders components
+
 import React, { useEffect, useState } from "react";
 
 //API
@@ -21,6 +23,7 @@ import {
 } from "../utilities";
 
 export const Home = ({ savedStories, setSavedStories, data }) => {
+  //Object containing query and pagination data
   const initialQuery = {
     total: null,
     results: [],
@@ -31,15 +34,15 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
     loading: false,
     active: null,
     items: [],
-    first: null,
-    last: null,
+    firstDisplay: null,
+    lastDisplay: null,
     pageRange: [],
   };
   const [topStories, setTopStories] = useState([]);
   const [loadingTopStories, setLoadingTopStories] = useState(true);
   const [currentDisplay, setCurrentDisplay] = useState("start");
   const [query, setQuery] = useState(initialQuery);
-
+  //check if stories from api have been saved, set like status accordingly
   useEffect(() => {
     if (data.length === 0) {
       return;
@@ -52,6 +55,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
     setLoadingTopStories(false);
   }, [data]);
 
+  //Make Api Call when currentPage changes through form or pagination
   useEffect(() => {
     //Check querySting is set
     if (!query.queryString) return;
@@ -62,18 +66,21 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
       loading: true,
     }));
 
-    //Make Api Call
+    // Api Call
     async function getData() {
       try {
         let res = await getSearchStories(
           `${query.queryString}&page=${query.currentPage}`
         );
         let totalTemp =
-          res.headers["content-length"] > 1000
+          res.data.response.meta.hits > 1000
             ? 1000
-            : res.headers["content-length"];
+            : res.data.response.meta.hits;
         let results = createCard(res.data.response.docs, savedStories);
-
+        let lastTemp =
+          getPages(totalTemp, query.perPage) >= 10
+            ? 10
+            : getPages(totalTemp, query.perPage);
         setQuery((prevState) => ({
           ...prevState,
           total: prevState.total ? prevState.total : totalTemp,
@@ -83,8 +90,8 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
           results: results,
           loading: false,
           active: prevState.active ? prevState.active : 1,
-          first: prevState.first ? prevState.first : 0,
-          last: prevState.last ? prevState.last : 10,
+          firstDisplay: prevState.firstDisplay ? prevState.firstDisplay : 0,
+          lastDisplay: prevState.lastDisplay ? prevState.lastDisplay : lastTemp,
         }));
       } catch (e) {
         console.log(e);

@@ -1,3 +1,5 @@
+//Grid for saved user stories.
+
 import React, { useState } from "react";
 
 //Components
@@ -11,7 +13,7 @@ export const TempGrid = ({ savedStories, setSavedStories, tags }) => {
   });
 
   let filtered = savedStories;
-
+  //Logic for filter
   if (search.term && search.tags !== "All") {
     let temp = savedStories.filter((card) =>
       card.story.title.toLowerCase().startsWith(search.term.toLowerCase())

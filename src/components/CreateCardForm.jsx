@@ -34,7 +34,7 @@ export const CreateCardForm = ({
     resolver: yupResolver(userCardSchema),
     reValidateMode: "onChange",
   });
-
+  // Takes data from input field and updates state on change.
   const handleChange = (data) => {
     setUserInput((prevState) => {
       return {
@@ -45,6 +45,7 @@ export const CreateCardForm = ({
       };
     });
   };
+  //Takes event. Sets errors for tag
   const handleTag = (e) => {
     if (userInput.tag.includes(e.target.value)) {
       setError("tag", {
@@ -61,7 +62,7 @@ export const CreateCardForm = ({
     }
     return;
   };
-
+  //Takes event. Handles adding of author or tag.
   const handleAdd = (e) => {
     const key = e.currentTarget.parentNode.childNodes[1].id;
     const value = e.currentTarget.parentNode.childNodes[1].value;
@@ -91,6 +92,7 @@ export const CreateCardForm = ({
       setTags([...tags, value]);
     }
   };
+  //Takes form data. Handles submit
   const onSubmit = (data) => {
     console.log(data);
     const card = userCard(userInput);
@@ -102,10 +104,12 @@ export const CreateCardForm = ({
       tag: [],
     });
   };
+  //Updates saved stories
   useEffect(() => {
     setLocalStorage(savedStories, "Stories");
   }, [savedStories]);
 
+  //Updates saved tags
   useEffect(() => {
     setLocalStorage(tags, "Tags");
   }, [tags]);

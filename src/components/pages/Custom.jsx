@@ -1,3 +1,4 @@
+//Stores shared state for create story page. Render components
 import React, { useState } from "react";
 import { CreateCardForm } from "../CreateCardForm";
 import { DisplayCustomCard } from "../DisplayCustomCard";

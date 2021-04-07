@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+//Form modal. Handles user input and validation. Updates home query state.
+
+import React from "react";
 
 //Libraries
 import { useForm } from "react-hook-form";
@@ -146,11 +148,11 @@ export const NewsSearchForm = ({
     //Reset to default
     setQuery(initialQuery);
 
-    //format form dates
+    //format dates for query
     data.startDate = formatQueryDate(data.startDate);
     data.endDate = formatQueryDate(data.endDate);
 
-    // create query and store to setQuery
+    // create query and store in home state
     let query = createQuery(data);
     setQuery((prevState) => ({
       ...prevState,

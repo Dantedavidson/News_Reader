@@ -1,5 +1,5 @@
+//Individual card item
 import React from "react";
-import { Link } from "react-router-dom";
 import { LikeBtn } from "./common/LikeBtn";
 
 export const NewsCard = ({ card, savedStories, setSavedStories }) => {

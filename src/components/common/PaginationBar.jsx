@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+//Displays pagination and handles pagination logic
+import React, { useEffect } from "react";
 
 //Libraries
 import Pagination from "react-bootstrap/Pagination";
@@ -7,21 +8,28 @@ import Pagination from "react-bootstrap/Pagination";
 import { paginationDisplay } from "../utilities";
 
 export const PaginationBar = ({ query, setQuery }) => {
-  console.log(query);
-  const { pages, perPage, items, active, last, first, pageRange } = query;
+  const { pages, perPage, items, active, lastDisplay, pageRange } = query;
 
+  //Takes a number and sets search and display to that number.
   const current = (number) => {
-    if (number > pages - perPage) {
-      let activeTemp = number;
-      let firstTemp = pages - perPage;
-      let lastTemp = pages;
+    if (pages < perPage) {
       setQuery((prevState) => ({
         ...prevState,
-        active: activeTemp,
-        currentPage: activeTemp - 1,
-        first: firstTemp,
-        last: lastTemp,
-        pageRange: paginationDisplay(firstTemp, lastTemp, items),
+        active: number,
+        currentPage: number - 1,
+      }));
+      return;
+    }
+
+    if (number > pages - perPage) {
+      let firstTemp = pages - perPage;
+      setQuery((prevState) => ({
+        ...prevState,
+        active: number,
+        currentPage: number - 1,
+        firstDisplay: firstTemp,
+        lastDisplay: pages,
+        pageRange: paginationDisplay(firstTemp, pages, items),
       }));
       return;
     }
@@ -32,13 +40,14 @@ export const PaginationBar = ({ query, setQuery }) => {
       ...prevState,
       active: activeTemp,
       currentPage: activeTemp - 1,
-      first: firstTemp,
-      last: lastTemp,
+      firstDisplay: firstTemp,
+      lastDisplay: lastTemp,
       pageRange: paginationDisplay(firstTemp, lastTemp, items),
     }));
   };
+  //Increment search and display
   const next = () => {
-    if (active >= pages - (perPage - 1)) {
+    if (active >= pages - (perPage - 1) || pages < perPage) {
       setQuery((prevState) => ({
         ...prevState,
         active: prevState.active + 1,
@@ -47,19 +56,20 @@ export const PaginationBar = ({ query, setQuery }) => {
       return;
     }
     const activeTemp = active + 1;
-    const lastTemp = last + 1;
-    const firstTemp = last - (perPage - 1);
+    const lastTemp = lastDisplay + 1;
+    const firstTemp = lastDisplay - (perPage - 1);
     setQuery((prevState) => ({
       ...prevState,
       active: activeTemp,
       currentPage: activeTemp - 1,
-      first: firstTemp,
-      last: lastTemp,
+      firstDisplay: firstTemp,
+      lastDisplay: lastTemp,
       pageRange: paginationDisplay(firstTemp, lastTemp, items),
     }));
   };
+  //Decrement search and display
   const back = () => {
-    if (active > pages - (perPage - 1)) {
+    if (active > pages - (perPage - 1) || pages < perPage) {
       setQuery((prevState) => ({
         ...prevState,
         active: prevState.active - 1,
@@ -68,17 +78,18 @@ export const PaginationBar = ({ query, setQuery }) => {
       return;
     }
     const activeTemp = active - 1;
-    const lastTemp = last - 1;
-    const firstTemp = last - (perPage + 1);
+    const lastTemp = lastDisplay - 1;
+    const firstTemp = lastDisplay - (perPage + 1);
     setQuery((prevState) => ({
       ...prevState,
       active: activeTemp,
       currentPage: activeTemp - 1,
-      first: firstTemp,
-      last: lastTemp,
+      firstDisplay: firstTemp,
+      lastDisplay: lastTemp,
       pageRange: paginationDisplay(firstTemp, lastTemp, items),
     }));
   };
+  //Set search and display to first page
   const firstPage = () => {
     const activeTemp = 1;
     const lastTemp = perPage;
@@ -87,11 +98,12 @@ export const PaginationBar = ({ query, setQuery }) => {
       ...prevState,
       active: activeTemp,
       currentPage: 0,
-      first: firstTemp,
-      last: lastTemp,
+      firstDisplay: firstTemp,
+      lastDisplay: lastTemp,
       pageRange: paginationDisplay(firstTemp, lastTemp, items),
     }));
   };
+  //Set search and display to first item in last page range
   const lastPage = () => {
     const activeTemp = pages - (perPage - 1);
     const lastTemp = activeTemp - 1 + perPage;
@@ -100,12 +112,12 @@ export const PaginationBar = ({ query, setQuery }) => {
       ...prevState,
       active: activeTemp,
       currentPage: activeTemp - 1,
-      first: firstTemp,
-      last: lastTemp,
+      firstDisplay: firstTemp,
+      lastDisplay: lastTemp,
       pageRange: paginationDisplay(firstTemp, lastTemp, items),
     }));
   };
-
+  // Set total number of pages to state. Set pageRange to first set of pages.
   useEffect(() => {
     for (let n = 1; n <= pages; n++) {
       setQuery((prevState) => ({
@@ -116,8 +128,8 @@ export const PaginationBar = ({ query, setQuery }) => {
     setQuery((prevState) => ({
       ...prevState,
       pageRange: paginationDisplay(
-        prevState.first,
-        prevState.last,
+        prevState.firstDisplay,
+        prevState.lastDisplay,
         prevState.items
       ),
     }));

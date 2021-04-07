@@ -1,3 +1,4 @@
+//Displays loading gif or carousel items.
 import React from "react";
 
 //Libraries

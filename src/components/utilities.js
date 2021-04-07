@@ -2,19 +2,22 @@ import uuid from "react-uuid";
 import { API_KEY } from "../API";
 import { DateTime } from "luxon";
 
+// Takes a date from the api and returns en-gb format
 const formatApiDate = (date) => {
   let [y, m, d] = date
     .match(/[0-9-]{10}/g)
     .toString()
     .split("-");
-  return `${d}-${m}-${y}`;
+  return `${d}/${m}/${y}`;
 };
 
+//Returns current date in en-gb format
 const currentDate = () => {
   let date = DateTime.now().setLocale("en-gb").toLocaleString();
   return date;
 };
 
+//Takes data from differnt API end points and returns standadised object
 export const cleanData = (data) => {
   const story = {
     title: "",
@@ -78,6 +81,7 @@ export const cleanData = (data) => {
   return story;
 };
 
+//Compares current object against array of saved objects. Sets like status if object is contained in array.
 export const likeStatus = (saved, current) => {
   let like = saved.some((item) => {
     return item.story.title === current.story.title && item.like === true;
@@ -85,6 +89,7 @@ export const likeStatus = (saved, current) => {
   return like;
 };
 
+//Creates a card object from standardised data. Also takes saved array to set like status.
 export const createCard = (data, saved) => {
   const cards = data.map((item) => {
     let card = {
@@ -99,6 +104,7 @@ export const createCard = (data, saved) => {
   return cards;
 };
 
+//Creates a card object from form data.
 export const userCard = (data) => {
   let card = {
     story: {
@@ -119,10 +125,11 @@ export const userCard = (data) => {
   return card;
 };
 
+//Takes an item to be saved, an array to be saved to and a setter method
 export const saveCard = (object, saveTo, setter) => {
   saveTo.length === 0 ? setter([object]) : setter([...saveTo, object]);
 };
-
+//Takes an item to be deleted, an array to be saved to and a setter method
 export const deleteCard = (object, saveTo, setter) => {
   const filtered = saveTo.filter((item) => {
     return item.story.title !== object.story.title;
@@ -130,10 +137,12 @@ export const deleteCard = (object, saveTo, setter) => {
   filtered.length > 0 ? setter([...filtered]) : setter([]);
 };
 
+//Returns true if string is null or empty
 export function isEmptyOrSpaces(str) {
   return str === null || str.match(/^ *$/) !== null;
 }
 
+// Takes an array of names and returns a formated string
 export const formatAuthors = (array) => {
   let string = array.reduce((accumulator, value, index) => {
     if (array.length === 1) {
@@ -151,10 +160,12 @@ export const formatAuthors = (array) => {
   return string;
 };
 
+//Takes an array to be saved and a string the location in local storage
 export const setLocalStorage = (array, location) => {
   localStorage.setItem(location, JSON.stringify(array));
 };
 
+//Takes a setter method for state and a string for local storage location. Create local storage location or save it to state.
 export const getLocalStorage = (setter, location) => {
   if (localStorage.getItem(location) === null) {
     localStorage.getItem(location, JSON.stringify([]));
@@ -164,6 +175,7 @@ export const getLocalStorage = (setter, location) => {
   }
 };
 
+//Takes form data and returns a formated query string.
 export const createQuery = (data) => {
   const arr = (({ term, startDate, endDate, section }) => [
     term,
@@ -192,7 +204,7 @@ export const createQuery = (data) => {
 
   return query;
 };
-
+//Takes date from form and returns valid string for query
 export const formatQueryDate = (date) => {
   if (!date) {
     return null;
@@ -201,13 +213,12 @@ export const formatQueryDate = (date) => {
   const queryDate = `${y}${m}${d}`;
   return queryDate;
 };
-
+//Takes the first display page, the last display page, and all the total pages. Returns array of pages to display.
 export const paginationDisplay = (first, last, array) => {
   if (first === null || last === null) {
-    console.log("got null");
     return null;
   }
   return array.slice(first, last);
 };
-
+//Takes the total number results and results per pages. Returnes total number of pages.
 export const getPages = (total, perPage) => Math.ceil(total / perPage);

@@ -1,3 +1,5 @@
+//Draws a line
+
 import React from "react";
 
 export const HorizontalLine = () => {

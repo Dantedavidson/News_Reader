@@ -1,3 +1,5 @@
+//Holds state which is shared across pages, Controls routes
+
 import React, { useState, useEffect } from "react";
 import {
   Route,
@@ -46,7 +48,7 @@ export const App = () => {
   const [data, setData] = useState([]);
   const [savedStories, setSavedStories] = useState([]);
   const [tags, setTags] = useState([]);
-
+  //Fetch stories for main page and check local storage
   useEffect(() => {
     getLocalStorage(setSavedStories, "Stories");
     getLocalStorage(setTags, "Tags");

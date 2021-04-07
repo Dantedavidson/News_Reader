@@ -8,12 +8,15 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { saveCard, deleteCard, setLocalStorage } from "../utilities";
 
 export const LikeBtn = ({ card, savedStories, setSavedStories }) => {
+  //Toggle like status of item. Updates saved stories.
   const manageLike = () => {
     card.like = !card.like;
     card.like
       ? saveCard(card, savedStories, setSavedStories)
       : deleteCard(card, savedStories, setSavedStories);
   };
+
+  // update local storage
   useEffect(() => {
     setLocalStorage(savedStories, "Stories");
   }, [savedStories]);

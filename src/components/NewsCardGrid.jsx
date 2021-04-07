@@ -1,3 +1,5 @@
+//Grid for user search. Displays user search as cards.
+
 import React, { useEffect } from "react";
 
 //components
@@ -14,9 +16,6 @@ export const NewsCardGrid = ({
   savedStories,
   setSavedStories,
 }) => {
-  useEffect(() => {
-    console.log(query);
-  }, [query]);
   return query.loading ? (
     <React.Fragment>
       <Loading></Loading>

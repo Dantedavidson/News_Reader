@@ -2,6 +2,7 @@ import React from "react";
 import uuid from "react-uuid";
 
 export const Search = ({ search, setSearch, tags }) => {
+  // takes search input and filters diaplay.
   const handleChange = (e) => {
     setSearch((prevState) => {
       return {
