@@ -16,7 +16,7 @@ export const TempGrid = ({ savedStories, setSavedStories, tags, setModal }) => {
   //Logic for filter
   if (search.term && search.tags !== "All") {
     let temp = savedStories.filter((card) =>
-      card.story.title.toLowerCase().startsWith(search.term.toLowerCase())
+      card.story.title.toLowerCase().includes(search.term.toLowerCase())
     );
     filtered = temp.filter((card) => card.tags.includes(search.tags));
   } else if (search.term) {

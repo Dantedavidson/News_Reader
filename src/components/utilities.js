@@ -111,9 +111,10 @@ export const userCard = (data) => {
   let card = {
     story: {
       title: data.title,
-      lead: data.description,
+      lead: data.description === "Description" ? "" : data.description,
       date: `Published ${currentDate()}`,
-      byline: formatAuthors(data.author),
+      byline:
+        formatAuthors(data.author) === "By" ? "" : formatAuthors(data.author),
       url: data.url,
       imgUrl: null,
     },
@@ -231,6 +232,7 @@ export const scrollTop = () => {
   console.log("scroll to top");
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
+//shift
 export const shift = (e, setter, current) => {
   if (e.currentTarget.id === "left") {
     setter(current - 1);
