@@ -40,10 +40,14 @@ p.error,
 }
 
 //Modal form
-.modal-custom {
+.modal-custom.modal-form {
+  h3 {
+    margin-top: 1rem;
+    text-align: center;
+  }
   form {
-    margin-top: 3rem;
-    height: 100%;
+    margin-top: 4rem;
+    height: 80%;
     width: 80%;
     @include flex-container(column, space-between);
 

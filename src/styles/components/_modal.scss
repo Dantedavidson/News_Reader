@@ -78,6 +78,8 @@ span.modal-close {
         svg {
           display: none;
           align-self: center;
+          transform: scale(1.5);
+          cursor: pointer;
           &.display {
             display: initial;
           }

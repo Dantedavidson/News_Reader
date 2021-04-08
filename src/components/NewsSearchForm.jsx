@@ -173,8 +173,8 @@ export const NewsSearchForm = ({
       <div
         className={
           currentDisplay === "modal"
-            ? "modal-custom"
-            : "modal-custom modal-active"
+            ? "modal-custom modal-form"
+            : "modal-custom "
         }
       >
         <span
