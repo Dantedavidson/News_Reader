@@ -5,12 +5,12 @@ import { InspectBtn } from "./common/InspectBtn";
 import { EditBtn } from "./common/EditBtn";
 import { HorizontalLine } from "./common/HorizontalLine";
 
-export const NewsCard = ({ card, savedStories, setSavedStories }) => {
+export const NewsCard = ({ card, savedStories, setSavedStories, setModal }) => {
   const { imgUrl, title, byline, date, lead, url } = card.story;
 
   if (imgUrl) {
     return (
-      <div className="card">
+      <div className="card" id={card.id}>
         <a href={url} target="_blank">
           <h3>{title}</h3>
         </a>
@@ -21,8 +21,8 @@ export const NewsCard = ({ card, savedStories, setSavedStories }) => {
           <HorizontalLine></HorizontalLine>
         </div>
         <div>
-          <InspectBtn></InspectBtn>
-          <EditBtn></EditBtn>
+          <InspectBtn card={card} setModal={setModal}></InspectBtn>
+          <EditBtn card={card} setModal={setModal}></EditBtn>
           <LikeBtn
             card={card}
             savedStories={savedStories}
@@ -33,7 +33,7 @@ export const NewsCard = ({ card, savedStories, setSavedStories }) => {
     );
   } else {
     return (
-      <div className="card">
+      <div className="card" id={card.id}>
         <a href={url} target="_blank">
           <h3>{title}</h3>
         </a>
@@ -44,8 +44,8 @@ export const NewsCard = ({ card, savedStories, setSavedStories }) => {
           <HorizontalLine></HorizontalLine>
         </div>
         <div>
-          <InspectBtn></InspectBtn>
-          <EditBtn></EditBtn>
+          <InspectBtn card={card} setModal={setModal}></InspectBtn>
+          <EditBtn card={card} setModal={setModal}></EditBtn>
           <LikeBtn
             card={card}
             savedStories={savedStories}

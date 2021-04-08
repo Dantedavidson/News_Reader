@@ -231,3 +231,10 @@ export const scrollTop = () => {
   console.log("scroll to top");
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
+export const shift = (e, setter, current) => {
+  if (e.currentTarget.id === "left") {
+    setter(current - 1);
+  } else {
+    setter(current + 1);
+  }
+};

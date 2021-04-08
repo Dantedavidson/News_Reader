@@ -11,18 +11,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 //Utilities
-import { formatAuthors, paginationDisplay } from "./utilities";
+import { formatAuthors, paginationDisplay, shift } from "./utilities";
 
 export const DisplayCustomCard = ({ userInput, setUserInput }) => {
   const [currentPage, setCurrentPage] = useState(1);
-
-  const shift = (e) => {
-    if (e.currentTarget.id === "left") {
-      setCurrentPage(currentPage - 1);
-    } else {
-      setCurrentPage(currentPage + 1);
-    }
-  };
 
   const totalPages = Math.ceil(userInput.tag.length / 2);
   const indexOfLastPost = currentPage * 2;
@@ -56,7 +48,14 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
         <h6 className="author">{formatAuthors(userInput.author)}</h6>
         <h6>30/03/2021</h6>
       </div>
-      <div className="arrow display" id="left" onClick={shift}>
+
+      <div
+        className="arrow display"
+        id="left"
+        onClick={(e) => {
+          shift(e, setCurrentPage, currentPage);
+        }}
+      >
         <FontAwesomeIcon
           icon={faAngleLeft}
           className={currentPage === 1 ? "" : "display"}
@@ -78,7 +77,13 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
           })
         )}
       </div>
-      <div className="arrow display" id="right" onClick={shift}>
+      <div
+        className="arrow display"
+        id="right"
+        onClick={(e) => {
+          shift(e, setCurrentPage, currentPage);
+        }}
+      >
         <FontAwesomeIcon
           icon={faAngleRight}
           className={

@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { NewsCard } from "./NewsCard";
 import { Search } from "./Search";
 
-export const TempGrid = ({ savedStories, setSavedStories, tags }) => {
+export const TempGrid = ({ savedStories, setSavedStories, tags, setModal }) => {
   const [search, setSearch] = useState({
     term: "",
     tags: "All",
@@ -35,6 +35,7 @@ export const TempGrid = ({ savedStories, setSavedStories, tags }) => {
         {filtered.map((story) => {
           return (
             <NewsCard
+              setModal={setModal}
               card={story}
               savedStories={savedStories}
               setSavedStories={setSavedStories}

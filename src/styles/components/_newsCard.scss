@@ -58,6 +58,9 @@
     width: 90%;
     margin: 0 auto;
     @include flex-container($justifyContent: space-between);
+    > svg {
+      cursor: pointer;
+    }
   }
 }
 
