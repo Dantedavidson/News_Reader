@@ -33,6 +33,8 @@ import {
   faAngleRight,
   faTimes,
   faPlus,
+  faSearchPlus,
+  faPencilAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -41,7 +43,9 @@ library.add(
   faAngleLeft,
   faAngleRight,
   faTimes,
-  faPlus
+  faPlus,
+  faSearchPlus,
+  faPencilAlt
 );
 
 export const App = () => {

@@ -1,6 +1,6 @@
 .card {
   padding: 0.5rem;
-  height: 360px;
+  height: 380px;
   width: 300px;
   @include flex-container(column, space-between);
   transition: all 1s;
@@ -13,6 +13,18 @@
     font-weight: 700;
     margin-bottom: 1rem;
   }
+  h6 {
+    margin: 0;
+    font-weight: 100;
+    font-size: 0.9rem;
+  }
+  img {
+    max-width: 280px;
+    height: 140px;
+    margin: 0 auto 1rem auto;
+  }
+
+  //Overflow ellipse for paragraph over 6 lines
   p {
     height: 140px;
     display: -webkit-box;
@@ -21,23 +33,31 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  img {
-    max-width: 280px;
-    height: 140px;
-    margin: 0 auto 1rem auto;
-  }
-  h6 {
-    margin: 0;
-    font-weight: 100;
-    font-size: 0.9rem;
-  }
-  > div {
-    @include flex-container($justifyContent: space-between);
-    width: 100%;
+
+  .horizontal-line {
+    margin: 3px auto 0 auto;
+    height: 1px;
+    width: 282px;
   }
 
-  path {
-    transform: scale(1.2) translateY(2rem) translateX(-15rem);
+  //Animate author overflow
+  > div:nth-of-type(1) {
+    h6:nth-child(1) {
+      white-space: nowrap;
+      width: 260px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: text-indent 7s linear;
+
+      &:hover {
+        text-indent: -400px;
+      }
+    }
+  }
+  > div:nth-of-type(2) {
+    width: 90%;
+    margin: 0 auto;
+    @include flex-container($justifyContent: space-between);
   }
 }
 
