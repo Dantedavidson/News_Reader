@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 //Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 //Utilities
 import { isEmptyOrSpaces, setLocalStorage, userCard } from "./utilities";
@@ -99,17 +99,30 @@ export const CreateCardForm = ({
       setTags([...tags, value]);
     }
   };
+
+  //Takes event. Handles deleting author or tag
+  const handleDelete = (e) => {
+    const key = e.currentTarget.parentNode.childNodes[1].dataset.key;
+    const value = e.currentTarget.parentNode.childNodes[1].value;
+    const filter = userInput[key].filter((item) => item !== value);
+
+    setUserInput((prevState) => ({
+      ...prevState,
+      [key]: filter,
+    }));
+  };
   //Takes form data. Handles submit
   const onSubmit = (data) => {
     console.log(data);
-    const card = userCard(userInput);
-    setSavedStories([...savedStories, card]);
-    setUserInput({
-      title: "Title",
-      description: "Description",
-      author: [],
-      tag: [],
-    });
+    console.log(userInput);
+    //   const card = userCard(userInput);
+    //   setSavedStories([...savedStories, card]);
+    //   setUserInput({
+    //     title: "Title",
+    //     description: "Description",
+    //     author: [],
+    //     tag: [],
+    //   });
   };
   //Updates saved stories
   useEffect(() => {
@@ -123,6 +136,8 @@ export const CreateCardForm = ({
   return (
     <React.Fragment>
       <form className="form-create">
+        <h2>Create Custom Story</h2>
+        {/* Add Title */}
         <div className={errors.title ? "input error" : "input"}>
           <label for="title">Title</label>
           <textarea
@@ -139,6 +154,7 @@ export const CreateCardForm = ({
         <p className="error below">
           {errors.title && "Please include a title."}
         </p>
+        {/* Add Description */}
         <div className={errors.description ? "input error" : "input"}>
           <label for="description">Description</label>
           <textarea
@@ -156,6 +172,8 @@ export const CreateCardForm = ({
           {errors.description &&
             "Please enter a valid description that is less than 250 characters."}
         </p>
+
+        {/* Add URL */}
         <div className={errors.url ? "input error" : "input"}>
           <label for="url">Url</label>
           <input
@@ -169,9 +187,17 @@ export const CreateCardForm = ({
         <p className="error below">
           {errors.url && "Please enter a valid URL."}
         </p>
+
+        {/* Add Author */}
         <div className={errors.author ? "input error" : "input"}>
           <label for="author">Author</label>
-          <input id="author" name="author" type="text" ref={register} />
+          <input
+            id="author"
+            data-key="author"
+            name="author"
+            type="text"
+            ref={register}
+          />
 
           <FontAwesomeIcon
             onClick={handleAdd}
@@ -180,6 +206,8 @@ export const CreateCardForm = ({
           ></FontAwesomeIcon>
         </div>
         <p className="error below">{errors.author && errors.author.message}</p>
+
+        {/* Add Tag */}
         <div className={errors.tag ? "input error" : "input"}>
           <label for="tag">Tag</label>
           <input
@@ -191,7 +219,6 @@ export const CreateCardForm = ({
             onChange={(e) => handleTag(e)}
           />
           <datalist id="tags">
-            <option value="world">World</option>
             {tags.map((tag) => (
               <option key={uuid()} value={tag}>
                 {tag}
@@ -206,10 +233,52 @@ export const CreateCardForm = ({
           ></FontAwesomeIcon>
         </div>
         <p className="error below">{errors.tag && errors.tag.message}</p>
+
+        {/* Remove Author */}
+        <div className="input">
+          <label for="remove-author" data-key="author">
+            Remove Author
+          </label>
+          <select type="text" data-key="author" name="remove-author">
+            {userInput.author.map((author) => (
+              <option key={uuid()} value={author}>
+                {author}
+              </option>
+            ))}
+          </select>
+          <FontAwesomeIcon
+            onClick={handleDelete}
+            className="add-btn"
+            icon={faTimes}
+          ></FontAwesomeIcon>
+        </div>
+
+        {/* Remove Tag */}
+        <div className="input">
+          <label>Remove Tag</label>
+          <select data-key="tag">
+            {userInput.tag.map((tag) => (
+              <option key={uuid()} value={tag}>
+                {tag}
+              </option>
+            ))}
+          </select>
+
+          <FontAwesomeIcon
+            onClick={handleDelete}
+            className="add-btn"
+            icon={faTimes}
+          ></FontAwesomeIcon>
+        </div>
       </form>
-      {/* <button className="create" onClick={handleSubmit(onSubmit)}>
-        Add Card
-      </button> */}
+      <div>
+        <button className="create" onClick="">
+          Preview Card
+        </button>
+        <button className="create" onClick={handleSubmit(onSubmit)}>
+          Add Card
+        </button>
+      </div>
     </React.Fragment>
   );
 };

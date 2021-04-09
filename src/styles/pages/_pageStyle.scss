@@ -5,10 +5,5 @@
 }
 
 .body.create {
-  @include flex-container($justifyContent: space-around);
-  > div {
-    height: 400px;
-    width: 400px;
-    border: 1px solid black;
-  }
+  @include flex-container(column, space-around, center);
 }

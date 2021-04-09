@@ -35,6 +35,7 @@ import {
   faPlus,
   faSearchPlus,
   faPencilAlt,
+  faMinus,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -45,7 +46,8 @@ library.add(
   faTimes,
   faPlus,
   faSearchPlus,
-  faPencilAlt
+  faPencilAlt,
+  faMinus
 );
 
 export const App = () => {
