@@ -47,7 +47,7 @@ export const CreateCardForm = ({
       return {
         ...prevState,
         [data.target.id]: isEmptyOrSpaces(data.target.value)
-          ? data.target.id
+          ? ""
           : data.target.value,
       };
     });
@@ -104,6 +104,7 @@ export const CreateCardForm = ({
   const handleDelete = (e) => {
     const key = e.currentTarget.parentNode.childNodes[1].dataset.key;
     const value = e.currentTarget.parentNode.childNodes[1].value;
+    if (!value) return;
     const filter = userInput[key].filter((item) => item !== value);
 
     setUserInput((prevState) => ({
@@ -118,8 +119,8 @@ export const CreateCardForm = ({
     //   const card = userCard(userInput);
     //   setSavedStories([...savedStories, card]);
     //   setUserInput({
-    //     title: "Title",
-    //     description: "Description",
+    //     title: "",
+    //     description: "",
     //     author: [],
     //     tag: [],
     //   });
@@ -136,7 +137,6 @@ export const CreateCardForm = ({
   return (
     <React.Fragment>
       <form className="form-create">
-        <h2>Create Custom Story</h2>
         {/* Add Title */}
         <div className={errors.title ? "input error" : "input"}>
           <label for="title">Title</label>
@@ -270,15 +270,15 @@ export const CreateCardForm = ({
             icon={faTimes}
           ></FontAwesomeIcon>
         </div>
+        <div>
+          <button className="create" onClick="">
+            Preview Card
+          </button>
+          <button className="create" onClick={handleSubmit(onSubmit)}>
+            Add Card
+          </button>
+        </div>
       </form>
-      <div>
-        <button className="create" onClick="">
-          Preview Card
-        </button>
-        <button className="create" onClick={handleSubmit(onSubmit)}>
-          Add Card
-        </button>
-      </div>
     </React.Fragment>
   );
 };

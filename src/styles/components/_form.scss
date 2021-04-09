@@ -70,7 +70,7 @@ p.error,
 
 //User Card Form
 .form-create {
-  width: 1000px;
+  width: 800px;
   height: auto;
   //border: 1px solid black;
   margin: 0 0 3rem 0;
@@ -120,10 +120,10 @@ p.error,
     align-self: flex-end;
   }
 }
-.body.create > div {
-  width: 800px;
-  @include flex-container($justifyContent: space-between);
-}
+// .body.create > div:nth-of-type(1) {
+//   width: 800px;
+//   @include flex-container($justifyContent: space-between);
+// }
 button.create {
   height: 40px;
   width: 45%;

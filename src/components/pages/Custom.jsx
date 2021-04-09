@@ -9,8 +9,8 @@ import { Footer } from "../Footer";
 
 export const Custom = ({ tags, setTags, savedStories, setSavedStories }) => {
   const [userInput, setUserInput] = useState({
-    title: "Title",
-    description: "Description",
+    title: "",
+    description: "",
     author: [],
     tag: [],
   });
@@ -27,10 +27,10 @@ export const Custom = ({ tags, setTags, savedStories, setSavedStories }) => {
           tags={tags}
           setTags={setTags}
         ></CreateCardForm>
-        {/* <DisplayCustomCard
+        <DisplayCustomCard
           userInput={userInput}
           setUserInput={setUserInput}
-        ></DisplayCustomCard> */}
+        ></DisplayCustomCard>
       </div>
 
       <Footer />

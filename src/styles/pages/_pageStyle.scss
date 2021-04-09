@@ -5,5 +5,6 @@
 }
 
 .body.create {
-  @include flex-container(column, space-around, center);
+  // @include flex-container(column, space-around, center);
+  @include flex-container();
 }

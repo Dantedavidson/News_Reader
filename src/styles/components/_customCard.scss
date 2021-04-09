@@ -1,6 +1,7 @@
 .custom-card {
   padding: 1rem;
-
+  margin-left: auto;
+  width: 40%;
   .arrow {
     position: absolute;
     display: inline-block;
@@ -26,7 +27,6 @@
   }
   .tag-grid {
     width: 80%;
-
     margin: 1rem 0 0 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -34,30 +34,7 @@
   > div:nth-of-type(1) {
     height: 65px;
   }
-  h3 {
-    height: 100px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  h6.author {
-    max-height: 38px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  > p {
-    height: 120px;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+
   .tag {
     @include flex-container($justifyContent: space-between);
     max-width: 140px;
@@ -93,3 +70,20 @@
     }
   }
 }
+
+// h6.author {
+//   max-height: 38px;
+//   display: -webkit-box;
+//   -webkit-line-clamp: 2;
+//   -webkit-box-orient: vertical;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }
+// > p {
+//   height: 120px;
+//   display: -webkit-box;
+//   -webkit-line-clamp: 4;
+//   -webkit-box-orient: vertical;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }

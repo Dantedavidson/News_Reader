@@ -42,57 +42,60 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
 
   return (
     <div className="custom-card">
-      <h3>{userInput.title}</h3>
+      <h3>Title</h3>
+      <p>{userInput.title}</p>
+      <h3>Description</h3>
       <p>{userInput.description}</p>
-      <div>
-        <h6 className="author">{formatAuthors(userInput.author)}</h6>
-        <h6>30/03/2021</h6>
-      </div>
-
-      <div
-        className="arrow display"
-        id="left"
-        onClick={(e) => {
-          shift(e, setCurrentPage, currentPage);
-        }}
-      >
-        <FontAwesomeIcon
-          icon={faAngleLeft}
-          className={currentPage === 1 ? "" : "display"}
-        ></FontAwesomeIcon>
-      </div>
-      <div className="tag-grid">
-        {userInput.tag.length === 0 ? (
-          <h4>Tags</h4>
-        ) : (
-          currentPosts.map((item) => {
-            return (
-              <Tag
-                title={item}
-                key={uuid()}
-                tags={userInput.tag}
-                setTags={setUserInput}
-              ></Tag>
-            );
-          })
-        )}
-      </div>
-      <div
-        className="arrow display"
-        id="right"
-        onClick={(e) => {
-          shift(e, setCurrentPage, currentPage);
-        }}
-      >
-        <FontAwesomeIcon
-          icon={faAngleRight}
-          className={
-            currentPage === totalPages || userInput.tag.length === 0
-              ? ""
-              : "display"
-          }
-        ></FontAwesomeIcon>
-      </div>
+      <h3>Authors</h3>
+      <p className="author">{userInput.author.join(", ")}</p>
+      <h3>Date</h3>
+      <p>30/03/2021</p>
     </div>
   );
 };
+{
+  /* <div
+className="arrow display"
+id="left"
+onClick={(e) => {
+  shift(e, setCurrentPage, currentPage);
+}}
+>
+<FontAwesomeIcon
+  icon={faAngleLeft}
+  className={currentPage === 1 ? "" : "display"}
+></FontAwesomeIcon>
+</div>
+<div className="tag-grid">
+{userInput.tag.length === 0 ? (
+  <h4>Tags</h4>
+) : (
+  currentPosts.map((item) => {
+    return (
+      <Tag
+        title={item}
+        key={uuid()}
+        tags={userInput.tag}
+        setTags={setUserInput}
+      ></Tag>
+    );
+  })
+)}
+</div>
+<div
+className="arrow display"
+id="right"
+onClick={(e) => {
+  shift(e, setCurrentPage, currentPage);
+}}
+>
+<FontAwesomeIcon
+  icon={faAngleRight}
+  className={
+    currentPage === totalPages || userInput.tag.length === 0
+      ? ""
+      : "display"
+  }
+></FontAwesomeIcon>
+</div> */
+}
