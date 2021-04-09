@@ -65,7 +65,7 @@ export const InspectModal = ({ modal, setModal }) => {
     >
       <div className="modal-inner">
         <h1>{modal.current.story.title}</h1>
-        <h3 className="lead">{modal.current.story.lead}</h3>
+        <h3>{modal.current.story.lead}</h3>
         <img src={modal.current.story.imgUrl} alt="" />
         <div>
           <h2>Tags</h2>

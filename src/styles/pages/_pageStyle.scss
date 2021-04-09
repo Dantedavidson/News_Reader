@@ -5,7 +5,7 @@
 }
 
 .body.create {
-  @include flex-container($justifyContent: space-between);
+  @include flex-container($justifyContent: space-around);
   > div {
     height: 400px;
     width: 400px;

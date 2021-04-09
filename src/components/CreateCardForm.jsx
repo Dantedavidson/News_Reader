@@ -34,6 +34,13 @@ export const CreateCardForm = ({
     resolver: yupResolver(userCardSchema),
     reValidateMode: "onChange",
   });
+  //Text area resize
+  function increaseHeight(e) {
+    console.log(e.target.scrollHeight);
+    e.target.style.height = "auto";
+    const newHeight = e.target.scrollHeight > 34 ? e.target.scrollHeight : 34;
+    e.target.style.height = newHeight.toString() + "px";
+  }
   // Takes data from input field and updates state on change.
   const handleChange = (data) => {
     setUserInput((prevState) => {
@@ -118,7 +125,10 @@ export const CreateCardForm = ({
       <form className="form-create">
         <div className={errors.title ? "input error" : "input"}>
           <label for="title">Title</label>
-          <input
+          <textarea
+            onKeyUp={(e) => {
+              increaseHeight(e);
+            }}
             id="title"
             name="title"
             type="text"
@@ -131,7 +141,10 @@ export const CreateCardForm = ({
         </p>
         <div className={errors.description ? "input error" : "input"}>
           <label for="description">Description</label>
-          <input
+          <textarea
+            onKeyUp={(e) => {
+              increaseHeight(e);
+            }}
             id="description"
             name="description"
             type="text"
@@ -194,9 +207,9 @@ export const CreateCardForm = ({
         </div>
         <p className="error below">{errors.tag && errors.tag.message}</p>
       </form>
-      <button className="create" onClick={handleSubmit(onSubmit)}>
+      {/* <button className="create" onClick={handleSubmit(onSubmit)}>
         Add Card
-      </button>
+      </button> */}
     </React.Fragment>
   );
 };
