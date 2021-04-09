@@ -27,10 +27,10 @@ export const Custom = ({ tags, setTags, savedStories, setSavedStories }) => {
           tags={tags}
           setTags={setTags}
         ></CreateCardForm>
-        <DisplayCustomCard
+        {/* <DisplayCustomCard
           userInput={userInput}
           setUserInput={setUserInput}
-        ></DisplayCustomCard>
+        ></DisplayCustomCard> */}
       </div>
 
       <Footer />

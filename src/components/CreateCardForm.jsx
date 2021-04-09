@@ -100,6 +100,11 @@ export const CreateCardForm = ({
     }
   };
 
+  //Handles preview
+  const handlePreview = (e) => {
+    console.log(e);
+    e.preventDefault();
+  };
   //Takes event. Handles deleting author or tag
   const handleDelete = (e) => {
     const key = e.currentTarget.parentNode.childNodes[1].dataset.key;
@@ -137,6 +142,8 @@ export const CreateCardForm = ({
   return (
     <React.Fragment>
       <form className="form-create">
+        <h2>Creat Custom Story</h2>
+
         {/* Add Title */}
         <div className={errors.title ? "input error" : "input"}>
           <label for="title">Title</label>
@@ -271,7 +278,7 @@ export const CreateCardForm = ({
           ></FontAwesomeIcon>
         </div>
         <div>
-          <button className="create" onClick="">
+          <button className="create" onClick={handlePreview}>
             Preview Card
           </button>
           <button className="create" onClick={handleSubmit(onSubmit)}>

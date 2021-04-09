@@ -42,14 +42,24 @@ export const DisplayCustomCard = ({ userInput, setUserInput }) => {
 
   return (
     <div className="custom-card">
-      <h3>Title</h3>
-      <p>{userInput.title}</p>
-      <h3>Description</h3>
-      <p>{userInput.description}</p>
-      <h3>Authors</h3>
-      <p className="author">{userInput.author.join(", ")}</p>
-      <h3>Date</h3>
-      <p>30/03/2021</p>
+      <div>
+        <h3>Title</h3>
+        <p>{userInput.title}</p>
+      </div>
+      <div>
+        {" "}
+        <h3>Description</h3>
+        <p>{userInput.description}</p>
+      </div>
+      <div>
+        <h3>Authors</h3>
+        <p className="author">{userInput.author.join(", ")}</p>
+      </div>
+      <div>
+        {" "}
+        <h3>Date</h3>
+        <p>30/03/2021</p>
+      </div>
     </div>
   );
 };
