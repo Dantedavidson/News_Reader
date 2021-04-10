@@ -116,7 +116,7 @@ export const userCard = (data) => {
       byline:
         formatAuthors(data.author) === "By" ? "" : formatAuthors(data.author),
       url: data.url,
-      imgUrl: null,
+      imgUrl: data.imgUrl,
     },
     id: uuid(),
     like: true,

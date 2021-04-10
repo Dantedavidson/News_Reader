@@ -20,6 +20,8 @@ export const InspectModal = ({ modal, setModal }) => {
     displayRange: [],
   };
   const [pagination, setPagination] = useState(initial);
+
+  //Close Modal and reset state to initial
   const handleClose = () => {
     setModal((prevState) => ({
       ...prevState,
@@ -28,7 +30,7 @@ export const InspectModal = ({ modal, setModal }) => {
     }));
     setPagination(initial);
   };
-
+  //Sets pagination to display up to first four tags
   useEffect(() => {
     if (!modal.current) return;
     setPagination((prevState) => ({
@@ -36,9 +38,10 @@ export const InspectModal = ({ modal, setModal }) => {
       current: 1,
     }));
   }, [modal.inspect]);
-
+  //Calculations for pagination
   useEffect(() => {
     if (!pagination.current) return;
+    console.log(modal.current);
     let totalTemp = getPages(modal.current.tags.length, pagination.perPage);
     let tempLast = pagination.current * pagination.perPage;
     let tempFirst = tempLast - pagination.perPage;

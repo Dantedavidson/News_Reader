@@ -19,6 +19,7 @@ export const CreateCardForm = ({
   setUserInput,
   userInput,
   tags,
+  setModal,
   setTags,
   savedStories,
   setSavedStories,
@@ -29,6 +30,7 @@ export const CreateCardForm = ({
     errors,
     setError,
     clearErrors,
+    reset,
     getValues,
   } = useForm({
     resolver: yupResolver(userCardSchema),
@@ -36,7 +38,6 @@ export const CreateCardForm = ({
   });
   //Text area resize
   function increaseHeight(e) {
-    console.log(e.target.scrollHeight);
     e.target.style.height = "auto";
     const newHeight = e.target.scrollHeight > 34 ? e.target.scrollHeight : 34;
     e.target.style.height = newHeight.toString() + "px";
@@ -69,6 +70,7 @@ export const CreateCardForm = ({
     }
     return;
   };
+
   //Takes event. Handles adding of author or tag.
   const handleAdd = (e) => {
     const key = e.currentTarget.parentNode.childNodes[1].id;
@@ -103,6 +105,14 @@ export const CreateCardForm = ({
   //Handles preview
   const handlePreview = (e) => {
     console.log(e);
+    console.log(userInput);
+    const card = userCard(userInput);
+    setModal({
+      inspect: true,
+      current: card,
+    });
+    console.log(card);
+
     e.preventDefault();
   };
   //Takes event. Handles deleting author or tag
@@ -121,14 +131,15 @@ export const CreateCardForm = ({
   const onSubmit = (data) => {
     console.log(data);
     console.log(userInput);
-    //   const card = userCard(userInput);
-    //   setSavedStories([...savedStories, card]);
-    //   setUserInput({
-    //     title: "",
-    //     description: "",
-    //     author: [],
-    //     tag: [],
-    //   });
+    const card = userCard(userInput);
+    setSavedStories([...savedStories, card]);
+    setUserInput({
+      title: "",
+      description: "",
+      author: [],
+      tag: [],
+    });
+    reset();
   };
   //Updates saved stories
   useEffect(() => {
@@ -179,6 +190,18 @@ export const CreateCardForm = ({
           {errors.description &&
             "Please enter a valid description that is less than 250 characters."}
         </p>
+        {/* Add Image URL */}
+        <div className={errors.imgUrl ? "input error" : "input"}>
+          <label for="url">Image Url</label>
+          <input
+            id="imgUrl"
+            name="imgUrl"
+            type="text"
+            ref={register}
+            onChange={handleChange}
+          />
+        </div>
+        <p className="error below">{errors.imgUrl && errors.imgUrl.message}</p>
 
         {/* Add URL */}
         <div className={errors.url ? "input error" : "input"}>

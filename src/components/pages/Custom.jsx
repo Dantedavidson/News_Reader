@@ -1,7 +1,7 @@
 //Stores shared state for create story page. Render components
 import React, { useState } from "react";
 import { CreateCardForm } from "../CreateCardForm";
-import { DisplayCustomCard } from "../DisplayCustomCard";
+import { InspectModal } from "../InspectModal";
 
 //Components
 import { Nav } from "../Nav";
@@ -14,12 +14,24 @@ export const Custom = ({ tags, setTags, savedStories, setSavedStories }) => {
     author: [],
     tag: [],
   });
+  const [modal, setModal] = useState({
+    inspect: false,
+    current: null,
+  });
 
   return (
     <React.Fragment>
       <Nav current={"custom"} />
+      <div
+        className={
+          modal.inspect || modal.edit ? "modal-bg bg-active" : "modal-bg"
+        }
+      >
+        <InspectModal modal={modal} setModal={setModal}></InspectModal>
+      </div>
       <div className="create body">
         <CreateCardForm
+          setModal={setModal}
           setUserInput={setUserInput}
           userInput={userInput}
           savedStories={savedStories}
@@ -27,10 +39,6 @@ export const Custom = ({ tags, setTags, savedStories, setSavedStories }) => {
           tags={tags}
           setTags={setTags}
         ></CreateCardForm>
-        {/* <DisplayCustomCard
-          userInput={userInput}
-          setUserInput={setUserInput}
-        ></DisplayCustomCard> */}
       </div>
 
       <Footer />
