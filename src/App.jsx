@@ -16,6 +16,7 @@ import { Custom } from "./components/pages/Custom";
 import { Home } from "./components/pages/Home";
 import { NotFound } from "./components/pages/NotFound";
 import { Stories } from "./components/pages/Stories";
+import { Edit } from "./components/pages/Edit";
 
 //Utilities
 import { getLocalStorage, createCard } from "./components/utilities";
@@ -71,6 +72,7 @@ export const App = () => {
     <div className="App">
       <Router>
         <Switch>
+          <Route path="/edit/:id" render={(props) => <Edit></Edit>}></Route>
           <Route
             path="/custom"
             render={(props) => (

@@ -25,12 +25,23 @@ textarea {
 }
 p.error,
 .add-btn.error {
-  color: red;
+  color: $red-danger;
 }
+
 .input.error input,
 .input.error select,
 .input.error textarea {
-  border-color: red;
+  border-color: $red-danger;
+}
+
+p.warning,
+.add-btn.warning {
+  color: $yellow-warning;
+}
+.input.warning input,
+.input.warning select,
+.input.warning textarea {
+  border-color: $yellow-warning;
 }
 
 //Modal form
@@ -77,7 +88,7 @@ p.error,
   margin: 0 0 3rem 0;
   padding: 1rem;
   .below {
-    transform: translateX(19.5%) translateY(-2rem);
+    transform: translateX(15.5%) translateY(-2rem);
   }
 
   h2 {
@@ -107,7 +118,7 @@ p.error,
     }
   }
 
-  .input:nth-of-type(6) select,
+  .input:nth-of-type(7) select,
   svg {
     align-self: flex-end;
   }
@@ -122,7 +133,7 @@ button.create {
   width: 45%;
 
   border-radius: 5px;
-  background-color: $blue-one;
+  background-color: $blue-primary;
   color: #fff;
 
   &:hover {

@@ -17,6 +17,7 @@ export const userCardSchema = yup.object().shape({
   url: yup.string().matches(urlRegex, { excludeEmptyString: true }),
   imgUrl: yup
     .string()
+    .notRequired()
     .test("valid-image-url", "Must use valid image URL", (value) =>
       testImage(value, 1000).then((status) => status === "success")
     ),
@@ -25,6 +26,7 @@ export const userCardSchema = yup.object().shape({
 // Validate Img url function
 const testImage = (url, timeout) =>
   new Promise((res) => {
+    if (!url.trim()) res("success");
     timeout = timeout || 3000;
     let timedOut = false;
     let timer;

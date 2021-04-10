@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 //Libraries
 import { useForm } from "react-hook-form";
@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 //Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 //Utilities
 import { isEmptyOrSpaces, setLocalStorage, userCard } from "./utilities";
@@ -24,6 +24,10 @@ export const CreateCardForm = ({
   savedStories,
   setSavedStories,
 }) => {
+  const [addError, setAddError] = useState({
+    author: [],
+    tag: [],
+  });
   const {
     register,
     handleSubmit,
@@ -56,17 +60,20 @@ export const CreateCardForm = ({
   //Takes event. Sets errors for tag
   const handleTag = (e) => {
     if (userInput.tag.includes(e.target.value)) {
-      setError("tag", {
-        message: "Tags must be unique",
-        type: "notOneOf",
-      });
+      setAddError((prevState) => ({
+        ...prevState,
+        tag: ["Tag must be unique"],
+      }));
     } else if (e.target.value.trim() === "") {
-      setError("tag", {
-        message: "Tag cannot be empty",
-        type: "notOneOf",
-      });
+      setAddError((prevState) => ({
+        ...prevState,
+        tag: ["Cannot be empty"],
+      }));
     } else {
-      clearErrors("tag");
+      setAddError((prevState) => ({
+        ...prevState,
+        tag: [],
+      }));
     }
     return;
   };
@@ -76,13 +83,18 @@ export const CreateCardForm = ({
     const key = e.currentTarget.parentNode.childNodes[1].id;
     const value = e.currentTarget.parentNode.childNodes[1].value;
     if (value === "") {
-      setError(key, {
-        message: `Can't add ${key} with no value.`,
-        type: "required",
-      });
-      setTimeout(() => {
-        clearErrors(key);
-      }, 5000);
+      setAddError((prevState) => ({
+        ...prevState,
+        [key]: [`Cannot add ${key} that is empty.`],
+      }));
+      return;
+      // setError(key, {
+      //   message: `Can't add ${key} with no value.`,
+      //   type: "required",
+      // });
+      // setTimeout(() => {
+      //   clearErrors(key);
+      // }, 5000);
     }
     if (errors[key]) {
       return;
@@ -150,6 +162,7 @@ export const CreateCardForm = ({
   useEffect(() => {
     setLocalStorage(tags, "Tags");
   }, [tags]);
+
   return (
     <React.Fragment>
       <form className="form-create">
@@ -219,7 +232,7 @@ export const CreateCardForm = ({
         </p>
 
         {/* Add Author */}
-        <div className={errors.author ? "input error" : "input"}>
+        <div className={addError.author.length > 0 ? "input warning" : "input"}>
           <label for="author">Author</label>
           <input
             id="author"
@@ -227,18 +240,28 @@ export const CreateCardForm = ({
             name="author"
             type="text"
             ref={register}
+            onChange={() => {
+              setAddError((prevState) => ({
+                ...prevState,
+                author: [],
+              }));
+            }}
           />
 
           <FontAwesomeIcon
             onClick={handleAdd}
-            className={errors.author ? "add-btn error" : "add-btn"}
+            className={
+              addError.author.length > 0 ? "add-btn warning" : "add-btn"
+            }
             icon={faPlus}
           ></FontAwesomeIcon>
         </div>
-        <p className="error below">{errors.author && errors.author.message}</p>
+        <p className="warning below">
+          {addError.author.length > 0 && addError.author[0]}
+        </p>
 
         {/* Add Tag */}
-        <div className={errors.tag ? "input error" : "input"}>
+        <div className={addError.tag.length > 0 ? "input warning" : "input"}>
           <label for="tag">Tag</label>
           <input
             id="tag"
@@ -258,11 +281,13 @@ export const CreateCardForm = ({
 
           <FontAwesomeIcon
             onClick={handleAdd}
-            className={errors.tag ? "add-btn error" : "add-btn"}
+            className={addError.tag.length > 0 ? "add-btn warning" : "add-btn"}
             icon={faPlus}
           ></FontAwesomeIcon>
         </div>
-        <p className="error below">{errors.tag && errors.tag.message}</p>
+        <p className="warning below">
+          {addError.tag.length > 0 && addError.tag[0]}
+        </p>
 
         {/* Remove Author */}
         <div className="input">
