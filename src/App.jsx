@@ -72,11 +72,23 @@ export const App = () => {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/edit/:id" render={(props) => <Edit></Edit>}></Route>
+          <Route
+            path="/edit/:id"
+            render={(props) => (
+              <Edit
+                {...props}
+                savedStories={savedStories}
+                setSavedStories={setSavedStories}
+                tags={tags}
+                setTags={setTags}
+              ></Edit>
+            )}
+          ></Route>
           <Route
             path="/custom"
             render={(props) => (
               <Custom
+                {...props}
                 tags={tags}
                 setTags={setTags}
                 savedStories={savedStories}

@@ -118,13 +118,14 @@ export const userCard = (data) => {
       url: data.url,
       imgUrl: data.imgUrl,
     },
-    id: uuid(),
+    id: data.id ? data.id : "",
     like: true,
     tags: data.tag,
   };
   card.story.url = data.url
     ? data.url
     : `https://www.nytimes.com/search?query=${card.story.title}`;
+  console.log(card.id);
   return card;
 };
 

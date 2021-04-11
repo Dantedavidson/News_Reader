@@ -16,14 +16,25 @@ import { userCardSchema } from "./schema";
 import uuid from "react-uuid";
 
 export const CreateCardForm = ({
-  setUserInput,
-  userInput,
+  title,
   tags,
   setModal,
   setTags,
   savedStories,
   setSavedStories,
+  match,
 }) => {
+  const initial = {
+    title: "",
+    description: "",
+    imgUrl: "",
+    url: "",
+    author: [],
+    tag: [],
+    id: null,
+  };
+  const [userInput, setUserInput] = useState(initial);
+  const [backup, setBackup] = useState();
   const [addError, setAddError] = useState({
     author: [],
     tag: [],
@@ -88,13 +99,6 @@ export const CreateCardForm = ({
         [key]: [`Cannot add ${key} that is empty.`],
       }));
       return;
-      // setError(key, {
-      //   message: `Can't add ${key} with no value.`,
-      //   type: "required",
-      // });
-      // setTimeout(() => {
-      //   clearErrors(key);
-      // }, 5000);
     }
     if (errors[key]) {
       return;
@@ -141,16 +145,20 @@ export const CreateCardForm = ({
   };
   //Takes form data. Handles submit
   const onSubmit = (data) => {
-    console.log(data);
     console.log(userInput);
     const card = userCard(userInput);
-    setSavedStories([...savedStories, card]);
-    setUserInput({
-      title: "",
-      description: "",
-      author: [],
-      tag: [],
-    });
+    console.log(card.id);
+    const cardInDb = savedStories.find((story) => story.id === card.id) || {};
+    console.log(cardInDb);
+    cardInDb.story = card.story;
+    cardInDb.id = card.id;
+    cardInDb.like = card.like;
+    cardInDb.tags = card.tags;
+    if (!cardInDb.id) {
+      cardInDb.id = uuid();
+      setSavedStories([...savedStories, cardInDb]);
+    }
+    setUserInput(initial);
     reset();
   };
   //Updates saved stories
@@ -163,10 +171,28 @@ export const CreateCardForm = ({
     setLocalStorage(tags, "Tags");
   }, [tags]);
 
+  //Set form fields and backup if user is on edit route
+  useEffect(() => {
+    if (match.url === "/custom") return;
+    const paramId = match.params.id;
+    const current = savedStories.filter((story) => story.id === paramId)[0];
+    console.log(current);
+    setUserInput({
+      title: current.story.title,
+      description: current.story.lead,
+      imgUrl: current.story.imgUrl,
+      url: current.story.url,
+      tag: current.tags,
+      author: [],
+      id: current.id,
+    });
+    setBackup(current);
+  }, []);
+
   return (
     <React.Fragment>
       <form className="form-create">
-        <h2>Creat Custom Story</h2>
+        <h2>{title}</h2>
 
         {/* Add Title */}
         <div className={errors.title ? "input error" : "input"}>
@@ -178,6 +204,7 @@ export const CreateCardForm = ({
             id="title"
             name="title"
             type="text"
+            value={userInput.title}
             ref={register}
             onChange={handleChange}
           />
@@ -194,6 +221,7 @@ export const CreateCardForm = ({
             }}
             id="description"
             name="description"
+            value={userInput.description}
             type="text"
             ref={register}
             onChange={handleChange}
@@ -210,6 +238,7 @@ export const CreateCardForm = ({
             id="imgUrl"
             name="imgUrl"
             type="text"
+            value={userInput.imgUrl}
             ref={register}
             onChange={handleChange}
           />
@@ -223,6 +252,7 @@ export const CreateCardForm = ({
             id="url"
             name="url"
             type="text"
+            value={userInput.url}
             ref={register}
             onChange={handleChange}
           />

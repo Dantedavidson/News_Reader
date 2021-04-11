@@ -13,7 +13,7 @@ export const Nav = ({ current }) => {
             <span className="verticle-line"></span>
           </div>
         </Link>
-        <Link to="custom">
+        <Link to="/custom">
           <div>
             {" "}
             <h3 className={current === "custom" ? "current" : "none"}>
@@ -22,7 +22,7 @@ export const Nav = ({ current }) => {
             <span className="verticle-line"></span>
           </div>
         </Link>
-        <Link to="stories">
+        <Link to="/stories">
           <div>
             <h3 className={current === "stories" ? "current" : "none"}>Read</h3>
           </div>

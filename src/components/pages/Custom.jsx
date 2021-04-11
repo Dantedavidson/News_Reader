@@ -7,13 +7,13 @@ import { InspectModal } from "../InspectModal";
 import { Nav } from "../Nav";
 import { Footer } from "../Footer";
 
-export const Custom = ({ tags, setTags, savedStories, setSavedStories }) => {
-  const [userInput, setUserInput] = useState({
-    title: "",
-    description: "",
-    author: [],
-    tag: [],
-  });
+export const Custom = ({
+  match,
+  tags,
+  setTags,
+  savedStories,
+  setSavedStories,
+}) => {
   const [modal, setModal] = useState({
     inspect: false,
     current: null,
@@ -31,9 +31,9 @@ export const Custom = ({ tags, setTags, savedStories, setSavedStories }) => {
       </div>
       <div className="create body">
         <CreateCardForm
+          match={match}
+          title={"Create Custom Story"}
           setModal={setModal}
-          setUserInput={setUserInput}
-          userInput={userInput}
           savedStories={savedStories}
           setSavedStories={setSavedStories}
           tags={tags}
