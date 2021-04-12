@@ -8,7 +8,7 @@ import { Nav } from "../Nav";
 import { Footer } from "../Footer";
 
 export const Custom = ({
-  match,
+  props,
   tags,
   setTags,
   savedStories,
@@ -31,7 +31,7 @@ export const Custom = ({
       </div>
       <div className="create body">
         <CreateCardForm
-          match={match}
+          props={props}
           title={"Create Custom Story"}
           setModal={setModal}
           savedStories={savedStories}

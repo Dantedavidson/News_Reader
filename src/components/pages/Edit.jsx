@@ -8,7 +8,7 @@ import { InspectModal } from "../InspectModal";
 import { Footer } from "../Footer";
 
 export const Edit = ({
-  match,
+  props,
   savedStories,
   setSavedStories,
   tags,
@@ -37,7 +37,7 @@ export const Edit = ({
           setSavedStories={setSavedStories}
           tags={tags}
           setTags={setTags}
-          match={match}
+          props={props}
         ></CreateCardForm>
       </div>
       <Footer></Footer>

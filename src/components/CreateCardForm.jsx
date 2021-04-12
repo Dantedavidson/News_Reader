@@ -22,8 +22,9 @@ export const CreateCardForm = ({
   setTags,
   savedStories,
   setSavedStories,
-  match,
+  props,
 }) => {
+  const { history, match } = props;
   const initial = {
     title: "",
     description: "",
@@ -160,6 +161,7 @@ export const CreateCardForm = ({
     }
     setUserInput(initial);
     reset();
+    if (match.url.includes("/edit")) return history.push("/stories");
   };
   //Updates saved stories
   useEffect(() => {
@@ -204,7 +206,6 @@ export const CreateCardForm = ({
             id="title"
             name="title"
             type="text"
-            value={userInput.title}
             ref={register}
             onChange={handleChange}
           />
@@ -221,7 +222,6 @@ export const CreateCardForm = ({
             }}
             id="description"
             name="description"
-            value={userInput.description}
             type="text"
             ref={register}
             onChange={handleChange}
@@ -238,7 +238,6 @@ export const CreateCardForm = ({
             id="imgUrl"
             name="imgUrl"
             type="text"
-            value={userInput.imgUrl}
             ref={register}
             onChange={handleChange}
           />
@@ -252,7 +251,6 @@ export const CreateCardForm = ({
             id="url"
             name="url"
             type="text"
-            value={userInput.url}
             ref={register}
             onChange={handleChange}
           />

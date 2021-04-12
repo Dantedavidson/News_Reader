@@ -76,7 +76,7 @@ export const App = () => {
             path="/edit/:id"
             render={(props) => (
               <Edit
-                {...props}
+                props={props}
                 savedStories={savedStories}
                 setSavedStories={setSavedStories}
                 tags={tags}
@@ -88,7 +88,7 @@ export const App = () => {
             path="/custom"
             render={(props) => (
               <Custom
-                {...props}
+                props={props}
                 tags={tags}
                 setTags={setTags}
                 savedStories={savedStories}
