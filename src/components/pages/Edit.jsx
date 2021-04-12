@@ -5,6 +5,7 @@ import { RouteComponentProps, Link } from "react-router-dom";
 import { Nav } from "../Nav";
 import { CreateCardForm } from "../CreateCardForm";
 import { InspectModal } from "../InspectModal";
+import { Loading } from "../common/Loading";
 import { Footer } from "../Footer";
 
 export const Edit = ({
@@ -14,10 +15,26 @@ export const Edit = ({
   tags,
   setTags,
 }) => {
+  const { history, match } = props;
   const [modal, setModal] = useState({
     inspect: false,
     current: null,
   });
+
+  const [preload, setPreload] = useState(null);
+  useEffect(() => {
+    const paramId = match.params.id;
+    const current = savedStories.filter((story) => story.id === paramId)[0];
+    setPreload({
+      title: current.story.title,
+      description: current.story.lead,
+      imgUrl: current.story.imgUrl,
+      url: current.story.url,
+      tag: current.tags,
+      author: [],
+      id: current.id,
+    });
+  }, []);
 
   return (
     <React.Fragment>
@@ -30,15 +47,20 @@ export const Edit = ({
         <InspectModal modal={modal} setModal={setModal}></InspectModal>
       </div>
       <div className="create body">
-        <CreateCardForm
-          title={"Edit Story"}
-          setModal={setModal}
-          savedStories={savedStories}
-          setSavedStories={setSavedStories}
-          tags={tags}
-          setTags={setTags}
-          props={props}
-        ></CreateCardForm>
+        {preload ? (
+          <CreateCardForm
+            title={"Edit Story"}
+            setModal={setModal}
+            savedStories={savedStories}
+            setSavedStories={setSavedStories}
+            tags={tags}
+            setTags={setTags}
+            props={props}
+            preload={preload}
+          ></CreateCardForm>
+        ) : (
+          <Loading></Loading>
+        )}
       </div>
       <Footer></Footer>
     </React.Fragment>

@@ -22,6 +22,7 @@ export const CreateCardForm = ({
   setTags,
   savedStories,
   setSavedStories,
+  preload,
   props,
 }) => {
   const { history, match } = props;
@@ -51,6 +52,7 @@ export const CreateCardForm = ({
   } = useForm({
     resolver: yupResolver(userCardSchema),
     reValidateMode: "onChange",
+    defaultValues: preload,
   });
   //Text area resize
   function increaseHeight(e) {
@@ -121,15 +123,11 @@ export const CreateCardForm = ({
 
   //Handles preview
   const handlePreview = (e) => {
-    console.log(e);
-    console.log(userInput);
     const card = userCard(userInput);
     setModal({
       inspect: true,
       current: card,
     });
-    console.log(card);
-
     e.preventDefault();
   };
   //Takes event. Handles deleting author or tag
@@ -146,11 +144,8 @@ export const CreateCardForm = ({
   };
   //Takes form data. Handles submit
   const onSubmit = (data) => {
-    console.log(userInput);
     const card = userCard(userInput);
-    console.log(card.id);
     const cardInDb = savedStories.find((story) => story.id === card.id) || {};
-    console.log(cardInDb);
     cardInDb.story = card.story;
     cardInDb.id = card.id;
     cardInDb.like = card.like;
@@ -178,7 +173,6 @@ export const CreateCardForm = ({
     if (match.url === "/custom") return;
     const paramId = match.params.id;
     const current = savedStories.filter((story) => story.id === paramId)[0];
-    console.log(current);
     setUserInput({
       title: current.story.title,
       description: current.story.lead,
