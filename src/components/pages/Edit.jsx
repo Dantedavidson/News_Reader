@@ -15,13 +15,14 @@ export const Edit = ({
   tags,
   setTags,
 }) => {
-  const { history, match } = props;
+  const { match } = props;
   const [modal, setModal] = useState({
     inspect: false,
     current: null,
   });
-
   const [preload, setPreload] = useState(null);
+
+  // Populates form fields with current values
   useEffect(() => {
     const paramId = match.params.id;
     const current = savedStories.filter((story) => story.id === paramId)[0];

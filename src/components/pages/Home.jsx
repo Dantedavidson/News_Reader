@@ -167,6 +167,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
                       setCurrentDisplay("modal");
                     }}
                     text="New Search"
+                    clss={query.results.length === 0 ? "single" : ""}
                   ></Button>
                 </div>
               </React.Fragment>

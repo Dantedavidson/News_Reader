@@ -137,6 +137,7 @@ export const App = () => {
           ></Route>
           <Route
             path="/"
+            exact
             render={(props) => (
               <Home
                 savedStories={savedStories}

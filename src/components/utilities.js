@@ -164,7 +164,15 @@ export const formatAuthors = (array) => {
   return string;
 };
 
-//Takes an array to be saved and a string the location in local storage
+//Takes a byline string and converts it into an array of authors
+export const stringToArray = (str) =>
+  str
+    .replace("By", "")
+    .replace(/\.$/, "")
+    .split(/and|,/)
+    .map((name) => name.trim());
+
+//Takes an array to be saved and a string for location in local storage
 export const setLocalStorage = (array, location) => {
   localStorage.setItem(location, JSON.stringify(array));
 };
@@ -218,14 +226,14 @@ export const formatQueryDate = (date) => {
   const queryDate = `${y}${m}${d}`;
   return queryDate;
 };
-//Takes the first display page, the last display page, and all the total pages. Returns array of pages to display.
+//Takes the first display page, the last display page, and the total pages. Returns array of pages to display.
 export const paginationDisplay = (first, last, array) => {
   if (first === null || last === null) {
     return null;
   }
   return array.slice(first, last);
 };
-//Takes the total number results and results per pages. Returnes total number of pages.
+//Takes the total number results and results per pages. Returns total number of pages.
 export const getPages = (total, perPage) => Math.ceil(total / perPage);
 
 //set scroll to top of page

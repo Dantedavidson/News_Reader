@@ -3,6 +3,9 @@
 import React, { useState } from "react";
 
 //Components
+import { LikeBtn } from "./common/LikeBtn";
+import { InspectBtn } from "./common/InspectBtn";
+import { EditBtn } from "./common/EditBtn";
 import { NewsCard } from "./NewsCard";
 import { Search } from "./Search";
 
@@ -39,7 +42,15 @@ export const TempGrid = ({ savedStories, setSavedStories, tags, setModal }) => {
               card={story}
               savedStories={savedStories}
               setSavedStories={setSavedStories}
-            ></NewsCard>
+            >
+              <InspectBtn card={story} setModal={setModal}></InspectBtn>
+              <EditBtn card={story} setModal={setModal}></EditBtn>
+              <LikeBtn
+                card={story}
+                savedStories={savedStories}
+                setSavedStories={setSavedStories}
+              />
+            </NewsCard>
           );
         })}
       </div>

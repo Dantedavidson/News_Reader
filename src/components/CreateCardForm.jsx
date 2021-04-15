@@ -9,7 +9,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 //Utilities
-import { isEmptyOrSpaces, setLocalStorage, userCard } from "./utilities";
+import {
+  isEmptyOrSpaces,
+  setLocalStorage,
+  userCard,
+  stringToArray,
+} from "./utilities";
 
 //Schema
 import { userCardSchema } from "./schema";
@@ -36,7 +41,6 @@ export const CreateCardForm = ({
     id: null,
   };
   const [userInput, setUserInput] = useState(initial);
-  const [backup, setBackup] = useState();
   const [addError, setAddError] = useState({
     author: [],
     tag: [],
@@ -143,7 +147,7 @@ export const CreateCardForm = ({
     }));
   };
   //Takes form data. Handles submit
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     const card = userCard(userInput);
     const cardInDb = savedStories.find((story) => story.id === card.id) || {};
     cardInDb.story = card.story;
@@ -173,16 +177,16 @@ export const CreateCardForm = ({
     if (match.url === "/custom") return;
     const paramId = match.params.id;
     const current = savedStories.filter((story) => story.id === paramId)[0];
+    console.log(current);
     setUserInput({
       title: current.story.title,
       description: current.story.lead,
       imgUrl: current.story.imgUrl,
       url: current.story.url,
       tag: current.tags,
-      author: [],
+      author: stringToArray(current.story.byline),
       id: current.id,
     });
-    setBackup(current);
   }, []);
 
   return (
