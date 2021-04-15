@@ -10,7 +10,7 @@ import { Nav } from "../Nav";
 import { NewsSearchForm } from "../NewsSearchForm";
 import { NewsCardGrid } from "../NewsCardGrid";
 import { HorizontalLine } from "../common/HorizontalLine";
-import { Button } from "../common/Button";
+import { FormButton } from "../styled_components/FormButton.style";
 import { Footer } from "../Footer";
 import { CarouselComponent } from "../CarouselComponent";
 
@@ -135,12 +135,12 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
           {
             start: (
               <React.Fragment>
-                <Button
+                <FormButton
                   handler={() => {
                     setCurrentDisplay("modal");
                   }}
                   text="Search"
-                ></Button>
+                ></FormButton>
                 <HorizontalLine></HorizontalLine>
               </React.Fragment>
             ),
@@ -162,13 +162,13 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
                     query={query}
                     setQuery={setQuery}
                   ></PaginationBar>
-                  <Button
+                  <FormButton
                     handler={() => {
                       setCurrentDisplay("modal");
                     }}
                     text="New Search"
                     clss={query.results.length === 0 ? "single" : ""}
-                  ></Button>
+                  ></FormButton>
                 </div>
               </React.Fragment>
             ),

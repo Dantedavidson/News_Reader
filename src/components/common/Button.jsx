@@ -2,9 +2,9 @@
 
 import React from "react";
 
-export const Button = ({ handler, text, clss }) => {
+export const Button = ({ handler, text, className }) => {
   return (
-    <div className={`button ${clss}`} onClick={handler}>
+    <div className={className} onClick={handler}>
       {text}
     </div>
   );

@@ -1,11 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import { App } from "./App";
+
+import { setThemeLS } from "./components/utilities";
+import * as themes from "./components/styled_components/themeSchema.json";
+
+const Index = () => {
+  setThemeLS("all-themes", themes.default);
+  return <App />;
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Index />
   </React.StrictMode>,
   document.getElementById("root")
 );

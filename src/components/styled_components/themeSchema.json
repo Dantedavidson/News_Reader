@@ -1,0 +1,19 @@
+{
+  "data": {
+    "main": {
+      "id": "T_001",
+      "name": "Main",
+      "colors": {
+        "body": "#FFFFFF",
+        "primary": "#052962",
+        "highlight": "#ffe500",
+        "warning": "#dd930b",
+        "danger": "#d60000",
+        "like": "#dc143c",
+        "textOne": "#000000",
+        "textTwo": "#FFFFFF"
+      },
+      "font": "Roboto"
+    }
+  }
+}

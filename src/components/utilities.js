@@ -249,3 +249,15 @@ export const shift = (e, setter, current) => {
     setter(current + 1);
   }
 };
+
+export const setThemeLS = (key, value) => {
+  window.localStorage.setItem(key, JSON.stringify(value));
+};
+
+export const getThemeLS = (key) => {
+  const value = window.localStorage.getItem(key);
+
+  if (value) {
+    return JSON.parse(value);
+  }
+};
