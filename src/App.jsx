@@ -26,8 +26,8 @@ import { getLocalStorage, createCard } from "./components/utilities";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/style.scss";
 import styled, { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "./components/styled_components/GlobalStyle.styles";
-import { useTheme } from "./components/styled_components/useTheme";
+import { GlobalStyle } from "./components/UI/GlobalStyle.styles";
+import { useTheme } from "./components/UI/useTheme";
 
 //font awesome
 import { library } from "@fortawesome/fontawesome-svg-core";

@@ -15,6 +15,6 @@ export const FormButton = styled(Button)`
   margin: 0 auto 3rem auto;
   cursor: pointer;
   &:hover {
-    color: $yellow-highlight;
+    color: ${({ theme }) => theme.colors.highlight};
   }
 `;

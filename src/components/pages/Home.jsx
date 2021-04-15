@@ -10,7 +10,7 @@ import { Nav } from "../Nav";
 import { NewsSearchForm } from "../NewsSearchForm";
 import { NewsCardGrid } from "../NewsCardGrid";
 import { HorizontalLine } from "../common/HorizontalLine";
-import { FormButton } from "../styled_components/FormButton.style";
+import { FormButton } from "../UI/FormButton.style";
 import { Footer } from "../Footer";
 import { CarouselComponent } from "../CarouselComponent";
 
