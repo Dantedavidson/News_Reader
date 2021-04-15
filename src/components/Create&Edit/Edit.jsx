@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { RouteComponentProps, Link } from "react-router-dom";
 
 //Components
-import { Nav } from "../Nav";
-import { CreateCardForm } from "../CreateCardForm";
-import { InspectModal } from "../InspectModal";
+
+import { CreateCardForm } from "./CreateCardForm";
+import { InspectModal } from "../common/InspectModal";
 import { Loading } from "../common/Loading";
-import { Footer } from "../Footer";
 
 export const Edit = ({
   props,
@@ -39,7 +38,6 @@ export const Edit = ({
 
   return (
     <React.Fragment>
-      <Nav></Nav>
       <div
         className={
           modal.inspect || modal.edit ? "modal-bg bg-active" : "modal-bg"
@@ -63,7 +61,6 @@ export const Edit = ({
           <Loading></Loading>
         )}
       </div>
-      <Footer></Footer>
     </React.Fragment>
   );
 };

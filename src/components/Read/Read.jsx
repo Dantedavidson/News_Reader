@@ -2,12 +2,10 @@
 import React, { useState } from "react";
 
 //Components
-import { InspectModal } from "../InspectModal";
-import { TempGrid } from "../TempGrid";
-import { Nav } from "../Nav";
-import { Footer } from "../Footer";
+import { InspectModal } from "../common/InspectModal";
+import { SavedGrid } from "./SavedGrid";
 
-export const Stories = ({ savedStories, setSavedStories, tags }) => {
+export const Read = ({ savedStories, setSavedStories, tags }) => {
   const [modal, setModal] = useState({
     inspect: false,
     edit: false,
@@ -15,7 +13,6 @@ export const Stories = ({ savedStories, setSavedStories, tags }) => {
   });
   return (
     <React.Fragment>
-      <Nav current={"stories"} />
       <div className="body stories">
         <div
           className={
@@ -24,14 +21,13 @@ export const Stories = ({ savedStories, setSavedStories, tags }) => {
         >
           <InspectModal modal={modal} setModal={setModal}></InspectModal>
         </div>
-        <TempGrid
+        <SavedGrid
           setModal={setModal}
           savedStories={savedStories}
           setSavedStories={setSavedStories}
           tags={tags}
-        ></TempGrid>
+        ></SavedGrid>
       </div>
-      <Footer />
     </React.Fragment>
   );
 };

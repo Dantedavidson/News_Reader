@@ -8,17 +8,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import uuid from "react-uuid";
 
 //Utilities
-import { createQuery, formatQueryDate } from "./utilities";
+import { createQuery, formatQueryDate } from "../Utility/utilities";
 
 //components
-import { Button } from "./common/Button";
+import { Button } from "../common/Button";
 
 //font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 //schema
-import { searchFormSchema } from "./schema";
+import { searchFormSchema } from "../Utility/schema";
 
 export const NewsSearchForm = ({
   currentDisplay,

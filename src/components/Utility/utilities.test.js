@@ -1,4 +1,8 @@
-import { formatAuthors, stringToArray, paginationDisplay } from "./utilities";
+import {
+  formatAuthors,
+  stringToArray,
+  paginationDisplay,
+} from "../Utility/utilities";
 
 test("formatAuthors", () => {
   expect(formatAuthors([])).toBe("By");

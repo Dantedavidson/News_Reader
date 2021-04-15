@@ -1,13 +1,9 @@
 //Stores shared state for create story page. Render components
 import React, { useState } from "react";
-import { CreateCardForm } from "../CreateCardForm";
-import { InspectModal } from "../InspectModal";
+import { CreateCardForm } from "./CreateCardForm";
+import { InspectModal } from "../common/InspectModal";
 
-//Components
-import { Nav } from "../Nav";
-import { Footer } from "../Footer";
-
-export const Custom = ({
+export const Create = ({
   props,
   tags,
   setTags,
@@ -21,7 +17,6 @@ export const Custom = ({
 
   return (
     <React.Fragment>
-      <Nav current={"custom"} />
       <div
         className={
           modal.inspect || modal.edit ? "modal-bg bg-active" : "modal-bg"
@@ -40,8 +35,6 @@ export const Custom = ({
           setTags={setTags}
         ></CreateCardForm>
       </div>
-
-      <Footer />
     </React.Fragment>
   );
 };

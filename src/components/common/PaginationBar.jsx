@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import Pagination from "react-bootstrap/Pagination";
 
 //Utilities
-import { paginationDisplay, scrollTop } from "../utilities";
+import { paginationDisplay, scrollTop } from "../Utility/utilities";
 
 export const PaginationBar = ({ query, setQuery }) => {
   const {

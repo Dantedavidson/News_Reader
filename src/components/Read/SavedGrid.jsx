@@ -3,13 +3,18 @@
 import React, { useState } from "react";
 
 //Components
-import { LikeBtn } from "./common/LikeBtn";
-import { InspectBtn } from "./common/InspectBtn";
-import { EditBtn } from "./common/EditBtn";
-import { NewsCard } from "./NewsCard";
+import { LikeBtn } from "../common/LikeBtn";
+import { InspectBtn } from "../common/InspectBtn";
+import { EditBtn } from "../common/EditBtn";
+import { NewsCard } from "../common/NewsCard";
 import { Search } from "./Search";
 
-export const TempGrid = ({ savedStories, setSavedStories, tags, setModal }) => {
+export const SavedGrid = ({
+  savedStories,
+  setSavedStories,
+  tags,
+  setModal,
+}) => {
   const [search, setSearch] = useState({
     term: "",
     tags: "All",

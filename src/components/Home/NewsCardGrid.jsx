@@ -3,9 +3,9 @@
 import React from "react";
 
 //components
-import { LikeBtn } from "./common/LikeBtn";
-import { NewsCard } from "./NewsCard";
-import { Loading } from "./common/Loading";
+import { LikeBtn } from "../common/LikeBtn";
+import { NewsCard } from "../common/NewsCard";
+import { Loading } from "../common/Loading";
 
 export const NewsCardGrid = ({ query, savedStories, setSavedStories }) => {
   return query.loading ? (

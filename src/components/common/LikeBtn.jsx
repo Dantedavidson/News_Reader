@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 //Utilities
-import { saveCard, deleteCard, setLocalStorage } from "../utilities";
+import { saveCard, deleteCard, setLocalStorage } from "../Utility/utilities";
 
 export const LikeBtn = ({ card, savedStories, setSavedStories }) => {
   //Toggle like status of item. Updates saved stories.

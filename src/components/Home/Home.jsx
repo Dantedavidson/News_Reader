@@ -6,18 +6,15 @@ import React, { useEffect, useState, useRef } from "react";
 import { getSearchStories } from "../../API";
 
 //Components
-import { Nav } from "../Nav";
-import { NewsSearchForm } from "../NewsSearchForm";
-import { NewsCardGrid } from "../NewsCardGrid";
+import { NewsSearchForm } from "./NewsSearchForm";
+import { NewsCardGrid } from "./NewsCardGrid";
 import { HorizontalLine } from "../common/HorizontalLine";
 import { FormButton } from "../UI/FormButton.style";
-import { Footer } from "../Footer";
-import { CarouselComponent } from "../CarouselComponent";
-
+import { CarouselComponent } from "./CarouselComponent";
 import { PaginationBar } from "../common/PaginationBar";
 
 //Utilities
-import { likeStatus, createCard, getPages } from "../utilities";
+import { likeStatus, createCard, getPages } from "../Utility/utilities";
 
 export const Home = ({ savedStories, setSavedStories, data }) => {
   //Object containing query and pagination data
@@ -114,7 +111,6 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
   }, [query.currentPage]);
   return (
     <React.Fragment>
-      <Nav current={"home"} />
       <div className="body home">
         <NewsSearchForm
           setQuery={setQuery}
@@ -175,7 +171,6 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
           }[currentDisplay]
         }
       </div>
-      <Footer />
     </React.Fragment>
   );
 };

@@ -14,10 +14,10 @@ import {
   setLocalStorage,
   userCard,
   stringToArray,
-} from "./utilities";
+} from "../Utility/utilities";
 
 //Schema
-import { userCardSchema } from "./schema";
+import { userCardSchema } from "../Utility/schema";
 import uuid from "react-uuid";
 
 export const CreateCardForm = ({
@@ -174,7 +174,7 @@ export const CreateCardForm = ({
 
   //Set form fields and backup if user is on edit route
   useEffect(() => {
-    if (match.url === "/custom") return;
+    if (match.url === "/create") return;
     const paramId = match.params.id;
     const current = savedStories.filter((story) => story.id === paramId)[0];
     console.log(current);

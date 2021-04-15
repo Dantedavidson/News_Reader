@@ -1,7 +1,7 @@
 //Individual Carousel item
 import React from "react";
 
-import { LikeBtn } from "./common/LikeBtn";
+import { LikeBtn } from "../common/LikeBtn";
 
 export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
   const { title, lead, byline, date, imgUrl, url } = card.story;

@@ -1,7 +1,7 @@
 import uuid from "react-uuid";
-import config from "../config.json";
+import config from "../../config.json";
 
-import { API_KEY } from "../API";
+import { API_KEY } from "../../API";
 import { DateTime } from "luxon";
 
 // Takes a date from the api and returns en-gb format

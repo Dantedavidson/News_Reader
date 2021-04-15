@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 
-import { scrollTop } from "./utilities";
+import { scrollTop } from "../Utility/utilities";
 
 export const Footer = () => {
   return (

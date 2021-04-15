@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 //Components
-import { Button } from "./common/Button";
+import { Button } from "./Button";
 
 //Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 //Utilities
-import { paginationDisplay, getPages } from "./utilities";
+import { paginationDisplay, getPages } from "../Utility/utilities";
 
 export const InspectModal = ({ modal, setModal }) => {
   const initial = {

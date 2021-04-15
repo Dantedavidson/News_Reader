@@ -1,17 +1,9 @@
 //Individual card item
 import React from "react";
-import { LikeBtn } from "./common/LikeBtn";
-import { InspectBtn } from "./common/InspectBtn";
-import { EditBtn } from "./common/EditBtn";
-import { HorizontalLine } from "./common/HorizontalLine";
 
-export const NewsCard = ({
-  children,
-  card,
-  savedStories,
-  setSavedStories,
-  setModal,
-}) => {
+import { HorizontalLine } from "./HorizontalLine";
+
+export const NewsCard = ({ children, card }) => {
   const { imgUrl, title, byline, date, lead, url } = card.story;
 
   if (imgUrl) {

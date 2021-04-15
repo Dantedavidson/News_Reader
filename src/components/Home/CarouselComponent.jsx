@@ -3,11 +3,11 @@ import React from "react";
 
 //Libraries
 import Carousel from "react-bootstrap/Carousel";
-import { CarouselItem } from "./CarouselItem";
 import uuid from "react-uuid";
 
 //Components
-import { Loading } from "./common/Loading";
+import { Loading } from "../common/Loading";
+import { CarouselItem } from "./CarouselItem";
 
 export const CarouselComponent = ({
   cards,

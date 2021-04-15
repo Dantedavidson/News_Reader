@@ -13,21 +13,23 @@ import WebFont from "webfontloader";
 import { getTopStories } from "./API";
 
 //Pages
-import { Custom } from "./components/pages/Custom";
-import { Home } from "./components/pages/Home";
-import { NotFound } from "./components/pages/NotFound";
-import { Stories } from "./components/pages/Stories";
-import { Edit } from "./components/pages/Edit";
+import { Create } from "./components/Create&Edit/Create";
+import { Home } from "./components/Home/Home";
+import { NotFound } from "./components/Error/NotFound";
+import { Read } from "./components/Read/Read";
+import { Edit } from "./components/Create&Edit/Edit";
+import { Header } from "./components/Layout/Header";
+import { Footer } from "./components/Layout/Footer";
 
 //Utilities
-import { getLocalStorage, createCard } from "./components/utilities";
+import { getLocalStorage, createCard } from "./components/Utility/utilities";
 
 //Style
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/style.scss";
 import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./components/UI/GlobalStyle.styles";
-import { useTheme } from "./components/UI/useTheme";
+import { useTheme } from "./components/Utility/useTheme";
 
 //font awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -94,7 +96,9 @@ export const App = () => {
       {themeLoaded && (
         <ThemeProvider theme={selectedTheme}>
           <GlobalStyle />
+
           <Router>
+            <Header></Header>
             <Switch>
               <Route
                 path="/edit/:id"
@@ -109,9 +113,9 @@ export const App = () => {
                 )}
               ></Route>
               <Route
-                path="/custom"
+                path="/create"
                 render={(props) => (
-                  <Custom
+                  <Create
                     props={props}
                     tags={tags}
                     setTags={setTags}
@@ -122,9 +126,9 @@ export const App = () => {
               ></Route>
               <Route path="/404" render={(props) => <NotFound />}></Route>
               <Route
-                path="/stories"
+                path="/read"
                 render={(props) => (
-                  <Stories
+                  <Read
                     savedStories={savedStories}
                     setSavedStories={setSavedStories}
                     tags={tags}
@@ -174,6 +178,7 @@ export const App = () => {
 
               <Redirect to="/404" />
             </Switch>
+            <Footer></Footer>
           </Router>
         </ThemeProvider>
       )}
