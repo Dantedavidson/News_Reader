@@ -3,6 +3,8 @@ import styled from "styled-components";
 //Components
 import { InputComponent } from "../common/form";
 import { SelectComponent } from "../common/form";
+import { TextAreaComponent } from "../common/form";
+import { InputSelectComponent } from "../common/form";
 
 export const Input = styled(InputComponent)`
   input {
@@ -22,3 +24,7 @@ export const Input = styled(InputComponent)`
 `;
 
 export const Select = styled(SelectComponent)``;
+
+export const TextArea = styled(TextAreaComponent)``;
+
+export const InputSelect = styled(InputSelectComponent)``;

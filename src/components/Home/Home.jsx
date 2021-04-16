@@ -113,7 +113,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
   return (
     <React.Fragment>
       <div className="body home">
-        <ModalBG active={true}>
+        <ModalBG current={currentDisplay}>
           <NewsSearchForm
             setQuery={setQuery}
             initialQuery={initialQuery}

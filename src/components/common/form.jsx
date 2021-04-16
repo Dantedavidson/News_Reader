@@ -36,3 +36,56 @@ export const SelectComponent = ({
     </select>
   </div>
 );
+
+export const TextAreaComponent = ({
+  className,
+  id,
+  label,
+  register,
+  error,
+}) => {
+  const increaseHeight = (e) => {
+    e.target.style.height = "auto";
+    const newHeight = e.target.scrollHeight > 34 ? e.target.scrollHeight : 34;
+    e.target.style.height = newHeight.toString() + "px";
+  };
+  return (
+    <div className={className}>
+      <label htmlFor={id}>{label}</label>
+      <textarea
+        onKeyUp={(e) => {
+          increaseHeight(e);
+        }}
+        id={id}
+        name={id}
+        ref={register}
+      ></textarea>
+      {error && <p className="error">{error.message}</p>}
+    </div>
+  );
+};
+
+export const InputSelectComponent = ({
+  className,
+  id,
+  listId,
+  label,
+  options,
+  register,
+  error,
+}) => {
+  return (
+    <div className={className}>
+      <label htmlFor={id}>{label}</label>
+      <input id={id} name={id} list={listId} ref={register} type="text"></input>
+      <datalist id={listId}>
+        {options.map((option) => (
+          <option key={uuid()} value={option}>
+            {option}
+          </option>
+        ))}
+      </datalist>
+      {error && <p className="error">{error.message}</p>}
+    </div>
+  );
+};

@@ -17,7 +17,7 @@ export const ModalBG = styled.div`
   opacity: 0;
   transition: visibility 0s, opacity 0.5s;
   ${(props) =>
-    props.active &&
+    props.current === "modal" &&
     `
   visibility: visible;
   opacity: 1;
