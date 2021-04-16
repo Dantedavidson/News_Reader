@@ -113,14 +113,16 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
   return (
     <React.Fragment>
       <div className="body home">
-        <ModalBG active={false}></ModalBG>
-        <NewsSearchForm
-          setQuery={setQuery}
-          initialQuery={initialQuery}
-          currentDisplay={currentDisplay}
-          setCurrentDisplay={setCurrentDisplay}
-          savedStories={savedStories}
-        />
+        <ModalBG active={true}>
+          <NewsSearchForm
+            setQuery={setQuery}
+            initialQuery={initialQuery}
+            currentDisplay={currentDisplay}
+            setCurrentDisplay={setCurrentDisplay}
+            savedStories={savedStories}
+          />
+        </ModalBG>
+
         <CarouselComponent
           cards={topStories}
           loading={loadingTopStories}

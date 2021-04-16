@@ -12,7 +12,7 @@ import { createQuery, formatQueryDate } from "../Utility/utilities";
 
 //components
 import { FormButton } from "../UI/FormButton.style";
-
+import { Modal } from "../UI/modal";
 //font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -25,6 +25,7 @@ export const NewsSearchForm = ({
   setCurrentDisplay,
   setQuery,
   initialQuery,
+  className,
 }) => {
   const { register, handleSubmit, reset, errors, clearErrors } = useForm({
     resolver: yupResolver(searchFormSchema),
@@ -167,83 +168,69 @@ export const NewsSearchForm = ({
   };
 
   return (
-    <div
-      className={currentDisplay === "modal" ? "modal-bg bg-active" : "modal-bg"}
-    >
-      <div
-        className={
-          currentDisplay === "modal"
-            ? "modal-custom modal-form"
-            : "modal-custom "
-        }
+    <Modal>
+      <span
+        onClick={() => {
+          clearErrors();
+          reset();
+          setCurrentDisplay("start");
+        }}
       >
-        <span
-          className="modal-close"
-          onClick={() => {
-            clearErrors();
-            reset();
-            setCurrentDisplay("start");
-          }}
-        >
-          <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
-        </span>
-        <h3>Search The New York Times</h3>
-        <form>
-          <div>
-            <div className={errors.term ? "input error" : "input"}>
-              <label for="news-search">Search Term</label>
-              <input id="news-search" name="term" ref={register}></input>
-            </div>
+        <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
+      </span>
+      <h3>Search The New York Times</h3>
+      <form>
+        <div>
+          <div className={errors.term ? "input error" : "input"}>
+            <label for="news-search">Search Term</label>
+            <input id="news-search" name="term" ref={register}></input>
           </div>
-          <p className="below error">{errors.term?.message}</p>
+        </div>
+        <p className="below error">{errors.term?.message}</p>
 
-          <div className={errors.startDate ? "input error" : "input"}>
-            <label for="news-search-start-date">Start Date</label>
-            <input
-              type="text"
-              id="news-search-start-date"
-              name="startDate"
-              ref={register}
-            />
-          </div>
-          <p className="below">DD/MM/YYYY</p>
-          <p className="below error">
-            {errors.startDate && "Please enter a valid date"}
-          </p>
-          <div className={errors.endDate ? "input error" : "input"}>
-            <label for="news-search-end-date">End Date</label>
-            <input
-              type="text"
-              id="news-search-end-date"
-              name="endDate"
-              ref={register}
-            />
-          </div>
-          <p className="below">DD/MM/YYYY</p>
-          <p className="below error">
-            {errors.endDate && "Please enter a valid date"}
-          </p>
+        <div className={errors.startDate ? "input error" : "input"}>
+          <label for="news-search-start-date">Start Date</label>
+          <input
+            type="text"
+            id="news-search-start-date"
+            name="startDate"
+            ref={register}
+          />
+        </div>
+        <p className="below">DD/MM/YYYY</p>
+        <p className="below error">
+          {errors.startDate && "Please enter a valid date"}
+        </p>
+        <div className={errors.endDate ? "input error" : "input"}>
+          <label for="news-search-end-date">End Date</label>
+          <input
+            type="text"
+            id="news-search-end-date"
+            name="endDate"
+            ref={register}
+          />
+        </div>
+        <p className="below">DD/MM/YYYY</p>
+        <p className="below error">
+          {errors.endDate && "Please enter a valid date"}
+        </p>
 
-          <div>
-            <div className="input">
-              <label for="news-search-sections">Section</label>
-              <select id="news-search-sections" name="section" ref={register}>
-                {sections.map((section) => {
-                  return (
-                    <option value={section} key={uuid()}>
-                      {section}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
+        <div>
+          <div className="input">
+            <label for="news-search-sections">Section</label>
+            <select id="news-search-sections" name="section" ref={register}>
+              {sections.map((section) => {
+                return (
+                  <option value={section} key={uuid()}>
+                    {section}
+                  </option>
+                );
+              })}
+            </select>
           </div>
-          <FormButton
-            handler={handleSubmit(onSubmit)}
-            text="Submit"
-          ></FormButton>
-        </form>
-      </div>
-    </div>
+        </div>
+        <FormButton handler={handleSubmit(onSubmit)} text="Submit"></FormButton>
+      </form>
+    </Modal>
   );
 };

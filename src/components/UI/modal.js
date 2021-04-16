@@ -24,4 +24,23 @@ export const ModalBG = styled.div`
   `}
 `;
 
-export const Modal = styled.div``;
+export const Modal = styled.div`
+  position: relative;
+  //display: none;
+  background-color: ${({ theme }) => theme.colors.card};
+  width: 40%;
+  min-width: 340px;
+  border-radius: 5px;
+
+  span {
+    color: ${({ theme }) => theme.colors.textOne};
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    svg {
+      height: 1.3rem;
+      width: 1.3rem;
+    }
+  }
+`;
