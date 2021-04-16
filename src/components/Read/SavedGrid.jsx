@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { LikeBtn } from "../common/LikeBtn";
 import { InspectBtn } from "../common/InspectBtn";
 import { EditBtn } from "../common/EditBtn";
-import { NewsCard } from "../common/NewsCard";
+import { Card } from "../UI/Card.style";
 import { Search } from "./Search";
 
 export const SavedGrid = ({
@@ -42,7 +42,7 @@ export const SavedGrid = ({
       <div className="user-grid">
         {filtered.map((story) => {
           return (
-            <NewsCard
+            <Card
               setModal={setModal}
               card={story}
               savedStories={savedStories}
@@ -55,7 +55,7 @@ export const SavedGrid = ({
                 savedStories={savedStories}
                 setSavedStories={setSavedStories}
               />
-            </NewsCard>
+            </Card>
           );
         })}
       </div>

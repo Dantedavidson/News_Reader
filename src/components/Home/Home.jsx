@@ -12,6 +12,7 @@ import { HorizontalLine } from "../common/HorizontalLine";
 import { FormButton } from "../UI/FormButton.style";
 import { CarouselComponent } from "./CarouselComponent";
 import { PaginationBar } from "../common/PaginationBar";
+import { ModalBG } from "../UI/modal";
 
 //Utilities
 import { likeStatus, createCard, getPages } from "../Utility/utilities";
@@ -112,6 +113,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
   return (
     <React.Fragment>
       <div className="body home">
+        <ModalBG active={false}></ModalBG>
         <NewsSearchForm
           setQuery={setQuery}
           initialQuery={initialQuery}
@@ -163,7 +165,6 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
                       setCurrentDisplay("modal");
                     }}
                     text="New Search"
-                    clss={query.results.length === 0 ? "single" : ""}
                   ></FormButton>
                 </div>
               </React.Fragment>

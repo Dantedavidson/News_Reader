@@ -7,7 +7,7 @@ import uuid from "react-uuid";
 
 //Components
 import { Loading } from "../common/Loading";
-import { CarouselItem } from "./CarouselItem";
+import { CarouselItem } from "./ui";
 
 export const CarouselComponent = ({
   cards,

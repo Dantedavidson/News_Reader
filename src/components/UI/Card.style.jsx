@@ -1,11 +1,16 @@
-.card {
+import styled from "styled-components";
+import { NewsCard } from "../common/NewsCard";
+import { flexContainer } from "../Utility/mixins";
+
+export const Card = styled(NewsCard)`
   padding: 0.5rem;
   height: 380px;
   width: 300px;
-  @include flex-container(column, space-between);
+  ${flexContainer("column", "space-between", "flex-start", "flex-start")}
   transition: all 1s;
   font-family: "roboto";
-
+  background-color: ${({ theme }) => theme.colors.card};
+  border: 1px ${({ theme }) => theme.colors.textOne} solid;
   h3 {
     height: 80px;
     text-overflow: ellipsis;
@@ -23,7 +28,6 @@
     height: 140px;
     margin: 0 auto 1rem auto;
   }
-
   //Overflow ellipse for paragraph over 6 lines
   p {
     height: 140px;
@@ -33,7 +37,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
+  .horizontal-line {
+    margin: 3px auto 0 auto;
+    height: 1px;
+    width: 282px;
+  }
   //Animate author overflow
   > div:nth-of-type(1) {
     h6:nth-child(1) {
@@ -51,23 +59,14 @@
   > div:nth-of-type(2) {
     width: 90%;
     margin: 0 auto;
-    @include flex-container($justifyContent: space-between);
+    ${flexContainer("row", "space-between", "flex-start", "flex-start")}
+    ${(props) =>
+      props.single &&
+      `
+    ${flexContainer("row", "space-around", "flex-start", "flex-start")}
+    `}
     > svg {
       cursor: pointer;
     }
   }
-}
-
-.button-container {
-  margin: 3rem auto 9rem auto;
-  width: 80%;
-  @include flex-container($justifyContent: space-between);
-  .button {
-    width: 40%;
-    margin: 0;
-
-    &.single {
-      margin: auto;
-    }
-  }
-}
+`;

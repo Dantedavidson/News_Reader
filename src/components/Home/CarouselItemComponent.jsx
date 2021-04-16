@@ -3,11 +3,16 @@ import React from "react";
 
 import { LikeBtn } from "../common/LikeBtn";
 
-export const CarouselItem = ({ card, savedStories, setSavedStories }) => {
+export const CarouselItemComponent = ({
+  card,
+  savedStories,
+  setSavedStories,
+  className,
+}) => {
   const { title, lead, byline, date, imgUrl, url } = card.story;
   return (
-    <div className="carousel-item-container">
-      <div className="image">
+    <div className={className}>
+      <div>
         <img src={imgUrl} alt="" />
       </div>
       <div>

@@ -11,7 +11,7 @@ import uuid from "react-uuid";
 import { createQuery, formatQueryDate } from "../Utility/utilities";
 
 //components
-import { Button } from "../common/Button";
+import { FormButton } from "../UI/FormButton.style";
 
 //font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -238,7 +238,10 @@ export const NewsSearchForm = ({
               </select>
             </div>
           </div>
-          <Button handler={handleSubmit(onSubmit)} text="Submit"></Button>
+          <FormButton
+            handler={handleSubmit(onSubmit)}
+            text="Submit"
+          ></FormButton>
         </form>
       </div>
     </div>

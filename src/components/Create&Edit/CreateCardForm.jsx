@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 
+//Components
+import { FormButton } from "../UI/FormButton.style";
+
 //Libraries
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -352,12 +355,14 @@ export const CreateCardForm = ({
           ></FontAwesomeIcon>
         </div>
         <div>
-          <button className="create" onClick={handlePreview}>
-            Preview Card
-          </button>
-          <button className="create" onClick={handleSubmit(onSubmit)}>
-            Add Card
-          </button>
+          <FormButton
+            text={"Preview Card"}
+            onClick={handlePreview}
+          ></FormButton>
+          <FormButton
+            text={"Add Card"}
+            onClick={handleSubmit(onSubmit)}
+          ></FormButton>
         </div>
       </form>
     </React.Fragment>

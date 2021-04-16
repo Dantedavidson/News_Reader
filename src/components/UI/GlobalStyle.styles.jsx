@@ -1,11 +1,18 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+//Theme
 body{
     background-color:${({ theme }) => theme.colors.body};
     color:${({ theme }) => theme.colors.textOne};
     font-family:${({ theme }) => theme.font};
 }
+.carousel-container {
+  width: 100%;
+
+  margin: 3rem auto;
+  overflow: hidden;}
+
 //reset
 * {
   padding: 0;

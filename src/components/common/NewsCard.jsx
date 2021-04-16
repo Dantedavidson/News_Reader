@@ -3,12 +3,12 @@ import React from "react";
 
 import { HorizontalLine } from "./HorizontalLine";
 
-export const NewsCard = ({ children, card }) => {
+export const NewsCard = ({ children, card, className }) => {
   const { imgUrl, title, byline, date, lead, url } = card.story;
 
   if (imgUrl) {
     return (
-      <div className="card" id={card.id}>
+      <div className={className} id={card.id}>
         <a href={url} target="_blank">
           <h3>{title}</h3>
         </a>
@@ -23,7 +23,7 @@ export const NewsCard = ({ children, card }) => {
     );
   } else {
     return (
-      <div className="card" id={card.id}>
+      <div className={className} id={card.id}>
         <a href={url} target="_blank">
           <h3>{title}</h3>
         </a>

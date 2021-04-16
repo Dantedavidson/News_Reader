@@ -5,6 +5,7 @@
       "name": "Main",
       "colors": {
         "body": "#FFFFFF",
+        "card": "#FFFFFF",
         "primary": "#052962",
         "highlight": "#ffe500",
         "warning": "#dd930b",

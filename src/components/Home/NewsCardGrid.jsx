@@ -4,7 +4,7 @@ import React from "react";
 
 //components
 import { LikeBtn } from "../common/LikeBtn";
-import { NewsCard } from "../common/NewsCard";
+import { Card } from "../UI/Card.style";
 import { Loading } from "../common/Loading";
 
 export const NewsCardGrid = ({ query, savedStories, setSavedStories }) => {
@@ -18,7 +18,8 @@ export const NewsCardGrid = ({ query, savedStories, setSavedStories }) => {
         {query.results.length > 0 ? (
           query.results.map((card) => {
             return (
-              <NewsCard
+              <Card
+                single
                 card={card}
                 savedStories={savedStories}
                 setSavedStories={setSavedStories}
@@ -28,7 +29,7 @@ export const NewsCardGrid = ({ query, savedStories, setSavedStories }) => {
                   savedStories={savedStories}
                   setSavedStories={setSavedStories}
                 />
-              </NewsCard>
+              </Card>
             );
           })
         ) : (
