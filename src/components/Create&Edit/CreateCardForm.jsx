@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 //Components
 import { FormButton } from "../UI/FormButton.style";
+import { Input, InputSelect, Select, TextArea } from "../UI/form";
 
 //Libraries
 import { useForm } from "react-hook-form";
@@ -61,12 +62,7 @@ export const CreateCardForm = ({
     reValidateMode: "onChange",
     defaultValues: preload,
   });
-  //Text area resize
-  function increaseHeight(e) {
-    e.target.style.height = "auto";
-    const newHeight = e.target.scrollHeight > 34 ? e.target.scrollHeight : 34;
-    e.target.style.height = newHeight.toString() + "px";
-  }
+
   // Takes data from input field and updates state on change.
   const handleChange = (data) => {
     setUserInput((prevState) => {
@@ -196,164 +192,66 @@ export const CreateCardForm = ({
     <React.Fragment>
       <form className="form-create">
         <h2>{title}</h2>
+        <TextArea
+          id="title"
+          label="Title"
+          register={register}
+          error={errors.title}
+        ></TextArea>
+        <TextArea
+          id="description"
+          label="Description"
+          register={register}
+          error={errors.description}
+        ></TextArea>
+        <Input
+          id="imgUrl"
+          label="Image Url"
+          error={errors.imgUrl}
+          register={register}
+          name="imgUrl"
+          type="text"
+        ></Input>
+        <Input
+          id="url"
+          label="Url"
+          error={errors.url}
+          register={register}
+          name="url"
+          type="text"
+        ></Input>
+        <Input
+          id="author"
+          label="Author"
+          error={errors.author}
+          register={register}
+          name="author"
+          type="text"
+        ></Input>
 
-        {/* Add Title */}
-        <div className={errors.title ? "input error" : "input"}>
-          <label for="title">Title</label>
-          <textarea
-            onKeyUp={(e) => {
-              increaseHeight(e);
-            }}
-            id="title"
-            name="title"
-            type="text"
-            ref={register}
-            onChange={handleChange}
-          />
-        </div>
-        <p className="error below">
-          {errors.title && "Please include a title."}
-        </p>
-        {/* Add Description */}
-        <div className={errors.description ? "input error" : "input"}>
-          <label for="description">Description</label>
-          <textarea
-            onKeyUp={(e) => {
-              increaseHeight(e);
-            }}
-            id="description"
-            name="description"
-            type="text"
-            ref={register}
-            onChange={handleChange}
-          />
-        </div>
-        <p className="error below">
-          {errors.description &&
-            "Please enter a valid description that is less than 250 characters."}
-        </p>
-        {/* Add Image URL */}
-        <div className={errors.imgUrl ? "input error" : "input"}>
-          <label for="url">Image Url</label>
-          <input
-            id="imgUrl"
-            name="imgUrl"
-            type="text"
-            ref={register}
-            onChange={handleChange}
-          />
-        </div>
-        <p className="error below">{errors.imgUrl && errors.imgUrl.message}</p>
-
-        {/* Add URL */}
-        <div className={errors.url ? "input error" : "input"}>
-          <label for="url">Url</label>
-          <input
-            id="url"
-            name="url"
-            type="text"
-            ref={register}
-            onChange={handleChange}
-          />
-        </div>
-        <p className="error below">
-          {errors.url && "Please enter a valid URL."}
-        </p>
-
-        {/* Add Author */}
-        <div className={addError.author.length > 0 ? "input warning" : "input"}>
-          <label for="author">Author</label>
-          <input
-            id="author"
-            data-key="author"
-            name="author"
-            type="text"
-            ref={register}
-            onChange={() => {
-              setAddError((prevState) => ({
-                ...prevState,
-                author: [],
-              }));
-            }}
-          />
-
-          <FontAwesomeIcon
-            onClick={handleAdd}
-            className={
-              addError.author.length > 0 ? "add-btn warning" : "add-btn"
-            }
-            icon={faPlus}
-          ></FontAwesomeIcon>
-        </div>
-        <p className="warning below">
-          {addError.author.length > 0 && addError.author[0]}
-        </p>
-
-        {/* Add Tag */}
-        <div className={addError.tag.length > 0 ? "input warning" : "input"}>
-          <label for="tag">Tag</label>
-          <input
-            id="tag"
-            name="tag"
-            list="tags"
-            type="text"
-            ref={register}
-            onChange={(e) => handleTag(e)}
-          />
-          <datalist id="tags">
-            {tags.map((tag) => (
-              <option key={uuid()} value={tag}>
-                {tag}
-              </option>
-            ))}
-          </datalist>
-
-          <FontAwesomeIcon
-            onClick={handleAdd}
-            className={addError.tag.length > 0 ? "add-btn warning" : "add-btn"}
-            icon={faPlus}
-          ></FontAwesomeIcon>
-        </div>
-        <p className="warning below">
-          {addError.tag.length > 0 && addError.tag[0]}
-        </p>
+        <InputSelect
+          id="tag"
+          label="Tag"
+          listId="tags"
+          options={tags}
+          register={register}
+          error={addError.tag}
+        ></InputSelect>
 
         {/* Remove Author */}
-        <div className="input">
-          <label for="remove-author" data-key="author">
-            Remove Author
-          </label>
-          <select type="text" data-key="author" name="remove-author">
-            {userInput.author.map((author) => (
-              <option key={uuid()} value={author}>
-                {author}
-              </option>
-            ))}
-          </select>
-          <FontAwesomeIcon
-            onClick={handleDelete}
-            className="add-btn"
-            icon={faTimes}
-          ></FontAwesomeIcon>
-        </div>
+        <Select
+          id="remove-author"
+          label="Remove Author"
+          options={userInput.author}
+          register={register}
+        ></Select>
 
-        {/* Remove Tag */}
-        <div className="input">
-          <label>Remove Tag</label>
-          <select data-key="tag">
-            {userInput.tag.map((tag) => (
-              <option key={uuid()} value={tag}>
-                {tag}
-              </option>
-            ))}
-          </select>
-
-          <FontAwesomeIcon
-            onClick={handleDelete}
-            className="add-btn"
-            icon={faTimes}
-          ></FontAwesomeIcon>
-        </div>
+        <Select
+          id="remove-tag"
+          label="Remove Tag"
+          options={userInput.tag}
+          register={register}
+        ></Select>
         <div>
           <FormButton
             text={"Preview Card"}
