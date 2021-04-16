@@ -129,7 +129,13 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
           savedStories={savedStories}
           setSavedStories={setSavedStories}
         />
-        <HorizontalLine topLine={topLine}></HorizontalLine>
+        <HorizontalLine
+          topLine={topLine}
+          xPercent={80}
+          yPx={2}
+          xm={3}
+          ym={3}
+        ></HorizontalLine>
 
         {
           {
@@ -141,7 +147,12 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
                   }}
                   text="Search"
                 ></FormButton>
-                <HorizontalLine></HorizontalLine>
+                <HorizontalLine
+                  xPercent={80}
+                  yPx={2}
+                  xm={3}
+                  ym={3}
+                ></HorizontalLine>
               </React.Fragment>
             ),
             modal: <div className="block"></div>,
@@ -155,7 +166,13 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
                   currentDisplay={currentDisplay}
                   setCurrentDisplay={setCurrentDisplay}
                 />
-                <HorizontalLine id={"bottom"}></HorizontalLine>
+                <HorizontalLine
+                  id={"bottom"}
+                  xPercent={80}
+                  yPx={2}
+                  xm={3}
+                  ym={3}
+                ></HorizontalLine>
                 <div className="button-container">
                   <PaginationBar
                     size={"lg"}

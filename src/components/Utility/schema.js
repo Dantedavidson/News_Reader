@@ -6,8 +6,16 @@ import { urlRegex, dateRegex } from "./regex";
 //Schema for home page query form
 export const searchFormSchema = yup.object().shape({
   term: yup.string().max(32).required(),
-  startDate: yup.string().matches(dateRegex, { excludeEmptyString: true }),
-  endDate: yup.string().matches(dateRegex, { excludeEmptyString: true }),
+  startDate: yup.string().matches(dateRegex, {
+    message: "Must be a valid date",
+    excludeEmptyString: true,
+  }),
+  endDate: yup
+    .string()
+    .matches(dateRegex, {
+      message: "Must be a valid date",
+      excludeEmptyString: true,
+    }),
 });
 
 //Schema for create page card form

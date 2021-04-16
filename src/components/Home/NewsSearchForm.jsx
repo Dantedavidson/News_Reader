@@ -13,6 +13,7 @@ import { createQuery, formatQueryDate } from "../Utility/utilities";
 //components
 import { FormButton } from "../UI/FormButton.style";
 import { Modal } from "../UI/modal";
+import { Input, Select } from "../UI/form";
 //font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -146,6 +147,7 @@ export const NewsSearchForm = ({
   ];
 
   const onSubmit = (data) => {
+    console.log(data);
     //Reset to default
     setQuery(initialQuery);
 
@@ -180,55 +182,40 @@ export const NewsSearchForm = ({
       </span>
       <h3>Search The New York Times</h3>
       <form>
-        <div>
-          <div className={errors.term ? "input error" : "input"}>
-            <label for="news-search">Search Term</label>
-            <input id="news-search" name="term" ref={register}></input>
-          </div>
-        </div>
-        <p className="below error">{errors.term?.message}</p>
-
-        <div className={errors.startDate ? "input error" : "input"}>
-          <label for="news-search-start-date">Start Date</label>
-          <input
-            type="text"
-            id="news-search-start-date"
-            name="startDate"
-            ref={register}
-          />
-        </div>
-        <p className="below">DD/MM/YYYY</p>
-        <p className="below error">
-          {errors.startDate && "Please enter a valid date"}
-        </p>
-        <div className={errors.endDate ? "input error" : "input"}>
-          <label for="news-search-end-date">End Date</label>
-          <input
-            type="text"
-            id="news-search-end-date"
-            name="endDate"
-            ref={register}
-          />
-        </div>
-        <p className="below">DD/MM/YYYY</p>
-        <p className="below error">
-          {errors.endDate && "Please enter a valid date"}
-        </p>
-
-        <div>
-          <div className="input">
-            <label for="news-search-sections">Section</label>
-            <select id="news-search-sections" name="section" ref={register}>
-              {sections.map((section) => {
-                return (
-                  <option value={section} key={uuid()}>
-                    {section}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-        </div>
+        <Input
+          error={errors.term}
+          id="term"
+          label="Search Term"
+          register={register}
+          type="text"
+          name="term"
+        ></Input>
+        <Input
+          error={errors.startDate}
+          id="startDate"
+          label="Start Date"
+          register={register}
+          type="text"
+          name="startDate"
+        >
+          <p className="info">DD/MM/YYYY</p>
+        </Input>
+        <Input
+          error={errors.endDate}
+          id="endDate"
+          label="End Date"
+          register={register}
+          type="text"
+          name="endDate"
+        >
+          <p className="info">DD/MM/YYYY</p>
+        </Input>
+        <Select
+          options={sections}
+          id="section"
+          label="Section"
+          register={register}
+        ></Select>
         <FormButton handler={handleSubmit(onSubmit)} text="Submit"></FormButton>
       </form>
     </Modal>

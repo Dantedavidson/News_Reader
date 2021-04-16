@@ -16,8 +16,13 @@ export const NewsCard = ({ children, card, className }) => {
         <div>
           <h6>{byline}</h6>
           <h6>{date}</h6>
-          <HorizontalLine></HorizontalLine>
         </div>
+        <HorizontalLine
+          yPx={1}
+          xPercent={95}
+          xm={0.3}
+          ym={0.3}
+        ></HorizontalLine>
         <div>{children}</div>
       </div>
     );
@@ -31,7 +36,12 @@ export const NewsCard = ({ children, card, className }) => {
         <div>
           <h6>{byline}</h6>
           <h6>{date}</h6>
-          <HorizontalLine></HorizontalLine>
+          <HorizontalLine
+            yPx={1}
+            xPercent={90}
+            xm={0.3}
+            ym={0.3}
+          ></HorizontalLine>
         </div>
         <div>{children}</div>
       </div>
