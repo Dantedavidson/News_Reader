@@ -204,38 +204,6 @@ export const CreateCardForm = ({
   const test = (e) => {
     e.preventDefault();
   };
-  // ({ control, index, field }) => {
-  //   const value = useWatch({
-  //     name: "test",
-  //     control
-  //   });
-
-  //   return (
-  //     <Controller
-  //       control={control}
-  //       name={`test.${index}.firstName`}
-  //       render={({ field }) =>
-  //         value?.[index]?.checkbox === "on" ? <input {...field} /> : null
-  //       }
-  //       defaultValue={field.firstName}
-  //     />
-  //   );
-  // };
-
-  // const handleUserSelection = (val) => {
-  //   console.log(val);
-  //   const userObj = [];
-  //   let userData = [];
-  //   userData = customerList.filter(item => item.cid === val[0].value) ? customerData.filter(item => item.cid === val[0].value) : [];
-  //   console.log(userData);
-  //   if (userData && userData.length > 0) {
-  //     setEmail(userData[0].cemail);
-  //     setPhone(userData[0].cph);
-
-  //   } else {
-  //     setCName(val[0].value);
-  //   }
-  // };
 
   //Set form fields and backup if user is on edit route
   useEffect(() => {
