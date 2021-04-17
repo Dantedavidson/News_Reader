@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 
 //Components
 import { FormButton } from "../UI/FormButton.style";
-import { Input, InputSelect, Select, TextArea } from "../UI/form";
+import { Input, InputSelect, Select, TextArea, FieldArray } from "../UI/form";
 
 //Libraries
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray, Controller, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 //Font awesome
@@ -57,10 +57,22 @@ export const CreateCardForm = ({
     clearErrors,
     reset,
     getValues,
+    control,
   } = useForm({
     resolver: yupResolver(userCardSchema),
     reValidateMode: "onChange",
     defaultValues: preload,
+  });
+
+  const {
+    fields: authorFields,
+    append: appendAuthor,
+    remove: removeAuthor,
+  } = useFieldArray({
+    control, // control props comes from useForm (optional: if you are using FormContext)
+    name: "authors",
+    // unique name for your Field Array
+    // keyName: "id", default to "id", you can change the key name
   });
 
   // Takes data from input field and updates state on change.
@@ -145,31 +157,75 @@ export const CreateCardForm = ({
       [key]: filter,
     }));
   };
+
+  const deleteAuthor = () => {
+    let filtered = authorFields.filter(
+      (author) => author.value === getValues("remove-author")
+    );
+    removeAuthor(filtered.index);
+  };
   //Takes form data. Handles submit
-  const onSubmit = () => {
-    const card = userCard(userInput);
-    const cardInDb = savedStories.find((story) => story.id === card.id) || {};
-    cardInDb.story = card.story;
-    cardInDb.id = card.id;
-    cardInDb.like = card.like;
-    cardInDb.tags = card.tags;
-    if (!cardInDb.id) {
-      cardInDb.id = uuid();
-      setSavedStories([...savedStories, cardInDb]);
-    }
-    setUserInput(initial);
-    reset();
-    if (match.url.includes("/edit")) return history.push("/stories");
+  const onSubmit = (data) => {
+    console.log(data, authorFields);
+    // const card = userCard(userInput);
+    // const cardInDb = savedStories.find((story) => story.id === card.id) || {};
+    // cardInDb.story = card.story;
+    // cardInDb.id = card.id;
+    // cardInDb.like = card.like;
+    // cardInDb.tags = card.tags;
+    // if (!cardInDb.id) {
+    //   cardInDb.id = uuid();
+    //   setSavedStories([...savedStories, cardInDb]);
+    // }
+    // setUserInput(initial);
+    // reset();
+    // if (match.url.includes("/edit")) return history.push("/stories");
   };
   //Updates saved stories
-  useEffect(() => {
-    setLocalStorage(savedStories, "Stories");
-  }, [savedStories]);
+  // useEffect(() => {
+  //   setLocalStorage(savedStories, "Stories");
+  // }, [savedStories]);
 
   //Updates saved tags
-  useEffect(() => {
-    setLocalStorage(tags, "Tags");
-  }, [tags]);
+  // useEffect(() => {
+  //   setLocalStorage(tags, "Tags");
+  // }, [tags]);
+  const test = (e) => {
+    e.preventDefault();
+    console.log(authorFields);
+  };
+  // ({ control, index, field }) => {
+  //   const value = useWatch({
+  //     name: "test",
+  //     control
+  //   });
+
+  //   return (
+  //     <Controller
+  //       control={control}
+  //       name={`test.${index}.firstName`}
+  //       render={({ field }) =>
+  //         value?.[index]?.checkbox === "on" ? <input {...field} /> : null
+  //       }
+  //       defaultValue={field.firstName}
+  //     />
+  //   );
+  // };
+
+  // const handleUserSelection = (val) => {
+  //   console.log(val);
+  //   const userObj = [];
+  //   let userData = [];
+  //   userData = customerList.filter(item => item.cid === val[0].value) ? customerData.filter(item => item.cid === val[0].value) : [];
+  //   console.log(userData);
+  //   if (userData && userData.length > 0) {
+  //     setEmail(userData[0].cemail);
+  //     setPhone(userData[0].cph);
+
+  //   } else {
+  //     setCName(val[0].value);
+  //   }
+  // };
 
   //Set form fields and backup if user is on edit route
   useEffect(() => {
@@ -212,6 +268,7 @@ export const CreateCardForm = ({
           name="imgUrl"
           type="text"
         ></Input>
+
         <Input
           id="url"
           label="Url"
@@ -220,6 +277,7 @@ export const CreateCardForm = ({
           name="url"
           type="text"
         ></Input>
+
         <Input
           id="author"
           label="Author"
@@ -228,6 +286,26 @@ export const CreateCardForm = ({
           name="author"
           type="text"
         ></Input>
+        {authorFields.map((author, index) => {
+          return (
+            <input
+              key={author.id}
+              ref={register()}
+              type="hidden"
+              name={`authors[${index}].value`}
+              defaultValue={author.value}
+            />
+          );
+        })}
+        <FontAwesomeIcon
+          onClick={() => {
+            appendAuthor({
+              value: getValues("author"),
+              index: authorFields.length,
+            });
+          }}
+          icon={faPlus}
+        ></FontAwesomeIcon>
 
         <InputSelect
           id="tag"
@@ -239,18 +317,57 @@ export const CreateCardForm = ({
         ></InputSelect>
 
         {/* Remove Author */}
-        <Select
+
+        <FieldArray
+          options={authorFields}
           id="remove-author"
-          label="Remove Author"
-          options={userInput.author}
+          array="authors"
+          label="Remove Authors"
           register={register}
-        ></Select>
+        ></FieldArray>
+        <FontAwesomeIcon
+          onClick={() => {
+            deleteAuthor();
+          }}
+          icon={faTimes}
+        ></FontAwesomeIcon>
+
+        {/* {authorFields.map((author, index) => {
+          <Controller
+            key={author.id}
+            control={control}
+            onChange={([selected]) => {
+              // React Select return object instead of value for selection
+              return { value: selected };
+            }}
+            name={`authors[${index}].name`}
+            defaultValue={{ value: "chocolate" }}
+            as={<Select options={authorFields} />}
+          ></Controller>;
+        })} */}
+
+        {/* <div>
+          <label htmlFor="remove-author">Remove Author</label>
+          <select name="remove-author" id="remove-author">
+            {authorFields.length > 0
+              ? authorFields.map((author, index) => {
+                  return (
+                    <option
+                      key={author.id} // important to include key with field's id
+                      //ref={register()}
+                      name={`authors[${index}].value`}
+                      defaultValue={author.value} // make sure to include defaultValue
+                    ></option>
+                  );
+                })
+              : ""}
+          </select>
+        </div> */}
 
         <Select
           id="remove-tag"
           label="Remove Tag"
           options={userInput.tag}
-          register={register}
         ></Select>
         <div>
           <FormButton
@@ -259,8 +376,9 @@ export const CreateCardForm = ({
           ></FormButton>
           <FormButton
             text={"Add Card"}
-            onClick={handleSubmit(onSubmit)}
+            handler={handleSubmit(onSubmit)}
           ></FormButton>
+          <button onClick={test}>test</button>
         </div>
       </form>
     </React.Fragment>

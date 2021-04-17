@@ -28,11 +28,13 @@ export const SelectComponent = ({
   <div className={className}>
     <label htmlFor={id}>{label}</label>
     <select name={id} id={id} ref={register}>
-      {options.map((option) => (
-        <option value={option} key={uuid()}>
-          {option}
-        </option>
-      ))}
+      {options.length > 0
+        ? options.map((option) => (
+            <option value={option} key={uuid()}>
+              {option}
+            </option>
+          ))
+        : ""}
     </select>
   </div>
 );
@@ -89,3 +91,33 @@ export const InputSelectComponent = ({
     </div>
   );
 };
+
+export const FieldArrayComponent = ({
+  className,
+  options,
+  id,
+  array,
+  label,
+  register,
+}) => (
+  <div className={className}>
+    <label htmlFor={id}>{label}</label>
+    <select name={id} id={id} ref={register}>
+      {options.length > 0
+        ? options.map((option, index) => {
+            console.log(options, option);
+            return (
+              <option
+                key={option.id}
+                name={`${array}[${index}].value`}
+                ref={register()}
+                defaultValue={option.value}
+              >
+                {option.value}
+              </option>
+            );
+          })
+        : ""}
+    </select>
+  </div>
+);
