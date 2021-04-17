@@ -108,19 +108,20 @@ export const createCard = (data, saved) => {
 
 //Creates a card object from form data.
 export const userCard = (data) => {
+  let authorTemp = data.authors ? data.authors.map((obj) => obj.value) : [];
   let card = {
     story: {
       title: data.title,
-      lead: data.description === "Description" ? "" : data.description,
+      lead: data.description,
       date: `Published ${currentDate()}`,
       byline:
-        formatAuthors(data.author) === "By" ? "" : formatAuthors(data.author),
+        formatAuthors(authorTemp) === "By" ? "" : formatAuthors(authorTemp),
       url: data.url,
       imgUrl: data.imgUrl,
     },
     id: data.id ? data.id : "",
     like: true,
-    tags: data.tag,
+    tags: data.tags ? data.tags.map((obj) => obj.value) : [],
   };
   card.story.url = data.url
     ? data.url

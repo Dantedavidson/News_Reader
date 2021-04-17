@@ -44,7 +44,7 @@ export const CreateCardForm = ({
     tag: [],
     id: null,
   };
-  const [userInput, setUserInput] = useState(initial);
+
   const [addError, setAddError] = useState({
     author: [],
     tag: [],
@@ -69,117 +69,128 @@ export const CreateCardForm = ({
     append: appendAuthor,
     remove: removeAuthor,
   } = useFieldArray({
-    control, // control props comes from useForm (optional: if you are using FormContext)
+    control,
     name: "authors",
-    // unique name for your Field Array
-    // keyName: "id", default to "id", you can change the key name
+  });
+  const {
+    fields: tagFields,
+    append: appendTag,
+    remove: removeTag,
+  } = useFieldArray({
+    control,
+    name: "tags",
   });
 
   // Takes data from input field and updates state on change.
-  const handleChange = (data) => {
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        [data.target.id]: isEmptyOrSpaces(data.target.value)
-          ? ""
-          : data.target.value,
-      };
-    });
-  };
+  // const handleChange = (data) => {
+  //   setUserInput((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       [data.target.id]: isEmptyOrSpaces(data.target.value)
+  //         ? ""
+  //         : data.target.value,
+  //     };
+  //   });
+  // };
   //Takes event. Sets errors for tag
-  const handleTag = (e) => {
-    if (userInput.tag.includes(e.target.value)) {
-      setAddError((prevState) => ({
-        ...prevState,
-        tag: ["Tag must be unique"],
-      }));
-    } else if (e.target.value.trim() === "") {
-      setAddError((prevState) => ({
-        ...prevState,
-        tag: ["Cannot be empty"],
-      }));
-    } else {
-      setAddError((prevState) => ({
-        ...prevState,
-        tag: [],
-      }));
-    }
-    return;
-  };
+  // const handleTag = (e) => {
+  //   if (userInput.tag.includes(e.target.value)) {
+  //     setAddError((prevState) => ({
+  //       ...prevState,
+  //       tag: ["Tag must be unique"],
+  //     }));
+  //   } else if (e.target.value.trim() === "") {
+  //     setAddError((prevState) => ({
+  //       ...prevState,
+  //       tag: ["Cannot be empty"],
+  //     }));
+  //   } else {
+  //     setAddError((prevState) => ({
+  //       ...prevState,
+  //       tag: [],
+  //     }));
+  //   }
+  //   return;
+  // };
 
   //Takes event. Handles adding of author or tag.
-  const handleAdd = (e) => {
-    const key = e.currentTarget.parentNode.childNodes[1].id;
-    const value = e.currentTarget.parentNode.childNodes[1].value;
-    if (value === "") {
-      setAddError((prevState) => ({
-        ...prevState,
-        [key]: [`Cannot add ${key} that is empty.`],
-      }));
-      return;
-    }
-    if (errors[key]) {
-      return;
-    }
+  // const handleAdd = (e) => {
+  //   const key = e.currentTarget.parentNode.childNodes[1].id;
+  //   const value = e.currentTarget.parentNode.childNodes[1].value;
+  //   if (value === "") {
+  //     setAddError((prevState) => ({
+  //       ...prevState,
+  //       [key]: [`Cannot add ${key} that is empty.`],
+  //     }));
+  //     return;
+  //   }
+  //   if (errors[key]) {
+  //     return;
+  //   }
 
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        [key]: [...prevState[key], value],
-      };
-    });
+  //   setUserInput((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       [key]: [...prevState[key], value],
+  //     };
+  //   });
 
-    e.currentTarget.parentNode.childNodes[1].value = "";
+  //   e.currentTarget.parentNode.childNodes[1].value = "";
 
-    if (key === "tag" && !tags.includes(value)) {
-      setTags([...tags, value]);
-    }
-  };
+  //   if (key === "tag" && !tags.includes(value)) {
+  //     setTags([...tags, value]);
+  //   }
+  // };
 
   //Handles preview
-  const handlePreview = (e) => {
-    const card = userCard(userInput);
-    setModal({
-      inspect: true,
-      current: card,
-    });
-    e.preventDefault();
-  };
+  // const handlePreview = (e) => {
+  //   const card = userCard(userInput);
+  //   setModal({
+  //     inspect: true,
+  //     current: card,
+  //   });
+  //   e.preventDefault();
+  // };
   //Takes event. Handles deleting author or tag
-  const handleDelete = (e) => {
-    const key = e.currentTarget.parentNode.childNodes[1].dataset.key;
-    const value = e.currentTarget.parentNode.childNodes[1].value;
-    if (!value) return;
-    const filter = userInput[key].filter((item) => item !== value);
+  // const handleDelete = (e) => {
+  //   const key = e.currentTarget.parentNode.childNodes[1].dataset.key;
+  //   const value = e.currentTarget.parentNode.childNodes[1].value;
+  //   if (!value) return;
+  //   const filter = userInput[key].filter((item) => item !== value);
 
-    setUserInput((prevState) => ({
-      ...prevState,
-      [key]: filter,
-    }));
-  };
-
+  //   setUserInput((prevState) => ({
+  //     ...prevState,
+  //     [key]: filter,
+  //   }));
+  // };
   const deleteAuthor = () => {
     let filtered = authorFields.filter(
       (author) => author.value === getValues("remove-author")
     );
     removeAuthor(filtered.index);
   };
+  const deleteTag = () => {
+    let filtered = tagFields.filter(
+      (tag) => tag.value === getValues("remove-tag")
+    );
+    removeTag(filtered.index);
+  };
   //Takes form data. Handles submit
   const onSubmit = (data) => {
-    console.log(data, authorFields);
-    // const card = userCard(userInput);
-    // const cardInDb = savedStories.find((story) => story.id === card.id) || {};
-    // cardInDb.story = card.story;
-    // cardInDb.id = card.id;
-    // cardInDb.like = card.like;
-    // cardInDb.tags = card.tags;
-    // if (!cardInDb.id) {
-    //   cardInDb.id = uuid();
-    //   setSavedStories([...savedStories, cardInDb]);
-    // }
-    // setUserInput(initial);
-    // reset();
-    // if (match.url.includes("/edit")) return history.push("/stories");
+    console.log(data);
+    const card = userCard(data);
+    console.log(card);
+    const cardInDb = savedStories.find((story) => story.id === card.id) || {};
+    cardInDb.story = card.story;
+    cardInDb.id = card.id;
+    cardInDb.like = card.like;
+    cardInDb.tags = card.tags;
+    if (!cardInDb.id) {
+      cardInDb.id = uuid();
+      setSavedStories([...savedStories, cardInDb]);
+    }
+    reset();
+    if (match.url.includes("/edit")) return history.push("/stories");
   };
   //Updates saved stories
   // useEffect(() => {
@@ -192,7 +203,6 @@ export const CreateCardForm = ({
   // }, [tags]);
   const test = (e) => {
     e.preventDefault();
-    console.log(authorFields);
   };
   // ({ control, index, field }) => {
   //   const value = useWatch({
@@ -232,16 +242,16 @@ export const CreateCardForm = ({
     if (match.url === "/create") return;
     const paramId = match.params.id;
     const current = savedStories.filter((story) => story.id === paramId)[0];
-    console.log(current);
-    setUserInput({
-      title: current.story.title,
-      description: current.story.lead,
-      imgUrl: current.story.imgUrl,
-      url: current.story.url,
-      tag: current.tags,
-      author: stringToArray(current.story.byline),
-      id: current.id,
-    });
+
+    // setUserInput({
+    //   title: current.story.title,
+    //   description: current.story.lead,
+    //   imgUrl: current.story.imgUrl,
+    //   url: current.story.url,
+    //   tag: current.tags,
+    //   author: stringToArray(current.story.byline),
+    //   id: current.id,
+    // });
   }, []);
 
   return (
@@ -315,6 +325,26 @@ export const CreateCardForm = ({
           register={register}
           error={addError.tag}
         ></InputSelect>
+        {tagFields.map((tag, index) => {
+          return (
+            <input
+              key={tag.id}
+              ref={register()}
+              type="hidden"
+              name={`tags[${index}].value`}
+              defaultValue={tag.value}
+            />
+          );
+        })}
+        <FontAwesomeIcon
+          onClick={() => {
+            appendTag({
+              value: getValues("tag"),
+              index: tagFields.length,
+            });
+          }}
+          icon={faPlus}
+        ></FontAwesomeIcon>
 
         {/* Remove Author */}
 
@@ -331,48 +361,25 @@ export const CreateCardForm = ({
           }}
           icon={faTimes}
         ></FontAwesomeIcon>
-
-        {/* {authorFields.map((author, index) => {
-          <Controller
-            key={author.id}
-            control={control}
-            onChange={([selected]) => {
-              // React Select return object instead of value for selection
-              return { value: selected };
-            }}
-            name={`authors[${index}].name`}
-            defaultValue={{ value: "chocolate" }}
-            as={<Select options={authorFields} />}
-          ></Controller>;
-        })} */}
-
-        {/* <div>
-          <label htmlFor="remove-author">Remove Author</label>
-          <select name="remove-author" id="remove-author">
-            {authorFields.length > 0
-              ? authorFields.map((author, index) => {
-                  return (
-                    <option
-                      key={author.id} // important to include key with field's id
-                      //ref={register()}
-                      name={`authors[${index}].value`}
-                      defaultValue={author.value} // make sure to include defaultValue
-                    ></option>
-                  );
-                })
-              : ""}
-          </select>
-        </div> */}
-
-        <Select
+        {/* Remove Tag */}
+        <FieldArray
+          options={tagFields}
           id="remove-tag"
-          label="Remove Tag"
-          options={userInput.tag}
-        ></Select>
+          array="tags"
+          label="Remove Tags"
+          register={register}
+        ></FieldArray>
+        <FontAwesomeIcon
+          onClick={() => {
+            deleteTag();
+          }}
+          icon={faTimes}
+        ></FontAwesomeIcon>
+
         <div>
           <FormButton
             text={"Preview Card"}
-            onClick={handlePreview}
+            //onClick={handlePreview}
           ></FormButton>
           <FormButton
             text={"Add Card"}
