@@ -321,6 +321,7 @@ export const CreateCardForm = ({
           id="remove-author"
           array="authors"
           label="Remove Authors"
+          //defaultValue={authorFields}
           register={register}
         ></FieldArray>
         <FontAwesomeIcon
@@ -335,6 +336,7 @@ export const CreateCardForm = ({
           id="remove-tag"
           array="tags"
           label="Remove Tags"
+          //defaultValue={authorFields}
           register={register}
         ></FieldArray>
         <FontAwesomeIcon

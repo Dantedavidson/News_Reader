@@ -7,6 +7,9 @@ import { CreateCardForm } from "./CreateCardForm";
 import { InspectModal } from "../common/InspectModal";
 import { Loading } from "../common/Loading";
 
+//Utility
+import { stringToArray } from "../Utility/utilities";
+
 export const Edit = ({
   props,
   savedStories,
@@ -25,16 +28,27 @@ export const Edit = ({
   useEffect(() => {
     const paramId = match.params.id;
     const current = savedStories.filter((story) => story.id === paramId)[0];
+    const authorsTemp = stringToArray(current.story.byline);
     setPreload({
       title: current.story.title,
       description: current.story.lead,
       imgUrl: current.story.imgUrl,
       url: current.story.url,
-      tag: current.tags,
-      author: [],
+      tags: current.tags.map((item, i) => {
+        {
+          return { value: item, index: i };
+        }
+      }),
+      authors: authorsTemp.map((item, i) => {
+        return { value: item, index: i };
+      }),
       id: current.id,
     });
   }, []);
+
+  //   arr.map((item,i) =>{
+  // return  {value:item,index:i}
+  // })
 
   return (
     <React.Fragment>
