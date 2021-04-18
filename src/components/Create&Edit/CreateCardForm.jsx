@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 //Components
-import { FormButton } from "../UI/FormButton.style";
-import { Input, InputSelect, Select, TextArea, FieldArray } from "../UI/form";
+import { Button } from "../common/ui/ui";
+import {
+  Input,
+  InputSelect,
+  Select,
+  TextArea,
+  FieldArray,
+} from "../common/ui/form";
 
 //Libraries
 import { useForm, useFieldArray, Controller, useWatch } from "react-hook-form";
@@ -333,14 +339,11 @@ export const CreateCardForm = ({
         ></FontAwesomeIcon>
 
         <div>
-          <FormButton
+          <Button
             text={"Preview Card"}
             //onClick={handlePreview}
-          ></FormButton>
-          <FormButton
-            text={"Add Card"}
-            handler={handleSubmit(onSubmit)}
-          ></FormButton>
+          ></Button>
+          <Button text={"Add Card"} handler={handleSubmit(onSubmit)}></Button>
           <button onClick={test}>test</button>
         </div>
       </form>

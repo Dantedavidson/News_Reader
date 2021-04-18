@@ -2,7 +2,7 @@
 
 import React from "react";
 
-export const Button = ({ handler, text, className }) => {
+export const ButtonComponent = ({ handler, text, className }) => {
   return (
     <div className={className} onClick={handler}>
       {text}

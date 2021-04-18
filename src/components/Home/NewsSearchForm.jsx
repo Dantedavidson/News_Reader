@@ -10,10 +10,11 @@ import uuid from "react-uuid";
 //Utilities
 import { createQuery, formatQueryDate } from "../Utility/utilities";
 
-//components
-import { FormButton } from "../UI/FormButton.style";
-import { Modal } from "../UI/modal";
-import { Input, Select } from "../UI/form";
+//Ui Components
+import { Button } from "../common/ui/ui";
+import { Modal } from "../common/ui/modal";
+import { Input, Select } from "../common/ui/form";
+
 //font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -216,7 +217,7 @@ export const NewsSearchForm = ({
           label="Section"
           register={register}
         ></Select>
-        <FormButton handler={handleSubmit(onSubmit)} text="Submit"></FormButton>
+        <Button handler={handleSubmit(onSubmit)} text="Submit"></Button>
       </form>
     </Modal>
   );

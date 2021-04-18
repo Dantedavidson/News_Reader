@@ -7,13 +7,12 @@ import { getSearchStories } from "../../API";
 
 //Components
 import { NewsSearchForm } from "./NewsSearchForm";
-//import { NewsCardGrid } from "./NewsCardGrid";
-import { HorizontalLine } from "../common/HorizontalLine";
-import { FormButton } from "../UI/FormButton.style";
 import { CarouselComponent } from "./CarouselComponent";
-import { PaginationBar } from "../common/PaginationBar";
+
+//UI Components
 import { Grid } from "./ui";
-import { ModalBG } from "../UI/modal";
+import { ModalBG } from "../common/ui/modal";
+import { Line, Button, PaginationBar } from "../common/ui/ui";
 
 //Utilities
 import { likeStatus, createCard, getPages } from "../Utility/utilities";
@@ -130,30 +129,19 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
           savedStories={savedStories}
           setSavedStories={setSavedStories}
         />
-        <HorizontalLine
-          topLine={topLine}
-          xPercent={80}
-          yPx={2}
-          xm={3}
-          ym={3}
-        ></HorizontalLine>
+        <Line topLine={topLine} xPercent={80} yPx={2} xm={3} ym={3}></Line>
 
         {
           {
             start: (
               <React.Fragment>
-                <FormButton
+                <Button
                   handler={() => {
                     setCurrentDisplay("modal");
                   }}
                   text="Search"
-                ></FormButton>
-                <HorizontalLine
-                  xPercent={80}
-                  yPx={2}
-                  xm={3}
-                  ym={3}
-                ></HorizontalLine>
+                ></Button>
+                <Line xPercent={80} yPx={2} xm={3} ym={3}></Line>
               </React.Fragment>
             ),
             modal: <div className="block"></div>,
@@ -167,25 +155,19 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
                   currentDisplay={currentDisplay}
                   setCurrentDisplay={setCurrentDisplay}
                 />
-                <HorizontalLine
-                  id={"bottom"}
-                  xPercent={80}
-                  yPx={2}
-                  xm={3}
-                  ym={3}
-                ></HorizontalLine>
+                <Line id={"bottom"} xPercent={80} yPx={2} xm={3} ym={3}></Line>
                 <div className="button-container">
                   <PaginationBar
                     size={"lg"}
                     query={query}
                     setQuery={setQuery}
                   ></PaginationBar>
-                  <FormButton
+                  <Button
                     handler={() => {
                       setCurrentDisplay("modal");
                     }}
                     text="New Search"
-                  ></FormButton>
+                  ></Button>
                 </div>
               </React.Fragment>
             ),

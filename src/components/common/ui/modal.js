@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { flexContainer } from "../Utility/mixins";
+import { flexContainer } from "../../Utility/mixins";
 
 export const ModalBG = styled.div`
   padding-top: 6rem;

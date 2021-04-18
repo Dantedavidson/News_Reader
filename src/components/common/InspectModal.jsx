@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 //Components
-import { Button } from "./Button";
+import { Button } from "./ui/ui";
 
 //Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

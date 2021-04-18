@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { LikeBtn } from "../common/LikeBtn";
 import { InspectBtn } from "../common/InspectBtn";
 import { EditBtn } from "../common/EditBtn";
-import { Card } from "../UI/Card.style";
+import { Card } from "../common/ui/ui";
 import { Search } from "./Search";
 
 export const SavedGrid = ({

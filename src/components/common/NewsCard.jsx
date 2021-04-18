@@ -1,7 +1,7 @@
 //Individual card item
 import React from "react";
 
-import { HorizontalLine } from "./HorizontalLine";
+import { Line } from "./ui/ui";
 
 export const NewsCard = ({ children, card, className }) => {
   const { imgUrl, title, byline, date, lead, url } = card.story;
@@ -17,12 +17,7 @@ export const NewsCard = ({ children, card, className }) => {
           <h6>{byline}</h6>
           <h6>{date}</h6>
         </div>
-        <HorizontalLine
-          yPx={1}
-          xPercent={95}
-          xm={0.3}
-          ym={0.3}
-        ></HorizontalLine>
+        <Line yPx={1} xPercent={95} xm={0.3} ym={0.3}></Line>
         <div>{children}</div>
       </div>
     );
@@ -36,12 +31,7 @@ export const NewsCard = ({ children, card, className }) => {
         <div>
           <h6>{byline}</h6>
           <h6>{date}</h6>
-          <HorizontalLine
-            yPx={1}
-            xPercent={90}
-            xm={0.3}
-            ym={0.3}
-          ></HorizontalLine>
+          <Line yPx={1} xPercent={90} xm={0.3} ym={0.3}></Line>
         </div>
         <div>{children}</div>
       </div>

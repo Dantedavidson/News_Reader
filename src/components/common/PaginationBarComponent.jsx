@@ -7,8 +7,9 @@ import Pagination from "react-bootstrap/Pagination";
 //Utilities
 import { paginationDisplay, scrollTop } from "../Utility/utilities";
 
-export const PaginationBar = ({ query, setQuery }) => {
+export const PaginationBarComponent = ({ query, setQuery }) => {
   const {
+    className,
     pages,
     perPage,
     items,
@@ -146,43 +147,24 @@ export const PaginationBar = ({ query, setQuery }) => {
   }, [pages]);
 
   return displayPagination ? (
-    <div>
+    <div className={className}>
       <Pagination>
-        <Pagination.First
-          onClick={firstPage}
-          className={
-            active <= perPage ? "display-none page-control" : "page-control"
-          }
-        />
-        <Pagination.Prev
-          onClick={back}
-          className={
-            active === 1 ? "display-none page-control" : "page-control"
-          }
-        />
+        <Pagination.First onClick={firstPage} display={active <= perPage} />
+        <Pagination.Prev onClick={back} display={active === 1} />
         {pageRange.map((item) => (
           <Pagination.Item
             key={item}
             active={item === active}
             onClick={() => current(item)}
-            className={item === active ? "page-item active" : "page-item"}
+            display={item === active}
           >
             {item}
           </Pagination.Item>
         ))}
-        <Pagination.Next
-          onClick={next}
-          className={
-            active === pages ? "display-none page-control" : "page-control"
-          }
-        />
+        <Pagination.Next onClick={next} display={active === pages} />
         <Pagination.Last
           onClick={lastPage}
-          className={
-            active >= pages - (perPage - 1)
-              ? "display-none page-control"
-              : "page-control"
-          }
+          display={active >= pages - (perPage - 1)}
         />
       </Pagination>
     </div>

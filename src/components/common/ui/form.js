@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
 //Components
-import { InputComponent } from "../common/form";
-import { SelectComponent } from "../common/form";
-import { TextAreaComponent } from "../common/form";
-import { InputSelectComponent } from "../common/form";
-import { FieldArrayComponent } from "../common/form";
+import {
+  InputComponent,
+  SelectComponent,
+  TextAreaComponent,
+  InputSelectComponent,
+  FieldArrayComponent,
+} from "../form";
 
 //Mixins
-import { flexContainer } from "../Utility/mixins";
+import { flexContainer } from "../../Utility/mixins";
 
 export const Input = styled(InputComponent)`
   width: 100%;

@@ -29,7 +29,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 //import "./styles/style.scss";
 import styled, { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "./components/UI/GlobalStyle.styles";
+import { GlobalStyle } from "./components/common/ui/GlobalStyle.styles";
 import { useTheme } from "./components/Utility/useTheme";
 
 //font awesome

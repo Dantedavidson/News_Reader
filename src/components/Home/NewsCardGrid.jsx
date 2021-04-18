@@ -4,7 +4,7 @@ import React from "react";
 
 //components
 import { LikeBtn } from "../common/LikeBtn";
-import { Card } from "../UI/Card.style";
+import { Card } from "../common/ui/ui";
 import { Loading } from "../common/Loading";
 
 export const NewsCardGrid = ({

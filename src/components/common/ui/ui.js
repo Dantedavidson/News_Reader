@@ -1,6 +1,11 @@
-import styled from "styled-components";
-import { NewsCard } from "../common/NewsCard";
-import { flexContainer } from "../Utility/mixins";
+import styled, { css } from "styled-components";
+import { flexContainer } from "../../Utility/mixins";
+
+//Components
+import { NewsCard } from "../NewsCard";
+import { ButtonComponent } from "../ButtonComponent";
+import { HorizontalLine } from "../HorizontalLine";
+import { PaginationBarComponent } from "../PaginationBarComponent";
 
 export const Card = styled(NewsCard)`
   padding: 0.5rem;
@@ -70,3 +75,34 @@ export const Card = styled(NewsCard)`
     }
   }
 `;
+
+export const Button = styled(ButtonComponent)`
+  display: block;
+  width: 300px;
+  height: 48px;
+  background: ${({ theme }) => theme.colors.primary};
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  line-height: 48px;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0 auto 3rem auto;
+  cursor: pointer;
+  &:hover {
+    color: ${({ theme }) => theme.colors.highlight};
+  }
+`;
+const lineHelper = css`
+  width: ${(props) => `${props.xPercent}%`};
+  height: ${(props) => ` ${props.yPx}px`};
+  margin: ${(props) => `${props.xm}rem`} auto ${(props) => `${props.ym}rem`}
+    auto;
+`;
+export const Line = styled(HorizontalLine)`
+  display: block;
+  ${lineHelper}
+  background-color: #000;
+`;
+
+export const PaginationBar = styled(PaginationBarComponent)``;
