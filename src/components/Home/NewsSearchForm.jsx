@@ -13,7 +13,7 @@ import { createQuery, formatQueryDate } from "../Utility/utilities";
 //Ui Components
 import { Button } from "../common/ui/ui";
 import { Modal } from "../common/ui/modal";
-import { Input, Select } from "../common/ui/form";
+import { Input, Select, ModalForm } from "../common/ui/form";
 
 //font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -182,7 +182,7 @@ export const NewsSearchForm = ({
         <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
       </span>
       <h3>Search The New York Times</h3>
-      <form>
+      <ModalForm>
         <Input
           error={errors.term}
           id="term"
@@ -190,6 +190,7 @@ export const NewsSearchForm = ({
           register={register}
           type="text"
           name="term"
+          width={76}
         ></Input>
         <Input
           error={errors.startDate}
@@ -198,6 +199,7 @@ export const NewsSearchForm = ({
           register={register}
           type="text"
           name="startDate"
+          width={76}
         >
           <p className="info">DD/MM/YYYY</p>
         </Input>
@@ -208,6 +210,7 @@ export const NewsSearchForm = ({
           register={register}
           type="text"
           name="endDate"
+          width={70}
         >
           <p className="info">DD/MM/YYYY</p>
         </Input>
@@ -218,7 +221,7 @@ export const NewsSearchForm = ({
           register={register}
         ></Select>
         <Button handler={handleSubmit(onSubmit)} text="Submit"></Button>
-      </form>
+      </ModalForm>
     </Modal>
   );
 };

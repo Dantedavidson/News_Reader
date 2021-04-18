@@ -80,5 +80,5 @@ export const Grid = styled(NewsCardGrid)`
 export const Body = styled.div`
   width: 80%;
   min-height: 60vh;
-  margin: 3rem auto;
+  margin: 0 auto;
 `;

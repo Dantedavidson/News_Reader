@@ -13,8 +13,15 @@ import { CarouselItem } from "./ui";
 
 const CarouselStyled = styled.div`
   width: 100%;
-  margin: 3rem auto;
+  margin: 0 auto;
   overflow: hidden;
+  div.loading {
+    height: 400px;
+    h2 {
+      margin-top: 3rem;
+      text-align: center;
+    }
+  }
 `;
 
 export const CarouselComponent = ({
@@ -24,10 +31,10 @@ export const CarouselComponent = ({
   loading,
 }) => {
   return (
-    <div>
+    <CarouselStyled>
       {" "}
       {loading ? (
-        <div className="loading-news-container">
+        <div className="loading">
           <h2>Loading News</h2>
           <Loading></Loading>
         </div>
@@ -49,6 +56,6 @@ export const CarouselComponent = ({
           </Carousel>
         </div>
       )}{" "}
-    </div>
+    </CarouselStyled>
   );
 };

@@ -26,10 +26,11 @@ export const ModalBG = styled.div`
 
 export const Modal = styled.div`
   position: relative;
-  //display: none;
   background-color: ${({ theme }) => theme.colors.card};
   width: 40%;
   min-width: 340px;
+  border-radius: 5px;
+  height: 640px;
   border-radius: 5px;
 
   span {
