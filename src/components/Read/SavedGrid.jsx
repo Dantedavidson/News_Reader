@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 //Components
 import { LikeBtn } from "../common/LikeBtn";
+import { Heart } from "../common/ui/ui";
 import { InspectBtn } from "../common/InspectBtn";
 import { EditBtn } from "../common/EditBtn";
 import { Card } from "../common/ui/ui";
@@ -50,7 +51,7 @@ export const SavedGrid = ({
             >
               <InspectBtn card={story} setModal={setModal}></InspectBtn>
               <EditBtn card={story} setModal={setModal}></EditBtn>
-              <LikeBtn
+              <Heart
                 card={story}
                 savedStories={savedStories}
                 setSavedStories={setSavedStories}

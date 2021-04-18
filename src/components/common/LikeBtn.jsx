@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 //Fa
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,15 +7,21 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 //Utilities
 import { saveCard, deleteCard, setLocalStorage } from "../Utility/utilities";
 
-export const LikeBtn = ({ card, savedStories, setSavedStories }) => {
+export const LikeBtn = ({
+  className,
+  card,
+  savedStories,
+  setSavedStories,
+  ...props
+}) => {
   //Toggle like status of item. Updates saved stories.
-  const manageLike = () => {
+  const manageLike = (e) => {
     card.like = !card.like;
+
     card.like
       ? saveCard(card, savedStories, setSavedStories)
       : deleteCard(card, savedStories, setSavedStories);
   };
-
   // update local storage
   useEffect(() => {
     setLocalStorage(savedStories, "Stories");
@@ -23,9 +29,10 @@ export const LikeBtn = ({ card, savedStories, setSavedStories }) => {
 
   return (
     <FontAwesomeIcon
+      className={card.like ? `${className} like` : className}
+      active={card.like}
       icon={faHeart}
-      className={card.like ? "fa-lg heart-active" : "fa-lg"}
-      onClick={manageLike}
+      onClick={(e) => manageLike(e)}
     />
   );
 };

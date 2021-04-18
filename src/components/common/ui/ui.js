@@ -5,6 +5,7 @@ import { flexContainer, lineHelper } from "../../Utility/mixins";
 import { NewsCard } from "../NewsCard";
 import { ButtonComponent } from "../ButtonComponent";
 import { LineComponent } from "../LineComponent";
+import { LikeBtn } from "../LikeBtn";
 import { PaginationBarComponent } from "../PaginationBarComponent";
 
 export const Card = styled(NewsCard)`
@@ -102,6 +103,12 @@ export const Line = styled(LineComponent)`
 
 export const PaginationBar = styled(PaginationBarComponent)``;
 
+export const Heart = styled(LikeBtn)`
+  cursor: pointer;
+  transform: translateY(-0.2rem) scale(1.3);
+`;
+
+//${({ theme }) => theme.colors.card}
 export const StyledLoader = styled.div`
   ${flexContainer("row", "center")};
   height: 200px;

@@ -178,5 +178,8 @@ input,select,textarea {
 label{
   width: 150px;
 }
+.like{
+color:${({ theme }) => theme.colors.like};
+}
 
 `;

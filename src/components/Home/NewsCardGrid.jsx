@@ -4,7 +4,7 @@ import React from "react";
 
 //components
 import { LikeBtn } from "../common/LikeBtn";
-import { Card } from "../common/ui/ui";
+import { Card, Heart } from "../common/ui/ui";
 import { Loading } from "../common/Loading";
 
 export const NewsCardGrid = ({
@@ -29,7 +29,7 @@ export const NewsCardGrid = ({
                 savedStories={savedStories}
                 setSavedStories={setSavedStories}
               >
-                <LikeBtn
+                <Heart
                   card={card}
                   savedStories={savedStories}
                   setSavedStories={setSavedStories}
