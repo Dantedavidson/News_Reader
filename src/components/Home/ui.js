@@ -82,3 +82,9 @@ export const Body = styled.div`
   min-height: 60vh;
   margin: 0 auto;
 `;
+
+export const ButtonContainer = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  ${flexContainer("row", "space-between", "flex-start")}
+`;

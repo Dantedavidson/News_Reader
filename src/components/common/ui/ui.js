@@ -101,7 +101,12 @@ export const Line = styled(LineComponent)`
   background-color: #000;
 `;
 
-export const PaginationBar = styled(PaginationBarComponent)``;
+// export const PaginationBar = styled(PaginationBarComponent)`
+//   background-color: red;
+//   .hidden {
+//     display: none !important;
+//   }
+// `;
 
 export const Heart = styled(LikeBtn)`
   cursor: pointer;

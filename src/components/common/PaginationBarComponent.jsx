@@ -1,11 +1,16 @@
 //Displays pagination and handles pagination logic
 import React, { useEffect } from "react";
-
+import Styled from "styled-components";
 //Libraries
 import Pagination from "react-bootstrap/Pagination";
 
 //Utilities
 import { paginationDisplay, scrollTop } from "../Utility/utilities";
+const PaginationBar = Styled.div`
+  .hidden {
+    display: none !important;
+  }
+`;
 
 export const PaginationBarComponent = ({ query, setQuery }) => {
   const {
@@ -147,10 +152,16 @@ export const PaginationBarComponent = ({ query, setQuery }) => {
   }, [pages]);
 
   return displayPagination ? (
-    <div className={className}>
+    <PaginationBar>
       <Pagination>
-        <Pagination.First onClick={firstPage} display={active <= perPage} />
-        <Pagination.Prev onClick={back} display={active === 1} />
+        <Pagination.First
+          onClick={firstPage}
+          className={active <= perPage ? "hidden" : ""}
+        />
+        <Pagination.Prev
+          onClick={back}
+          className={active === 1 ? "hidden" : ""}
+        />
         {pageRange.map((item) => (
           <Pagination.Item
             key={item}
@@ -161,13 +172,16 @@ export const PaginationBarComponent = ({ query, setQuery }) => {
             {item}
           </Pagination.Item>
         ))}
-        <Pagination.Next onClick={next} display={active === pages} />
+        <Pagination.Next
+          onClick={next}
+          className={active === pages ? "hidden" : ""}
+        />
         <Pagination.Last
           onClick={lastPage}
-          display={active >= pages - (perPage - 1)}
+          className={active >= pages - (perPage - 1) ? "hidden" : ""}
         />
       </Pagination>
-    </div>
+    </PaginationBar>
   ) : (
     <div></div>
   );

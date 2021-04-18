@@ -10,12 +10,13 @@ import { NewsSearchForm } from "./NewsSearchForm";
 import { CarouselComponent } from "./CarouselComponent";
 
 //UI Components
-import { Grid, Body } from "./ui";
+import { Grid, Body, ButtonContainer } from "./ui";
 import { ModalBG } from "../common/ui/modal";
-import { Line, Button, PaginationBar } from "../common/ui/ui";
+import { Line, Button } from "../common/ui/ui";
 
 //Utilities
 import { likeStatus, createCard, getPages } from "../Utility/utilities";
+import { PaginationBarComponent } from "../common/PaginationBarComponent";
 
 export const Home = ({ savedStories, setSavedStories, data }) => {
   //Object containing query and pagination data
@@ -156,19 +157,19 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
                   setCurrentDisplay={setCurrentDisplay}
                 />
                 <Line id={"bottom"} xPercent={80} yPx={2} xm={3} ym={3}></Line>
-                <div className="button-container">
-                  <PaginationBar
+                <ButtonContainer>
+                  <PaginationBarComponent
                     size={"lg"}
                     query={query}
                     setQuery={setQuery}
-                  ></PaginationBar>
+                  ></PaginationBarComponent>
                   <Button
                     handler={() => {
                       setCurrentDisplay("modal");
                     }}
                     text="New Search"
                   ></Button>
-                </div>
+                </ButtonContainer>
               </React.Fragment>
             ),
           }[currentDisplay]
