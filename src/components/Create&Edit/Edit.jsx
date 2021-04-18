@@ -29,6 +29,7 @@ export const Edit = ({
     const paramId = match.params.id;
     const current = savedStories.filter((story) => story.id === paramId)[0];
     const authorsTemp = stringToArray(current.story.byline);
+    console.log(current.id);
     setPreload({
       title: current.story.title,
       description: current.story.lead,

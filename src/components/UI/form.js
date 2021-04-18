@@ -7,9 +7,14 @@ import { TextAreaComponent } from "../common/form";
 import { InputSelectComponent } from "../common/form";
 import { FieldArrayComponent } from "../common/form";
 
+//Mixins
+import { flexContainer } from "../Utility/mixins";
+
 export const Input = styled(InputComponent)`
+  width: 100%;
+  ${flexContainer("row")}
   input {
-    border-bottom: 1px solid ${({ theme }) => theme.colors.textOne};
+    width: ${(props) => (props.width ? props.width : "80%")};
   }
   .info {
     margin: 0;
@@ -17,9 +22,7 @@ export const Input = styled(InputComponent)`
     transform: translate(9.4rem, 0.3rem);
   }
   .error {
-    color: red;
     margin: 0;
-    font-size: 0.85rem;
     transform: translate(9.4rem, 0.3rem);
   }
 `;

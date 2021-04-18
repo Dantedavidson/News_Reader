@@ -126,7 +126,6 @@ export const userCard = (data) => {
   card.story.url = data.url
     ? data.url
     : `https://www.nytimes.com/search?query=${card.story.title}`;
-  console.log(card.id);
   return card;
 };
 
@@ -199,7 +198,6 @@ export const createQuery = (data) => {
 
   let query = "";
   query = arr.reduce((start, value, index) => {
-    console.log(query);
     if (value === null || value === "All") return `${start}`;
     switch (index) {
       case 0:
@@ -239,7 +237,6 @@ export const getPages = (total, perPage) => Math.ceil(total / perPage);
 
 //set scroll to top of page
 export const scrollTop = () => {
-  console.log("scroll to top");
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 //shift

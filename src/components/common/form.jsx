@@ -105,7 +105,6 @@ export const FieldArrayComponent = ({
     <select name={id} id={id} ref={register}>
       {options.length > 0
         ? options.map((option, index) => {
-            console.log(options, option);
             return (
               <option
                 key={option.id}

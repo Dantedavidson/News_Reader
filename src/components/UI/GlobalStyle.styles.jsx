@@ -7,11 +7,8 @@ body{
     color:${({ theme }) => theme.colors.textOne};
     font-family:${({ theme }) => theme.font};
 }
-.carousel-container {
-  width: 100%;
 
-  margin: 3rem auto;
-  overflow: hidden;}
+//Shared
 
 //reset
 * {
@@ -166,5 +163,20 @@ select[multiple] {
   vertical-align: top;
 }
 
+.carousel-container {
+  width: 100%;
+  margin: 3rem auto;
+  overflow: hidden;}
+
+input,select,textarea {
+    border-bottom: 1px solid ${({ theme }) => theme.colors.textOne};
+  }
+.error{
+  color:${({ theme }) => theme.colors.danger};
+  font-size: 0.85rem;
+}
+label{
+  width: 150px;
+}
 
 `;

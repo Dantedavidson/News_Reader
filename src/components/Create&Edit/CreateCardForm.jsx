@@ -167,30 +167,30 @@ export const CreateCardForm = ({
     let filtered = authorFields.filter(
       (author) => author.value === getValues("remove-author")
     );
-    removeAuthor(filtered.index);
+
+    removeAuthor(filtered[0].index);
   };
   const deleteTag = () => {
     let filtered = tagFields.filter(
       (tag) => tag.value === getValues("remove-tag")
     );
-    removeTag(filtered.index);
+    removeTag(filtered[0].index);
   };
   //Takes form data. Handles submit
   const onSubmit = (data) => {
-    console.log(data);
     const card = userCard(data);
-    console.log(card);
     const cardInDb = savedStories.find((story) => story.id === card.id) || {};
     cardInDb.story = card.story;
     cardInDb.id = card.id;
     cardInDb.like = card.like;
     cardInDb.tags = card.tags;
+    console.log(cardInDb);
     if (!cardInDb.id) {
       cardInDb.id = uuid();
       setSavedStories([...savedStories, cardInDb]);
     }
     reset();
-    if (match.url.includes("/edit")) return history.push("/stories");
+    if (match.url.includes("/edit")) return history.push("/read");
   };
   //Updates saved stories
   // useEffect(() => {
@@ -201,31 +201,17 @@ export const CreateCardForm = ({
   // useEffect(() => {
   //   setLocalStorage(tags, "Tags");
   // }, [tags]);
+
   const test = (e) => {
     e.preventDefault();
+    console.log(authorFields, tagFields);
   };
-
-  //Set form fields and backup if user is on edit route
-  useEffect(() => {
-    if (match.url === "/create") return;
-    const paramId = match.params.id;
-    const current = savedStories.filter((story) => story.id === paramId)[0];
-
-    // setUserInput({
-    //   title: current.story.title,
-    //   description: current.story.lead,
-    //   imgUrl: current.story.imgUrl,
-    //   url: current.story.url,
-    //   tag: current.tags,
-    //   author: stringToArray(current.story.byline),
-    //   id: current.id,
-    // });
-  }, []);
 
   return (
     <React.Fragment>
       <form className="form-create">
         <h2>{title}</h2>
+        <input type="hidden" name="id" id="id" ref={register} />
         <TextArea
           id="title"
           label="Title"

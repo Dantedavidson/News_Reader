@@ -9,22 +9,20 @@ export const Header = ({ current }) => {
       <div>
         <Link to="/">
           <div>
-            <h3 className={current === "home" ? "current" : "none"}>Home</h3>
-            <span className="verticle-line"></span>
+            <h3>Home</h3>
+            <span></span>
           </div>
         </Link>
         <Link to="/create">
           <div>
             {" "}
-            <h3 className={current === "custom" ? "current" : "none"}>
-              Create
-            </h3>
-            <span className="verticle-line"></span>
+            <h3>Create</h3>
+            <span></span>
           </div>
         </Link>
         <Link to="/Read">
           <div>
-            <h3 className={current === "stories" ? "current" : "none"}>Read</h3>
+            <h3>Read</h3>
           </div>
         </Link>
       </div>
