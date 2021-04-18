@@ -1,10 +1,10 @@
-import styled, { css } from "styled-components";
-import { flexContainer } from "../../Utility/mixins";
+import styled from "styled-components";
+import { flexContainer, lineHelper } from "../../Utility/mixins";
 
 //Components
 import { NewsCard } from "../NewsCard";
 import { ButtonComponent } from "../ButtonComponent";
-import { HorizontalLine } from "../HorizontalLine";
+import { LineComponent } from "../LineComponent";
 import { PaginationBarComponent } from "../PaginationBarComponent";
 
 export const Card = styled(NewsCard)`
@@ -93,13 +93,8 @@ export const Button = styled(ButtonComponent)`
     color: ${({ theme }) => theme.colors.highlight};
   }
 `;
-const lineHelper = css`
-  width: ${(props) => `${props.xPercent}%`};
-  height: ${(props) => ` ${props.yPx}px`};
-  margin: ${(props) => `${props.xm}rem`} auto ${(props) => `${props.ym}rem`}
-    auto;
-`;
-export const Line = styled(HorizontalLine)`
+
+export const Line = styled(LineComponent)`
   display: block;
   ${lineHelper}
   background-color: #000;

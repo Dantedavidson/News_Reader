@@ -10,7 +10,7 @@ import { NewsSearchForm } from "./NewsSearchForm";
 import { CarouselComponent } from "./CarouselComponent";
 
 //UI Components
-import { Grid } from "./ui";
+import { Grid, Body } from "./ui";
 import { ModalBG } from "../common/ui/modal";
 import { Line, Button, PaginationBar } from "../common/ui/ui";
 
@@ -112,7 +112,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
   }, [query.currentPage]);
   return (
     <React.Fragment>
-      <div className="body home">
+      <Body>
         <ModalBG current={currentDisplay}>
           <NewsSearchForm
             setQuery={setQuery}
@@ -173,7 +173,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
             ),
           }[currentDisplay]
         }
-      </div>
+      </Body>
     </React.Fragment>
   );
 };

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { flexContainer } from "../Utility/mixins";
 
 // Components
+import { CarouselComponent } from "./CarouselComponent";
 import { CarouselItemComponent } from "./CarouselItemComponent";
 import { NewsCardGrid } from "./NewsCardGrid";
 
@@ -74,4 +75,10 @@ export const Grid = styled(NewsCardGrid)`
     grid-column: 1/4;
     text-align: center;
   }
+`;
+
+export const Body = styled.div`
+  width: 80%;
+  min-height: 60vh;
+  margin: 3rem auto;
 `;

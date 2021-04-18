@@ -2,7 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export const HorizontalLine = ({
+export const LineComponent = ({
   className,
   topLine,
   xPercent,
