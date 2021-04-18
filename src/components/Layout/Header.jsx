@@ -2,22 +2,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+//Styled Components
+import { HeaderContainer, VerticleLine } from "./ui";
+
 export const Header = ({ current }) => {
   return (
-    <div className="nav">
+    <HeaderContainer>
       <h1>News Reader</h1>
       <div>
         <Link to="/">
           <div>
             <h3>Home</h3>
-            <span></span>
+            <VerticleLine></VerticleLine>
           </div>
         </Link>
         <Link to="/create">
           <div>
             {" "}
             <h3>Create</h3>
-            <span></span>
+            <VerticleLine></VerticleLine>
           </div>
         </Link>
         <Link to="/Read">
@@ -26,6 +29,6 @@ export const Header = ({ current }) => {
           </div>
         </Link>
       </div>
-    </div>
+    </HeaderContainer>
   );
 };

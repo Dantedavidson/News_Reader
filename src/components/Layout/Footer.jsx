@@ -3,12 +3,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
-
 import { scrollTop } from "../Utility/utilities";
+
+import { FooterContainer } from "./ui";
 
 export const Footer = () => {
   return (
-    <footer>
+    <FooterContainer>
       <div>
         <div>
           <h3>About</h3>
@@ -58,6 +59,6 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </FooterContainer>
   );
 };
