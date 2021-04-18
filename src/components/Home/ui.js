@@ -3,6 +3,7 @@ import { flexContainer } from "../Utility/mixins";
 
 // Components
 import { CarouselItemComponent } from "./CarouselItemComponent";
+import { NewsCardGrid } from "./NewsCardGrid";
 
 //styles
 
@@ -56,5 +57,21 @@ export const CarouselItem = styled(CarouselItemComponent)`
   .carousel-item.active {
     opacity: 1 !important;
     display: block;
+  }
+`;
+
+export const Grid = styled(NewsCardGrid)`
+  display: grid;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  grid-template-columns: repeat(3, 300px);
+  grid-auto-rows: auto;
+  row-gap: 3rem;
+  column-gap: 10%;
+
+  > h3 {
+    grid-column: 1/4;
+    text-align: center;
   }
 `;

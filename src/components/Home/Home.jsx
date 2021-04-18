@@ -7,11 +7,12 @@ import { getSearchStories } from "../../API";
 
 //Components
 import { NewsSearchForm } from "./NewsSearchForm";
-import { NewsCardGrid } from "./NewsCardGrid";
+//import { NewsCardGrid } from "./NewsCardGrid";
 import { HorizontalLine } from "../common/HorizontalLine";
 import { FormButton } from "../UI/FormButton.style";
 import { CarouselComponent } from "./CarouselComponent";
 import { PaginationBar } from "../common/PaginationBar";
+import { Grid } from "./ui";
 import { ModalBG } from "../UI/modal";
 
 //Utilities
@@ -158,7 +159,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
             modal: <div className="block"></div>,
             results: (
               <React.Fragment>
-                <NewsCardGrid
+                <Grid
                   query={query}
                   setQuery={setQuery}
                   savedStories={savedStories}

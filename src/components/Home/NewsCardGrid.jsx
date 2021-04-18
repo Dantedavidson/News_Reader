@@ -7,14 +7,19 @@ import { LikeBtn } from "../common/LikeBtn";
 import { Card } from "../UI/Card.style";
 import { Loading } from "../common/Loading";
 
-export const NewsCardGrid = ({ query, savedStories, setSavedStories }) => {
+export const NewsCardGrid = ({
+  className,
+  query,
+  savedStories,
+  setSavedStories,
+}) => {
   return query.loading ? (
     <React.Fragment>
       <Loading></Loading>
     </React.Fragment>
   ) : (
     <React.Fragment>
-      <div className="news-card-grid">
+      <div className={className}>
         {query.results.length > 0 ? (
           query.results.map((card) => {
             return (
