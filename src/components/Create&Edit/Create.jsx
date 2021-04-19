@@ -1,7 +1,6 @@
 //Stores shared state for create story page. Render components
 import React, { useState } from "react";
 import { CreateCardForm } from "./CreateCardForm";
-import { InspectModal } from "../common/InspectModal";
 
 export const Create = ({
   props,
@@ -22,7 +21,7 @@ export const Create = ({
           modal.inspect || modal.edit ? "modal-bg bg-active" : "modal-bg"
         }
       >
-        <InspectModal modal={modal} setModal={setModal}></InspectModal>
+        {/* <InspectModal modal={modal} setModal={setModal}></InspectModal> */}
       </div>
       <div className="create body">
         <CreateCardForm

@@ -4,7 +4,7 @@ import { RouteComponentProps, Link } from "react-router-dom";
 //Components
 
 import { CreateCardForm } from "./CreateCardForm";
-import { InspectModal } from "../common/InspectModal";
+
 import { Loading } from "../common/Loading";
 
 //Utility
@@ -58,7 +58,7 @@ export const Edit = ({
           modal.inspect || modal.edit ? "modal-bg bg-active" : "modal-bg"
         }
       >
-        <InspectModal modal={modal} setModal={setModal}></InspectModal>
+        {/* <InspectModal modal={modal} setModal={setModal}></InspectModal> */}
       </div>
       <div className="create body">
         {preload ? (

@@ -10,6 +10,8 @@ import { EditBtn } from "../common/EditBtn";
 import { Card } from "../common/ui/ui";
 import { Search } from "./Search";
 
+import { Grid, NotFound } from "./ui";
+
 export const SavedGrid = ({
   savedStories,
   setSavedStories,
@@ -39,8 +41,14 @@ export const SavedGrid = ({
   return (
     <div className="search-body">
       <Search search={search} setSearch={setSearch} tags={tags}></Search>
-      {filtered.length === 0 ? <h3>No stories found</h3> : ""}
-      <div className="user-grid">
+      {filtered.length === 0 ? (
+        <NotFound>
+          <h3>No stories found</h3>
+        </NotFound>
+      ) : (
+        ""
+      )}
+      <Grid>
         {filtered.map((story) => {
           return (
             <Card
@@ -59,7 +67,7 @@ export const SavedGrid = ({
             </Card>
           );
         })}
-      </div>
+      </Grid>
     </div>
   );
 };

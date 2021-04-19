@@ -112,7 +112,6 @@ export const Heart = styled(LikeBtn)`
   transform: translateY(-0.2rem) scale(1.3);
 `;
 
-//${({ theme }) => theme.colors.card}
 export const StyledLoader = styled.div`
   ${flexContainer("row", "center")};
   height: 200px;
@@ -154,4 +153,8 @@ export const StyledLoader = styled.div`
       height: 32px;
     }
   }
+`;
+
+export const Body = styled.div`
+  min-height: 60vh;
 `;

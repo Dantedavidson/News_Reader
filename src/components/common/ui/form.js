@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 //Components
 import {
@@ -20,6 +20,11 @@ export const Input = styled(InputComponent)`
 
   input {
     width: ${(props) => (props.width ? props.width : "80%")};
+    ${(props) =>
+      props.error &&
+      css`
+        border-color: ${({ theme }) => theme.colors.danger};
+      `};
   }
 `;
 
@@ -37,6 +42,11 @@ export const TextArea = styled(TextAreaComponent)`
   textarea {
     min-height: 32px;
     width: ${(props) => (props.width ? props.width : "80%")};
+    ${(props) =>
+      props.error &&
+      css`
+        border-color: ${({ theme }) => theme.colors.danger};
+      `};
   }
 `;
 
@@ -45,6 +55,11 @@ export const InputSelect = styled(InputSelectComponent)`
   ${flexContainer("row", "flex-start")}
   input {
     width: ${(props) => (props.width ? props.width : "80%")};
+    ${(props) =>
+      props.error &&
+      css`
+        border-color: ${({ theme }) => theme.colors.danger};
+      `};
   }
 `;
 
@@ -53,6 +68,11 @@ export const FieldArray = styled(FieldArrayComponent)`
   ${flexContainer("row", "flex-start")}
   select {
     width: ${(props) => (props.width ? props.width : "80%")};
+    ${(props) =>
+      props.error &&
+      css`
+        border-color: ${({ theme }) => theme.colors.danger};
+      `};
   }
 `;
 

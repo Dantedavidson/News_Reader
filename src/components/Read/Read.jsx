@@ -2,8 +2,12 @@
 import React, { useState } from "react";
 
 //Components
-import { InspectModal } from "../common/InspectModal";
+
 import { SavedGrid } from "./SavedGrid";
+
+//Ui Components
+import { Inspect, ModalBG, Modal } from "../common/ui/modal";
+import { Body } from "../common/ui/ui";
 
 export const Read = ({ savedStories, setSavedStories, tags }) => {
   const [modal, setModal] = useState({
@@ -13,21 +17,17 @@ export const Read = ({ savedStories, setSavedStories, tags }) => {
   });
   return (
     <React.Fragment>
-      <div className="body stories">
-        <div
-          className={
-            modal.inspect || modal.edit ? "modal-bg bg-active" : "modal-bg"
-          }
-        >
-          <InspectModal modal={modal} setModal={setModal}></InspectModal>
-        </div>
+      <Body>
+        <ModalBG current={modal.inspect ? true : false}>
+          <Inspect modal={modal} setModal={setModal}></Inspect>
+        </ModalBG>
         <SavedGrid
           setModal={setModal}
           savedStories={savedStories}
           setSavedStories={setSavedStories}
           tags={tags}
         ></SavedGrid>
-      </div>
+      </Body>
     </React.Fragment>
   );
 };

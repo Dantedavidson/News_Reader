@@ -273,7 +273,7 @@ export const CreateCardForm = ({
           name="author"
           controls={
             <FontAwesomeIcon
-              className="controls"
+              className={errors.author ? "controls control-error" : "controls"}
               onClick={() => {
                 appendAuthor({
                   value: getValues("author"),
@@ -305,7 +305,7 @@ export const CreateCardForm = ({
           listId="tags"
           controls={
             <FontAwesomeIcon
-              className="controls"
+              className={addError.tag ? "controls control-error" : "controls"}
               onClick={() => {
                 appendTag({
                   value: getValues("tag"),

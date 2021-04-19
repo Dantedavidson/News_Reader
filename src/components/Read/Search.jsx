@@ -1,6 +1,10 @@
 import React from "react";
 import uuid from "react-uuid";
 
+//Ui Components
+import { SearchBar } from "./ui";
+import { Input, Select } from "../common/ui/form";
+
 export const Search = ({ search, setSearch, tags }) => {
   // takes search input and filters diaplay.
   const handleChange = (e) => {
@@ -13,23 +17,15 @@ export const Search = ({ search, setSearch, tags }) => {
   };
 
   return (
-    <div className="filter">
-      <div className="input">
-        <label>Filter Stories</label>
-        <input id="term" value={search.term} onChange={handleChange}></input>
-      </div>
-      <div className="input">
-        <label>Filter Tags</label>
-        <select id="tags" value={search.tags} onChange={handleChange}>
-          <option value="All">All</option>
-          <option value="NYT">NYT</option>
-          {tags.map((tag) => (
-            <option value={tag} key={uuid()}>
-              {tag}
-            </option>
-          ))}
-        </select>
-      </div>
-    </div>
+    <SearchBar>
+      <Input label="Filter Stories" id="term" handler={handleChange}></Input>
+      <Select
+        label="Filter Tags"
+        id="tags"
+        options={["All", "NYT", ...tags]}
+        handler={handleChange}
+        width={40}
+      ></Select>
+    </SearchBar>
   );
 };

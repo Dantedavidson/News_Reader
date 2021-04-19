@@ -14,7 +14,8 @@ label {
     width: 150px;
     line-height: 31px;
   }
-div {
+
+>div {
     width: 100%;
     margin: 0 auto 3rem auto;
     height: auto;
@@ -35,20 +36,31 @@ svg {
       transform: translateY(-0.3rem);
     }
 }
-div:nth-of-type(7) select,
-svg {
-    align-self: flex-end;
-  }
-div:nth-last-of-type(1) {
+
+>div:nth-last-of-type(1) {
     margin: 4rem 2.5% 0 0;
     ${flexContainer("row", "space-between")};
   }
-  /* .controls{
-      position:absolute;
-      transform: translate(68rem,2.2rem);
-  } */
+
   .error{
       position:absolute;
-      transform: translate(9.4rem,2.2rem)
+      transform: translate(9.4rem,2.2rem);
+  }
+  .control-error{
+  color:red;
+    
+  }
+
+  .error.textarea{
+    transform: translate(9.4rem,-2.2rem);
+  }
+
+  .controls {
+    ${(props) =>
+      props.error &&
+      css`
+        color: red;
+      `}
+    
   }
 `;

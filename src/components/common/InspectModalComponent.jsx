@@ -10,7 +10,7 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 //Utilities
 import { paginationDisplay, getPages } from "../Utility/utilities";
 
-export const InspectModal = ({ modal, setModal }) => {
+export const InspectModalComponent = ({ modal, setModal, className }) => {
   const initial = {
     total: null,
     first: null,
@@ -59,13 +59,7 @@ export const InspectModal = ({ modal, setModal }) => {
   }, [pagination]);
 
   return modal.current ? (
-    <div
-      className={
-        modal.inspect
-          ? "modal-custom modal-inspect"
-          : "modal-custom modal-hidden"
-      }
-    >
+    <div className={className}>
       <div className="modal-inner">
         <h1>{modal.current.story.title}</h1>
         <h3>{modal.current.story.lead}</h3>
@@ -114,7 +108,7 @@ export const InspectModal = ({ modal, setModal }) => {
         </div>
       </div>
 
-      <Button handler={handleClose} text={"Close"}></Button>
+      <Button className="close" handler={handleClose} text={"Close"}></Button>
     </div>
   ) : (
     <div></div>

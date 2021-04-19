@@ -4,6 +4,7 @@ import uuid from "react-uuid";
 export const InputComponent = ({
   children,
   className,
+  handler,
   id,
   error,
   controls,
@@ -13,7 +14,7 @@ export const InputComponent = ({
 }) => (
   <div className={className}>
     <label htmlFor={id}>{label}</label>
-    <input ref={register} id={id} {...inputProps}></input>
+    <input onChange={handler} ref={register} id={id} {...inputProps}></input>
     {children}
     {error && <p className="error">{error.message}</p>}
     {controls}
@@ -22,6 +23,7 @@ export const InputComponent = ({
 
 export const SelectComponent = ({
   className,
+  handler,
   options,
   id,
   label,
@@ -29,7 +31,7 @@ export const SelectComponent = ({
 }) => (
   <div className={className}>
     <label htmlFor={id}>{label}</label>
-    <select name={id} id={id} ref={register}>
+    <select onChange={handler} name={id} id={id} ref={register}>
       {options.length > 0
         ? options.map((option) => (
             <option value={option} key={uuid()}>
@@ -53,19 +55,22 @@ export const TextAreaComponent = ({
     const newHeight = e.target.scrollHeight > 34 ? e.target.scrollHeight : 34;
     e.target.style.height = newHeight.toString() + "px";
   };
+
   return (
-    <div className={className}>
-      <label htmlFor={id}>{label}</label>
-      <textarea
-        onKeyUp={(e) => {
-          increaseHeight(e);
-        }}
-        id={id}
-        name={id}
-        ref={register}
-      ></textarea>
-      {error && <p className="error">{error.message}</p>}
-    </div>
+    <>
+      <div className={className}>
+        <label htmlFor={id}>{label}</label>
+        <textarea
+          onKeyUp={(e) => {
+            increaseHeight(e);
+          }}
+          id={id}
+          name={id}
+          ref={register}
+        ></textarea>
+      </div>
+      {error && <p className="error textarea">{error.message}</p>}
+    </>
   );
 };
 
