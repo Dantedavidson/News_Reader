@@ -6,6 +6,7 @@ export const InputComponent = ({
   className,
   id,
   error,
+  controls,
   label,
   register,
   ...inputProps
@@ -15,6 +16,7 @@ export const InputComponent = ({
     <input ref={register} id={id} {...inputProps}></input>
     {children}
     {error && <p className="error">{error.message}</p>}
+    {controls}
   </div>
 );
 
@@ -69,6 +71,7 @@ export const TextAreaComponent = ({
 
 export const InputSelectComponent = ({
   className,
+  controls,
   id,
   listId,
   label,
@@ -88,12 +91,14 @@ export const InputSelectComponent = ({
         ))}
       </datalist>
       {error && <p className="error">{error.message}</p>}
+      {controls}
     </div>
   );
 };
 
 export const FieldArrayComponent = ({
   className,
+  controls,
   options,
   id,
   array,
@@ -118,5 +123,6 @@ export const FieldArrayComponent = ({
           })
         : ""}
     </select>
+    {controls}
   </div>
 );

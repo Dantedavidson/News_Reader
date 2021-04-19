@@ -9,6 +9,7 @@ import {
   TextArea,
   FieldArray,
 } from "../common/ui/form";
+import { Form } from "./ui";
 
 //Libraries
 import { useForm, useFieldArray, Controller, useWatch } from "react-hook-form";
@@ -215,21 +216,33 @@ export const CreateCardForm = ({
 
   return (
     <React.Fragment>
-      <form className="form-create">
+      <Form>
         <h2>{title}</h2>
+
+        {/* Register Id for Edit  */}
+
         <input type="hidden" name="id" id="id" ref={register} />
+
+        {/* Add Title */}
+
         <TextArea
           id="title"
           label="Title"
           register={register}
           error={errors.title}
         ></TextArea>
+
+        {/* Add Description */}
+
         <TextArea
           id="description"
           label="Description"
           register={register}
           error={errors.description}
         ></TextArea>
+
+        {/* Add Image Url */}
+
         <Input
           id="imgUrl"
           label="Image Url"
@@ -238,6 +251,8 @@ export const CreateCardForm = ({
           name="imgUrl"
           type="text"
         ></Input>
+
+        {/* Add Url */}
 
         <Input
           id="url"
@@ -248,12 +263,26 @@ export const CreateCardForm = ({
           type="text"
         ></Input>
 
+        {/* Add Author */}
+
         <Input
           id="author"
           label="Author"
           error={errors.author}
           register={register}
           name="author"
+          controls={
+            <FontAwesomeIcon
+              className="controls"
+              onClick={() => {
+                appendAuthor({
+                  value: getValues("author"),
+                  index: authorFields.length,
+                });
+              }}
+              icon={faPlus}
+            ></FontAwesomeIcon>
+          }
           type="text"
         ></Input>
         {authorFields.map((author, index) => {
@@ -267,20 +296,25 @@ export const CreateCardForm = ({
             />
           );
         })}
-        <FontAwesomeIcon
-          onClick={() => {
-            appendAuthor({
-              value: getValues("author"),
-              index: authorFields.length,
-            });
-          }}
-          icon={faPlus}
-        ></FontAwesomeIcon>
+
+        {/* Add Tag */}
 
         <InputSelect
           id="tag"
           label="Tag"
           listId="tags"
+          controls={
+            <FontAwesomeIcon
+              className="controls"
+              onClick={() => {
+                appendTag({
+                  value: getValues("tag"),
+                  index: tagFields.length,
+                });
+              }}
+              icon={faPlus}
+            ></FontAwesomeIcon>
+          }
           options={tags}
           register={register}
           error={addError.tag}
@@ -296,15 +330,6 @@ export const CreateCardForm = ({
             />
           );
         })}
-        <FontAwesomeIcon
-          onClick={() => {
-            appendTag({
-              value: getValues("tag"),
-              index: tagFields.length,
-            });
-          }}
-          icon={faPlus}
-        ></FontAwesomeIcon>
 
         {/* Remove Author */}
 
@@ -313,30 +338,35 @@ export const CreateCardForm = ({
           id="remove-author"
           array="authors"
           label="Remove Authors"
-          //defaultValue={authorFields}
+          controls={
+            <FontAwesomeIcon
+              className="controls"
+              onClick={() => {
+                deleteAuthor();
+              }}
+              icon={faTimes}
+            ></FontAwesomeIcon>
+          }
           register={register}
         ></FieldArray>
-        <FontAwesomeIcon
-          onClick={() => {
-            deleteAuthor();
-          }}
-          icon={faTimes}
-        ></FontAwesomeIcon>
+
         {/* Remove Tag */}
         <FieldArray
           options={tagFields}
           id="remove-tag"
           array="tags"
           label="Remove Tags"
-          //defaultValue={authorFields}
+          controls={
+            <FontAwesomeIcon
+              className="controls"
+              onClick={() => {
+                deleteTag();
+              }}
+              icon={faTimes}
+            ></FontAwesomeIcon>
+          }
           register={register}
         ></FieldArray>
-        <FontAwesomeIcon
-          onClick={() => {
-            deleteTag();
-          }}
-          icon={faTimes}
-        ></FontAwesomeIcon>
 
         <div>
           <Button
@@ -344,9 +374,8 @@ export const CreateCardForm = ({
             //onClick={handlePreview}
           ></Button>
           <Button text={"Add Card"} handler={handleSubmit(onSubmit)}></Button>
-          <button onClick={test}>test</button>
         </div>
-      </form>
+      </Form>
     </React.Fragment>
   );
 };

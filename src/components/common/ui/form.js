@@ -23,13 +23,38 @@ export const Input = styled(InputComponent)`
   }
 `;
 
-export const Select = styled(SelectComponent)``;
+export const Select = styled(SelectComponent)`
+  width: 100%;
+  ${flexContainer("row", "flex-start")}
+  select {
+    width: ${(props) => (props.width ? props.width : "60%")};
+  }
+`;
 
-export const TextArea = styled(TextAreaComponent)``;
+export const TextArea = styled(TextAreaComponent)`
+  width: 100%;
+  ${flexContainer("row", "flex-start")}
+  textarea {
+    min-height: 32px;
+    width: ${(props) => (props.width ? props.width : "80%")};
+  }
+`;
 
-export const InputSelect = styled(InputSelectComponent)``;
+export const InputSelect = styled(InputSelectComponent)`
+  width: 100%;
+  ${flexContainer("row", "flex-start")}
+  input {
+    width: ${(props) => (props.width ? props.width : "80%")};
+  }
+`;
 
-export const FieldArray = styled(FieldArrayComponent)``;
+export const FieldArray = styled(FieldArrayComponent)`
+  width: 100%;
+  ${flexContainer("row", "flex-start")}
+  select {
+    width: ${(props) => (props.width ? props.width : "80%")};
+  }
+`;
 
 //Form styles
 
