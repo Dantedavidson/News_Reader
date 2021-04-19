@@ -86,11 +86,11 @@ export const CreateCardForm = ({
   };
 
   const handleTagError = (value, array) => {
-    array.forEach((obj) => {
-      obj.value === value
-        ? setError("tag", { type: "notOneOf", message: "Tags must be unique" })
-        : clearErrors("tag");
-    });
+    array.some(
+      (obj) => obj.value.toLowerCase().trim() === value.toLowerCase().trim()
+    )
+      ? setError("tag", { type: "notOneOf", message: "Tags must be unique" })
+      : clearErrors("tag");
   };
 
   const deleteAuthor = () => {
@@ -124,9 +124,9 @@ export const CreateCardForm = ({
   };
 
   //Updates saved tags
-  // useEffect(() => {
-  //   setLocalStorage(tags, "Tags");
-  // }, [tags]);
+  useEffect(() => {
+    setLocalStorage(tags, "Tags");
+  }, [tags]);
 
   const test = (e) => {
     e.preventDefault();
@@ -231,6 +231,7 @@ export const CreateCardForm = ({
                   value: getValues("tag"),
                   index: tagFields.length,
                 });
+                setTags([...tags, getValues("tag")]);
                 setValue("tag", "");
               }}
               icon={faPlus}
