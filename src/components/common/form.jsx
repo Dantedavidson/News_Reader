@@ -76,6 +76,7 @@ export const TextAreaComponent = ({
 
 export const InputSelectComponent = ({
   className,
+  handler,
   controls,
   id,
   listId,
@@ -87,7 +88,14 @@ export const InputSelectComponent = ({
   return (
     <div className={className}>
       <label htmlFor={id}>{label}</label>
-      <input id={id} name={id} list={listId} ref={register} type="text"></input>
+      <input
+        onChange={handler}
+        id={id}
+        name={id}
+        list={listId}
+        ref={register}
+        type="text"
+      ></input>
       <datalist id={listId}>
         {options.map((option) => (
           <option key={uuid()} value={option}>

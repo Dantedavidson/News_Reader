@@ -42,20 +42,7 @@ export const CreateCardForm = ({
   props,
 }) => {
   const { history, match } = props;
-  const initial = {
-    title: "",
-    description: "",
-    imgUrl: "",
-    url: "",
-    author: [],
-    tag: [],
-    id: null,
-  };
 
-  const [addError, setAddError] = useState({
-    author: [],
-    tag: [],
-  });
   const {
     register,
     handleSubmit,
@@ -64,6 +51,8 @@ export const CreateCardForm = ({
     clearErrors,
     reset,
     getValues,
+    setValue,
+    trigger,
     control,
   } = useForm({
     resolver: yupResolver(userCardSchema),
@@ -88,88 +77,22 @@ export const CreateCardForm = ({
     name: "tags",
   });
 
-  // Takes data from input field and updates state on change.
-  // const handleChange = (data) => {
-  //   setUserInput((prevState) => {
-  //     return {
-  //       ...prevState,
-  //       [data.target.id]: isEmptyOrSpaces(data.target.value)
-  //         ? ""
-  //         : data.target.value,
-  //     };
-  //   });
-  // };
-  //Takes event. Sets errors for tag
-  // const handleTag = (e) => {
-  //   if (userInput.tag.includes(e.target.value)) {
-  //     setAddError((prevState) => ({
-  //       ...prevState,
-  //       tag: ["Tag must be unique"],
-  //     }));
-  //   } else if (e.target.value.trim() === "") {
-  //     setAddError((prevState) => ({
-  //       ...prevState,
-  //       tag: ["Cannot be empty"],
-  //     }));
-  //   } else {
-  //     setAddError((prevState) => ({
-  //       ...prevState,
-  //       tag: [],
-  //     }));
-  //   }
-  //   return;
-  // };
+  const onPreview = () => {
+    const card = userCard(getValues());
+    setModal({
+      inspect: true,
+      current: card,
+    });
+  };
 
-  //Takes event. Handles adding of author or tag.
-  // const handleAdd = (e) => {
-  //   const key = e.currentTarget.parentNode.childNodes[1].id;
-  //   const value = e.currentTarget.parentNode.childNodes[1].value;
-  //   if (value === "") {
-  //     setAddError((prevState) => ({
-  //       ...prevState,
-  //       [key]: [`Cannot add ${key} that is empty.`],
-  //     }));
-  //     return;
-  //   }
-  //   if (errors[key]) {
-  //     return;
-  //   }
+  const handleTagError = (value, array) => {
+    array.forEach((obj) => {
+      obj.value === value
+        ? setError("tag", { type: "notOneOf", message: "Tags must be unique" })
+        : clearErrors("tag");
+    });
+  };
 
-  //   setUserInput((prevState) => {
-  //     return {
-  //       ...prevState,
-  //       [key]: [...prevState[key], value],
-  //     };
-  //   });
-
-  //   e.currentTarget.parentNode.childNodes[1].value = "";
-
-  //   if (key === "tag" && !tags.includes(value)) {
-  //     setTags([...tags, value]);
-  //   }
-  // };
-
-  //Handles preview
-  // const handlePreview = (e) => {
-  //   const card = userCard(userInput);
-  //   setModal({
-  //     inspect: true,
-  //     current: card,
-  //   });
-  //   e.preventDefault();
-  // };
-  //Takes event. Handles deleting author or tag
-  // const handleDelete = (e) => {
-  //   const key = e.currentTarget.parentNode.childNodes[1].dataset.key;
-  //   const value = e.currentTarget.parentNode.childNodes[1].value;
-  //   if (!value) return;
-  //   const filter = userInput[key].filter((item) => item !== value);
-
-  //   setUserInput((prevState) => ({
-  //     ...prevState,
-  //     [key]: filter,
-  //   }));
-  // };
   const deleteAuthor = () => {
     let filtered = authorFields.filter(
       (author) => author.value === getValues("remove-author")
@@ -199,10 +122,6 @@ export const CreateCardForm = ({
     reset();
     if (match.url.includes("/edit")) return history.push("/read");
   };
-  //Updates saved stories
-  // useEffect(() => {
-  //   setLocalStorage(savedStories, "Stories");
-  // }, [savedStories]);
 
   //Updates saved tags
   // useEffect(() => {
@@ -211,7 +130,7 @@ export const CreateCardForm = ({
 
   const test = (e) => {
     e.preventDefault();
-    console.log(authorFields, tagFields);
+    console.log(errors);
   };
 
   return (
@@ -305,19 +224,22 @@ export const CreateCardForm = ({
           listId="tags"
           controls={
             <FontAwesomeIcon
-              className={addError.tag ? "controls control-error" : "controls"}
+              className={errors.tag ? "controls control-error" : "controls"}
               onClick={() => {
+                if (errors.tag) return;
                 appendTag({
                   value: getValues("tag"),
                   index: tagFields.length,
                 });
+                setValue("tag", "");
               }}
               icon={faPlus}
             ></FontAwesomeIcon>
           }
+          handler={(e) => handleTagError(e.currentTarget.value, tagFields)}
           options={tags}
           register={register}
-          error={addError.tag}
+          error={errors.tag}
         ></InputSelect>
         {tagFields.map((tag, index) => {
           return (
@@ -369,11 +291,9 @@ export const CreateCardForm = ({
         ></FieldArray>
 
         <div>
-          <Button
-            text={"Preview Card"}
-            //onClick={handlePreview}
-          ></Button>
+          <Button text={"Preview Card"} handler={onPreview}></Button>
           <Button text={"Add Card"} handler={handleSubmit(onSubmit)}></Button>
+          <button onClick={test}>test</button>
         </div>
       </Form>
     </React.Fragment>

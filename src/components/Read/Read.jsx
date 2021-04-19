@@ -18,7 +18,7 @@ export const Read = ({ savedStories, setSavedStories, tags }) => {
   return (
     <React.Fragment>
       <Body>
-        <ModalBG current={modal.inspect ? true : false}>
+        <ModalBG current={modal.inspect}>
           <Inspect modal={modal} setModal={setModal}></Inspect>
         </ModalBG>
         <SavedGrid

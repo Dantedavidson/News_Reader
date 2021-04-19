@@ -9,6 +9,7 @@ import { Loading } from "../common/Loading";
 
 //Utility
 import { stringToArray } from "../Utility/utilities";
+import { ModalBG, Inspect } from "../common/ui/modal";
 
 export const Edit = ({
   props,
@@ -53,13 +54,9 @@ export const Edit = ({
 
   return (
     <React.Fragment>
-      <div
-        className={
-          modal.inspect || modal.edit ? "modal-bg bg-active" : "modal-bg"
-        }
-      >
-        {/* <InspectModal modal={modal} setModal={setModal}></InspectModal> */}
-      </div>
+      <ModalBG current={modal.inspect}>
+        <Inspect modal={modal} setModal={setModal}></Inspect>
+      </ModalBG>
       <div className="create body">
         {preload ? (
           <CreateCardForm

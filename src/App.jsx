@@ -69,14 +69,14 @@ export const App = () => {
     setSelectedTheme(theme);
   }, [themeLoaded]);
 
-  // 4: Load all the fonts
-  useEffect(() => {
-    WebFont.load({
-      google: {
-        families: getFonts(),
-      },
-    });
-  });
+  // Load all the fonts
+  // useEffect(() => {
+  //   WebFont.load({
+  //     google: {
+  //       families: getFonts(),
+  //     },
+  //   });
+  // });
 
   //Fetch stories for main page and check local storage
 

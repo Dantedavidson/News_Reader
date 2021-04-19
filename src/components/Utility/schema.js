@@ -10,15 +10,13 @@ export const searchFormSchema = yup.object().shape({
     message: "Must be a valid date",
     excludeEmptyString: true,
   }),
-  endDate: yup
-    .string()
-    .matches(dateRegex, {
-      message: "Must be a valid date",
-      excludeEmptyString: true,
-    }),
+  endDate: yup.string().matches(dateRegex, {
+    message: "Must be a valid date",
+    excludeEmptyString: true,
+  }),
 });
 
-//Schema for create page card form
+// Schema for create page card form
 export const userCardSchema = yup.object().shape({
   title: yup.string().max(100).required(),
   description: yup.string().max(250),
