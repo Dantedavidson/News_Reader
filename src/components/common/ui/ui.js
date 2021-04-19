@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { flexContainer, lineHelper } from "../../Utility/mixins";
 
 //Components
@@ -93,6 +93,12 @@ export const Button = styled(ButtonComponent)`
   &:hover {
     color: ${({ theme }) => theme.colors.highlight};
   }
+  ${(props) =>
+    props.cls === "home-bot" &&
+    css`
+      width: 450px;
+      margin: 0;
+    `}
 `;
 
 export const Line = styled(LineComponent)`

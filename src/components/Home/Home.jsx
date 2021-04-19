@@ -164,6 +164,7 @@ export const Home = ({ savedStories, setSavedStories, data }) => {
                     setQuery={setQuery}
                   ></PaginationBarComponent>
                   <Button
+                    cls={"home-bot"}
                     handler={() => {
                       setCurrentDisplay("modal");
                     }}
