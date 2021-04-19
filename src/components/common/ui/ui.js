@@ -79,7 +79,7 @@ export const Card = styled(NewsCard)`
 
 export const Button = styled(ButtonComponent)`
   display: block;
-  width: 300px;
+  width: 350px;
   height: 48px;
   background: ${({ theme }) => theme.colors.primary};
   border-radius: 5px;
@@ -106,13 +106,6 @@ export const Line = styled(LineComponent)`
   ${lineHelper}
   background-color: #000;
 `;
-
-// export const PaginationBar = styled(PaginationBarComponent)`
-//   background-color: red;
-//   .hidden {
-//     display: none !important;
-//   }
-// `;
 
 export const Heart = styled(LikeBtn)`
   cursor: pointer;
