@@ -44,7 +44,9 @@ import {
   faSearchPlus,
   faPencilAlt,
   faMinus,
+  faLightbulb,
 } from "@fortawesome/free-solid-svg-icons";
+import { ThemeButtonComponent } from "./components/common/ThemeButtonComponent";
 
 library.add(
   faAngleDoubleUp,
@@ -55,14 +57,15 @@ library.add(
   faPlus,
   faSearchPlus,
   faPencilAlt,
-  faMinus
+  faMinus,
+  faLightbulb
 );
 
 export const App = () => {
   const [data, setData] = useState([]);
   const [savedStories, setSavedStories] = useState([]);
   const [tags, setTags] = useState([]);
-  const { theme, themeLoaded, getFonts } = useTheme();
+  const { theme, themeLoaded } = useTheme();
   const [selectedTheme, setSelectedTheme] = useState(theme);
 
   useEffect(() => {
@@ -99,7 +102,14 @@ export const App = () => {
           <GlobalStyle />
 
           <Router>
-            <Header></Header>
+            <Header
+              selectedTheme={selectedTheme}
+              setSelectedTheme={setSelectedTheme}
+            ></Header>
+            <ThemeButtonComponent
+              setter={setSelectedTheme}
+              mode={selectedTheme}
+            ></ThemeButtonComponent>
             <Switch>
               <Route
                 path="/edit/:id"

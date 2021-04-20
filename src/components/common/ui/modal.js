@@ -34,6 +34,11 @@ export const Modal = styled.div`
   height: 640px;
   border-radius: 5px;
 
+  h3 {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
   span {
     color: ${({ theme }) => theme.colors.textOne};
     position: absolute;

@@ -1,14 +1,19 @@
 //Header component
 import React from "react";
 import { Link } from "react-router-dom";
+import { ThemeButtonComponent } from "../common/ThemeButtonComponent";
 
 //Styled Components
 import { HeaderContainer, VerticleLine } from "./ui";
 
-export const Header = ({ current }) => {
+export const Header = ({ current, selectedTheme, setSelectedTheme }) => {
   return (
     <HeaderContainer>
       <h1>News Reader</h1>
+      {/* <ThemeButtonComponent
+        selectedTheme={selectedTheme}
+        setSelectedTheme={setSelectedTheme}
+      ></ThemeButtonComponent> */}
       <div>
         <Link to="/">
           <div>

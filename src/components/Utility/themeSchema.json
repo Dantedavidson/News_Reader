@@ -15,6 +15,22 @@
         "textTwo": "#FFFFFF"
       },
       "font": "Roboto"
+    },
+    "dark": {
+      "id": "T_002",
+      "name": "Dark",
+      "colors": {
+        "body": "rgba(20,20,20,1)",
+        "card": "rgba(20,20,20,1)",
+        "primary": "rgba(11, 5, 5, 1)",
+        "highlight": "#ffe500",
+        "warning": "#dd930b",
+        "danger": "#d60000",
+        "like": "#dc143c",
+        "textOne": "#FFFFFF",
+        "textTwo": "#FFFFFF"
+      },
+      "font": "Roboto"
     }
   }
 }

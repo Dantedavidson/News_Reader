@@ -88,9 +88,16 @@ export const ModalForm = styled.form`
   div {
     width: 100%;
   }
+
   > div:nth-of-type(1) {
     input {
       flex-grow: 1;
+    }
+  }
+  > div:nth-of-type(2),
+  div:nth-of-type(3) {
+    input {
+      width: 40%;
     }
   }
 
@@ -114,5 +121,11 @@ export const ModalForm = styled.form`
     font-size: 0.85rem;
     position: absolute;
     transform: translateX(9.2rem) translateY(1.6rem);
+  }
+  input:nth-of-type(3) {
+    background-color: red;
+  }
+  select {
+    width: 40%;
   }
 `;

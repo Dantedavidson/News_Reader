@@ -1,7 +1,7 @@
 //Individual Carousel item
 import React from "react";
 
-import { LikeBtn } from "../common/LikeBtn";
+import { Heart } from "../common/ui/ui";
 
 export const CarouselItemComponent = ({
   card,
@@ -27,11 +27,11 @@ export const CarouselItemComponent = ({
             <p>From {byline}</p>
             <p>{date}</p>
           </div>
-          <LikeBtn
+          <Heart
             card={card}
             savedStories={savedStories}
             setSavedStories={setSavedStories}
-          ></LikeBtn>
+          ></Heart>
         </div>
       </div>
     </div>

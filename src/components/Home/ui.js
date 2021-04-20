@@ -51,6 +51,7 @@ export const CarouselItem = styled(CarouselItemComponent)`
       svg {
         width: 30px;
         height: 30px;
+        transform: translate(-2.6rem, 0.1rem);
       }
     }
   }
@@ -81,6 +82,7 @@ export const Body = styled.div`
   width: 80%;
   min-height: 60vh;
   margin: 0 auto;
+  background-color: ${({ theme }) => theme.colors.body};
 `;
 
 export const ButtonContainer = styled.div`

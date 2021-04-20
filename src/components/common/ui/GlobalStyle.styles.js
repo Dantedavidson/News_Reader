@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 //Theme
@@ -162,6 +162,24 @@ select[multiple] {
   /* Move the label to the top */
   vertical-align: top;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus{
+  ${({ theme }) => css`
+    -webkit-box-shadow: 0 0 0 30px ${theme.colors.body} inset !important;
+    -webkit-text-fill-color: ${theme.colors.textOne};
+  `}
+  
+}
+
+
+
 
 .carousel-container {
   width: 100%;
@@ -170,7 +188,11 @@ select[multiple] {
 
 input,select,textarea {
     border-bottom: 1px solid ${({ theme }) => theme.colors.textOne};
+    color: ${({ theme }) => theme.colors.textOne}
   }
+option{
+  background-color: ${({ theme }) => theme.colors.body}
+}
 .error{
   color:${({ theme }) => theme.colors.danger};
   font-size: 0.85rem;

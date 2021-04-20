@@ -190,7 +190,6 @@ export const NewsSearchForm = ({
           register={register}
           type="text"
           name="term"
-          width={76}
         ></Input>
         <Input
           error={errors.startDate}
@@ -199,7 +198,6 @@ export const NewsSearchForm = ({
           register={register}
           type="text"
           name="startDate"
-          width={76}
         >
           <p className="info">DD/MM/YYYY</p>
         </Input>
@@ -210,7 +208,6 @@ export const NewsSearchForm = ({
           register={register}
           type="text"
           name="endDate"
-          width={70}
         >
           <p className="info">DD/MM/YYYY</p>
         </Input>

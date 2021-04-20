@@ -69,7 +69,11 @@ export const Card = styled(NewsCard)`
     ${(props) =>
       props.single &&
       `
+      
     ${flexContainer("row", "space-around", "flex-start", "flex-start")}
+    svg {
+      margin-bottom: .2rem;
+    }
     `}
     > svg {
       cursor: pointer;
@@ -104,12 +108,12 @@ export const Button = styled(ButtonComponent)`
 export const Line = styled(LineComponent)`
   display: block;
   ${lineHelper}
-  background-color: #000;
+  background-color: ${({ theme }) => theme.colors.textOne};
 `;
 
 export const Heart = styled(LikeBtn)`
   cursor: pointer;
-  transform: translateY(-0.2rem) scale(1.3);
+  transform: scale(1.3);
 `;
 
 export const StyledLoader = styled.div`
