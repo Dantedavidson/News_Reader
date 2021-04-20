@@ -2,7 +2,7 @@ import Styled, { css } from "styled-components";
 import { flexContainer } from "../Utility/mixins";
 
 export const Form = Styled.form`
-width:60%;
+max-width:920px;
 font-size: 1.4rem;
 margin: 3rem auto;
 
@@ -40,6 +40,13 @@ svg {
 >div:nth-last-of-type(1) {
     margin: 4rem 2.5% 0 0;
     ${flexContainer("row", "space-between")};
+    >div{
+      max-width: 450px;
+      width:48%;
+      height:40px;
+      line-height:40px;
+      margin:0;
+    }
   }
 
   .error{
@@ -63,4 +70,10 @@ svg {
       `}
     
   }
+
+   @media(max-width:950px){
+     
+       width: 90%;
+     
+  } 
 `;

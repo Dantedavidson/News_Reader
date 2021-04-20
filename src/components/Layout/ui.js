@@ -56,10 +56,13 @@ export const FooterContainer = styled.footer`
     width: 80%;
     margin: auto;
     padding: 1rem 0;
-    ${flexContainer("row", "space-around")};
+    ${flexContainer("column", "space-around")};
     > div:nth-child(1) {
-      width: 30%;
+      max-width: 700px;
       padding-bottom: 5rem;
+      h3 {
+        text-align: center;
+      }
       p a {
         text-decoration: underline;
       }
@@ -76,12 +79,10 @@ export const FooterContainer = styled.footer`
         color: ${({ theme }) => theme.colors.highlight};
       }
     }
-    > div:nth-child(3) {
+    > div:nth-child(2) {
       width: 30%;
-      align-self: flex-end;
-      order: 2;
 
-      div {
+      > div {
         ${flexContainer("row", "space-between")};
         width: 130px;
         margin: auto;
@@ -93,6 +94,9 @@ export const FooterContainer = styled.footer`
           border-radius: 50%;
           background-color: #fff;
           color: ${({ theme }) => theme.colors.primary};
+        }
+        &:hover {
+          transform: scale(1.1);
         }
         path {
           transform: translateX(14rem);

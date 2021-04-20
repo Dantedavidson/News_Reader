@@ -60,6 +60,21 @@ export const CarouselItem = styled(CarouselItemComponent)`
     opacity: 1 !important;
     display: block;
   }
+
+  @media (max-width: 1500px) {
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: 400px 300px;
+    row-gap: 1rem;
+
+    > div:nth-of-type(2) {
+      width: 80%;
+      margin: auto;
+      div:nth-child(2) {
+        width: 100%;
+      }
+    }
+  }
 `;
 
 export const Grid = styled(NewsCardGrid)`
@@ -76,6 +91,12 @@ export const Grid = styled(NewsCardGrid)`
     grid-column: 1/4;
     text-align: center;
   }
+  @media (max-width: 1050px) {
+    grid-template-columns: repeat(2, 300px);
+  }
+  @media (max-width: 650px) {
+    grid-template-columns: repeat(1, 300px);
+  }
 `;
 
 export const Body = styled.div`
@@ -89,4 +110,15 @@ export const ButtonContainer = styled.div`
   width: 80%;
   margin: 0 auto;
   ${flexContainer("row", "space-between", "flex-start")}
+
+  @media(max-width:1400px) {
+    display: grid;
+    grid-template-columns: 100%;
+    > :nth-child(1) {
+      transform: translateY(-2rem);
+    }
+    > :nth-child(2) {
+      justify-self: center;
+    }
+  }
 `;

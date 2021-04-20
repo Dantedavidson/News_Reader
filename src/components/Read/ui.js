@@ -8,6 +8,16 @@ export const Grid = Styled.div`
   row-gap: 3rem;
   column-gap: 3rem;
   justify-content: center;
+
+  @media(max-width:1360px){
+    grid-template-columns: repeat(3, 300px);
+  }
+  @media (max-width: 1050px) {
+    grid-template-columns: repeat(2, 300px);
+  }
+  @media (max-width: 650px) {
+    grid-template-columns: repeat(1, 300px);
+  }
 `;
 
 export const SearchBar = Styled.div`

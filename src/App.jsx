@@ -25,8 +25,6 @@ import { getLocalStorage, createCard } from "./components/Utility/utilities";
 
 //Style
 import "bootstrap/dist/css/bootstrap.min.css";
-
-//import "./styles/style.scss";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./components/common/ui/GlobalStyle.styles";
 import { useTheme } from "./components/Utility/useTheme";

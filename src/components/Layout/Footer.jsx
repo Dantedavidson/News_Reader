@@ -21,29 +21,6 @@ export const Footer = () => {
             </Link>
           </p>
         </div>
-        <div>
-          <div>
-            <h3>Sources</h3>
-
-            <p>
-              <Link to="/ft" target={"_blank"}>
-                The Financial Times
-              </Link>
-            </p>
-
-            <p>
-              <Link to="/guardian" target={"_blank"}>
-                The Guardian
-              </Link>
-            </p>
-
-            <p>
-              <Link to="/nyt" target={"_blank"}>
-                The New York Times
-              </Link>
-            </p>
-          </div>
-        </div>
 
         <div>
           <div onClick={scrollTop}>

@@ -5,8 +5,11 @@ import Styled from "styled-components";
 import Pagination from "react-bootstrap/Pagination";
 
 //Utilities
-import { paginationDisplay, scrollTop } from "../Utility/utilities";
+import { paginationDisplay } from "../Utility/utilities";
 const PaginationBar = Styled.div`
+.pagination{
+  color:#000;
+}
   .hidden {
     display: none !important;
   }

@@ -28,8 +28,7 @@ export const ModalBG = styled.div`
 export const Modal = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.colors.card};
-  width: 40%;
-  min-width: 340px;
+  width: 600px;
   border-radius: 5px;
   height: 640px;
   border-radius: 5px;
@@ -50,13 +49,22 @@ export const Modal = styled.div`
       width: 1.3rem;
     }
   }
+  @media (max-width: 620px) {
+    width: 100%;
+    form {
+      width: 94%;
+      input,
+      select {
+        width: 100% !important;
+      }
+    }
+  }
 `;
 
 export const Inspect = styled(InspectModalComponent)`
   position: relative;
   background-color: ${({ theme }) => theme.colors.card};
-  width: 40%;
-  min-width: 340px;
+  width: 750px;
   border-radius: 5px;
   height: 640px;
   border-radius: 5px;
@@ -146,5 +154,12 @@ export const Inspect = styled(InspectModalComponent)`
     width: 260px;
     line-height: 38px;
     margin: 0 auto;
+  }
+
+  @media (max-width: 740px) {
+    width: 95%;
+    > div {
+      width: 90%;
+    }
   }
 `;

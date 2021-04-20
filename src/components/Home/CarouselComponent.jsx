@@ -22,6 +22,13 @@ const CarouselStyled = styled.div`
       text-align: center;
     }
   }
+  @media (max-width: 1500px) {
+    overflow: visible;
+    .carousel-container,
+    .carousel-inner {
+      overflow: visible;
+    }
+  }
 `;
 
 export const CarouselComponent = ({
@@ -43,7 +50,7 @@ export const CarouselComponent = ({
           <Carousel fade controls={false}>
             {cards.map((card) => {
               return (
-                <Carousel.Item interval={10000} key={uuid()}>
+                <Carousel.Item interval={10000000} key={uuid()}>
                   <CarouselItem
                     card={card}
                     savedStories={savedStories}
