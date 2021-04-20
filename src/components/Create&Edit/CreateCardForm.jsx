@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 //Components
 import { Button } from "../common/ui/ui";
-import {
-  Input,
-  InputSelect,
-  Select,
-  TextArea,
-  FieldArray,
-} from "../common/ui/form";
+import { Input, InputSelect, TextArea, FieldArray } from "../common/ui/form";
 import { Form } from "./ui";
 
 //Libraries
-import { useForm, useFieldArray, Controller, useWatch } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 //Font awesome
@@ -20,12 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 //Utilities
-import {
-  isEmptyOrSpaces,
-  setLocalStorage,
-  userCard,
-  stringToArray,
-} from "../Utility/utilities";
+import { setLocalStorage, userCard } from "../Utility/utilities";
 
 //Schema
 import { userCardSchema } from "../Utility/schema";
@@ -52,7 +41,6 @@ export const CreateCardForm = ({
     reset,
     getValues,
     setValue,
-    trigger,
     control,
   } = useForm({
     resolver: yupResolver(userCardSchema),
@@ -97,14 +85,17 @@ export const CreateCardForm = ({
     let filtered = authorFields.filter(
       (author) => author.value === getValues("remove-author")
     );
-
-    removeAuthor(filtered[0].index);
+    let index = authorFields.indexOf(filtered[0]);
+    if (index === -1) return;
+    removeAuthor(index);
   };
   const deleteTag = () => {
     let filtered = tagFields.filter(
       (tag) => tag.value === getValues("remove-tag")
     );
-    removeTag(filtered[0].index);
+    let index = tagFields.indexOf(filtered[0]);
+    if (index === -1) return;
+    removeTag(index);
   };
   //Takes form data. Handles submit
   const onSubmit = (data) => {
@@ -127,11 +118,6 @@ export const CreateCardForm = ({
   useEffect(() => {
     setLocalStorage(tags, "Tags");
   }, [tags]);
-
-  const test = (e) => {
-    e.preventDefault();
-    console.log(errors);
-  };
 
   return (
     <React.Fragment>
@@ -294,7 +280,6 @@ export const CreateCardForm = ({
         <div>
           <Button text={"Preview Card"} handler={onPreview}></Button>
           <Button text={"Add Card"} handler={handleSubmit(onSubmit)}></Button>
-          <button onClick={test}>test</button>
         </div>
       </Form>
     </React.Fragment>

@@ -7,7 +7,6 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import WebFont from "webfontloader";
 
 //Api
 import { getTopStories } from "./API";
@@ -28,7 +27,7 @@ import { getLocalStorage, createCard } from "./components/Utility/utilities";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 //import "./styles/style.scss";
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./components/common/ui/GlobalStyle.styles";
 import { useTheme } from "./components/Utility/useTheme";
 
@@ -72,15 +71,6 @@ export const App = () => {
     setSelectedTheme(theme);
   }, [themeLoaded]);
 
-  // Load all the fonts
-  // useEffect(() => {
-  //   WebFont.load({
-  //     google: {
-  //       families: getFonts(),
-  //     },
-  //   });
-  // });
-
   //Fetch stories for main page and check local storage
 
   useEffect(() => {
@@ -105,11 +95,13 @@ export const App = () => {
             <Header
               selectedTheme={selectedTheme}
               setSelectedTheme={setSelectedTheme}
-            ></Header>
-            <ThemeButtonComponent
-              setter={setSelectedTheme}
-              mode={selectedTheme}
-            ></ThemeButtonComponent>
+            >
+              <ThemeButtonComponent
+                setter={setSelectedTheme}
+                mode={selectedTheme}
+              ></ThemeButtonComponent>
+            </Header>
+
             <Switch>
               <Route
                 path="/edit/:id"

@@ -1,39 +1,46 @@
 //Header component
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ThemeButtonComponent } from "../common/ThemeButtonComponent";
+import Styled from "styled-components";
 
 //Styled Components
 import { HeaderContainer, VerticleLine } from "./ui";
 
-export const Header = ({ current, selectedTheme, setSelectedTheme }) => {
+const activeClassName = "nav-item-active";
+
+const StyledNavLink = Styled(NavLink).attrs({ activeClassName })`
+  &.${activeClassName} {
+    color:${({ theme }) => theme.colors.highlight};
+  }
+`;
+
+export const Header = ({ current, children }) => {
   return (
     <HeaderContainer>
       <h1>News Reader</h1>
-      {/* <ThemeButtonComponent
-        selectedTheme={selectedTheme}
-        setSelectedTheme={setSelectedTheme}
-      ></ThemeButtonComponent> */}
+
       <div>
-        <Link to="/">
+        <StyledNavLink exact to="/">
           <div>
             <h3>Home</h3>
             <VerticleLine></VerticleLine>
           </div>
-        </Link>
-        <Link to="/create">
+        </StyledNavLink>
+        <StyledNavLink to="/create">
           <div>
             {" "}
             <h3>Create</h3>
             <VerticleLine></VerticleLine>
           </div>
-        </Link>
-        <Link to="/Read">
+        </StyledNavLink>
+        <StyledNavLink to="/Read">
           <div>
             <h3>Read</h3>
           </div>
-        </Link>
+        </StyledNavLink>
       </div>
+      {children}
     </HeaderContainer>
   );
 };

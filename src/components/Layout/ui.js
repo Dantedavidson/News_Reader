@@ -15,14 +15,25 @@ export const HeaderContainer = styled.div`
     font-family: "Merriweather", serif;
   }
   div {
-    transform: translateY(-0.7rem) translateX(-1rem);
+    transform: translateY(-0.2rem) translateX(-1rem);
     ${flexContainer("row", "flex-start")};
+
     h3 {
       padding: 1rem;
       margin: 0 1rem;
       font-size: 1.5rem;
     }
     h3:hover {
+      color: ${({ theme }) => theme.colors.highlight};
+    }
+  }
+  > svg {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    transform: scale(1.2);
+    &:hover {
       color: ${({ theme }) => theme.colors.highlight};
     }
   }
