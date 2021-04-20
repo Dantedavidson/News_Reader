@@ -179,7 +179,20 @@ select:-webkit-autofill:focus{
 }
 
 
+*::-webkit-scrollbar {
+  width: 8px;               /* width of the entire scrollbar */
+}
 
+*::-webkit-scrollbar-track {
+  background: ${({ theme }) =>
+    theme.colors.body};        /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(150, 145, 145, 0.33);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  /* creates padding around scroll thumb */
+}
 
 .carousel-container {
   width: 100%;

@@ -32,6 +32,11 @@ export const Modal = styled.div`
   border-radius: 5px;
   height: 640px;
   border-radius: 5px;
+  .inner {
+    width: 100%;
+    height: 100%;
+    min-height: 620px;
+  }
 
   h3 {
     margin-top: 1.5rem;
@@ -58,6 +63,12 @@ export const Modal = styled.div`
         width: 100% !important;
       }
     }
+  }
+  @media (max-height: 740px) {
+    height: 90vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    transform: translateY(-10vh);
   }
 `;
 
@@ -161,5 +172,11 @@ export const Inspect = styled(InspectModalComponent)`
     > div {
       width: 90%;
     }
+  }
+  @media (max-height: 800px) {
+    height: 90vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    transform: translateY(-10vh);
   }
 `;

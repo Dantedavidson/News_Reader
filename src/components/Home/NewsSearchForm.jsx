@@ -172,53 +172,55 @@ export const NewsSearchForm = ({
 
   return (
     <Modal>
-      <span
-        onClick={() => {
-          clearErrors();
-          reset();
-          setCurrentDisplay("start");
-        }}
-      >
-        <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
-      </span>
-      <h3>Search The New York Times</h3>
-      <ModalForm>
-        <Input
-          error={errors.term}
-          id="term"
-          label="Search Term"
-          register={register}
-          type="text"
-          name="term"
-        ></Input>
-        <Input
-          error={errors.startDate}
-          id="startDate"
-          label="Start Date"
-          register={register}
-          type="text"
-          name="startDate"
+      <div className="inner">
+        <span
+          onClick={() => {
+            clearErrors();
+            reset();
+            setCurrentDisplay("start");
+          }}
         >
-          <p className="info">DD/MM/YYYY</p>
-        </Input>
-        <Input
-          error={errors.endDate}
-          id="endDate"
-          label="End Date"
-          register={register}
-          type="text"
-          name="endDate"
-        >
-          <p className="info">DD/MM/YYYY</p>
-        </Input>
-        <Select
-          options={sections}
-          id="section"
-          label="Section"
-          register={register}
-        ></Select>
-        <Button handler={handleSubmit(onSubmit)} text="Submit"></Button>
-      </ModalForm>
+          <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
+        </span>
+        <h3>Search The New York Times</h3>
+        <ModalForm>
+          <Input
+            error={errors.term}
+            id="term"
+            label="Search Term"
+            register={register}
+            type="text"
+            name="term"
+          ></Input>
+          <Input
+            error={errors.startDate}
+            id="startDate"
+            label="Start Date"
+            register={register}
+            type="text"
+            name="startDate"
+          >
+            <p className="info">DD/MM/YYYY</p>
+          </Input>
+          <Input
+            error={errors.endDate}
+            id="endDate"
+            label="End Date"
+            register={register}
+            type="text"
+            name="endDate"
+          >
+            <p className="info">DD/MM/YYYY</p>
+          </Input>
+          <Select
+            options={sections}
+            id="section"
+            label="Section"
+            register={register}
+          ></Select>
+          <Button handler={handleSubmit(onSubmit)} text="Submit"></Button>
+        </ModalForm>
+      </div>
     </Modal>
   );
 };
