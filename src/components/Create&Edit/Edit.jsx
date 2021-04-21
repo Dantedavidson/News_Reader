@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { RouteComponentProps, Link } from "react-router-dom";
 
 //Components
-
 import { CreateCardForm } from "./CreateCardForm";
-
 import { Loading } from "../common/Loading";
+import { ModalBG, Inspect } from "../common/ui/modal";
 
 //Utility
 import { stringToArray } from "../Utility/utilities";
-import { ModalBG, Inspect } from "../common/ui/modal";
 
 export const Edit = ({
   props,
@@ -18,7 +15,7 @@ export const Edit = ({
   tags,
   setTags,
 }) => {
-  const { match } = props;
+  const { match, history } = props;
   const [modal, setModal] = useState({
     inspect: false,
     current: null,
@@ -29,6 +26,7 @@ export const Edit = ({
   useEffect(() => {
     const paramId = match.params.id;
     const current = savedStories.filter((story) => story.id === paramId)[0];
+    if (!current) return history.push("/read");
     const authorsTemp = stringToArray(current.story.byline);
     console.log(current.id);
     setPreload({
@@ -47,11 +45,6 @@ export const Edit = ({
       id: current.id,
     });
   }, []);
-
-  //   arr.map((item,i) =>{
-  // return  {value:item,index:i}
-  // })
-
   return (
     <React.Fragment>
       <ModalBG current={modal.inspect}>

@@ -2,12 +2,10 @@ import styled from "styled-components";
 import { flexContainer } from "../Utility/mixins";
 
 // Components
-import { CarouselComponent } from "./CarouselComponent";
 import { CarouselItemComponent } from "./CarouselItemComponent";
 import { NewsCardGrid } from "./NewsCardGrid";
 
 //styles
-
 export const CarouselItem = styled(CarouselItemComponent)`
   width: 100%;
   display: grid !important;

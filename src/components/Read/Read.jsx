@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { SavedGrid } from "./SavedGrid";
 
 //Ui Components
-import { Inspect, ModalBG, Modal } from "../common/ui/modal";
+import { Inspect, ModalBG } from "../common/ui/modal";
 import { Body } from "../common/ui/ui";
 
 export const Read = ({ savedStories, setSavedStories, tags }) => {

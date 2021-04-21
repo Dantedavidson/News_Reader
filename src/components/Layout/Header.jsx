@@ -1,7 +1,6 @@
 //Header component
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { ThemeButtonComponent } from "../common/ThemeButtonComponent";
 import Styled from "styled-components";
 
 //Styled Components
@@ -15,7 +14,7 @@ const StyledNavLink = Styled(NavLink).attrs({ activeClassName })`
   }
 `;
 
-export const Header = ({ current, children }) => {
+export const Header = ({ children }) => {
   return (
     <HeaderContainer>
       <h1>News Reader</h1>

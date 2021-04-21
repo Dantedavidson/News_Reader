@@ -3,9 +3,9 @@
 import React from "react";
 
 //components
-import { LikeBtn } from "../common/LikeBtn";
 import { Card, Heart } from "../common/ui/ui";
 import { Loading } from "../common/Loading";
+import uuid from "react-uuid";
 
 export const NewsCardGrid = ({
   className,
@@ -24,6 +24,7 @@ export const NewsCardGrid = ({
           query.results.map((card) => {
             return (
               <Card
+                key={uuid()}
                 single
                 card={card}
                 savedStories={savedStories}

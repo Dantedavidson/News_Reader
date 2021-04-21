@@ -1,7 +1,7 @@
 //Displays loading gif or carousel items.
 import React from "react";
 import styled from "styled-components";
-import { flexContainer } from "../Utility/mixins";
+
 //Libraries
 import Carousel from "react-bootstrap/Carousel";
 import uuid from "react-uuid";
@@ -50,7 +50,7 @@ export const CarouselComponent = ({
           <Carousel fade controls={false}>
             {cards.map((card) => {
               return (
-                <Carousel.Item interval={10000000} key={uuid()}>
+                <Carousel.Item interval={10000} key={uuid()}>
                   <CarouselItem
                     card={card}
                     savedStories={savedStories}

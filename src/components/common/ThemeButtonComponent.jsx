@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useTheme } from "../Utility/useTheme";
 
 //Utility
@@ -15,17 +15,12 @@ export const ThemeButtonComponent = (props) => {
 
   const themeSwitcher = (mode) => {
     if (mode.name === "Main") {
-      console.log(mode.name);
       setMode(allThemes.data.dark);
       props.setter(allThemes.data.dark);
     } else {
       setMode(allThemes.data.main);
       props.setter(allThemes.data.main);
     }
-    // selectedTheme.name === 'Main'?(setMode('Dark');
-    // props.setter(allThemes);):(
-    //     setMode()
-    // )
   };
   return (
     <FontAwesomeIcon

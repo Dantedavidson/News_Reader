@@ -1,4 +1,4 @@
-import Styled, { css } from "styled-components";
+import Styled from "styled-components";
 import { flexContainer } from "../Utility/mixins";
 
 export const Grid = Styled.div`

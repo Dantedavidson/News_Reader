@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 
 //Components
-import { LikeBtn } from "../common/LikeBtn";
 import { Heart } from "../common/ui/ui";
 import { InspectBtn } from "../common/InspectBtn";
 import { EditBtn } from "../common/EditBtn";

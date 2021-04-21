@@ -5,7 +5,6 @@ import React from "react";
 //Libraries
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import uuid from "react-uuid";
 
 //Utilities
 import { createQuery, formatQueryDate } from "../Utility/utilities";
@@ -23,11 +22,9 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { searchFormSchema } from "../Utility/schema";
 
 export const NewsSearchForm = ({
-  currentDisplay,
   setCurrentDisplay,
   setQuery,
   initialQuery,
-  className,
 }) => {
   const { register, handleSubmit, reset, errors, clearErrors } = useForm({
     resolver: yupResolver(searchFormSchema),

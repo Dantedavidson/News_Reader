@@ -17,7 +17,6 @@ const PaginationBar = Styled.div`
 
 export const PaginationBarComponent = ({ query, setQuery }) => {
   const {
-    className,
     pages,
     perPage,
     items,

@@ -8,6 +8,7 @@ import { Form } from "./ui";
 //Libraries
 import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import uuid from "react-uuid";
 
 //Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,7 +19,6 @@ import { setLocalStorage, userCard } from "../Utility/utilities";
 
 //Schema
 import { userCardSchema } from "../Utility/schema";
-import uuid from "react-uuid";
 
 export const CreateCardForm = ({
   title,
@@ -32,6 +32,7 @@ export const CreateCardForm = ({
 }) => {
   const { history, match } = props;
 
+  //Set up React Hook Forms
   const {
     register,
     handleSubmit,
@@ -48,6 +49,7 @@ export const CreateCardForm = ({
     defaultValues: preload,
   });
 
+  //Store an array of authors. Methods for array.
   const {
     fields: authorFields,
     append: appendAuthor,
@@ -56,6 +58,8 @@ export const CreateCardForm = ({
     control,
     name: "authors",
   });
+
+  //Store an array of tags. Methods for array.
   const {
     fields: tagFields,
     append: appendTag,
@@ -64,7 +68,7 @@ export const CreateCardForm = ({
     control,
     name: "tags",
   });
-
+  //Preview modal with form data
   const onPreview = () => {
     const card = userCard(getValues());
     setModal({
@@ -73,6 +77,7 @@ export const CreateCardForm = ({
     });
   };
 
+  //Set/clear error on change
   const handleTagError = (value, array) => {
     array.some(
       (obj) => obj.value.toLowerCase().trim() === value.toLowerCase().trim()
@@ -81,6 +86,7 @@ export const CreateCardForm = ({
       : clearErrors("tag");
   };
 
+  //Remove Author from Author Field Array
   const deleteAuthor = () => {
     let filtered = authorFields.filter(
       (author) => author.value === getValues("remove-author")
@@ -89,6 +95,8 @@ export const CreateCardForm = ({
     if (index === -1) return;
     removeAuthor(index);
   };
+
+  //Remove Tag from Tag Field Array
   const deleteTag = () => {
     let filtered = tagFields.filter(
       (tag) => tag.value === getValues("remove-tag")
@@ -105,7 +113,6 @@ export const CreateCardForm = ({
     cardInDb.id = card.id;
     cardInDb.like = card.like;
     cardInDb.tags = card.tags;
-    console.log(cardInDb);
     if (!cardInDb.id) {
       cardInDb.id = uuid();
       setSavedStories([...savedStories, cardInDb]);
@@ -184,6 +191,7 @@ export const CreateCardForm = ({
                   value: getValues("author"),
                   index: authorFields.length,
                 });
+                setValue("author", "");
               }}
               icon={faPlus}
             ></FontAwesomeIcon>
